@@ -1,0 +1,12 @@
+{
+  "name": "halyard-js-examples",
+  "private": true,
+  "version": "0.0.1",
+  "author": "QlikTech International AB",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "enigma.js": "^1.0.0",
+    "ws": "^1.1.1"
+  }
+}

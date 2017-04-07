@@ -1,0 +1,47 @@
+{
+  "name": "halyard.js",
+  "version": "1.0.0",
+  "description": "Data import library for Qlik Analytics Platform",
+  "author": "QlikTech International AB",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:coverage": "aw-test-coverage --dir ./coverage/all -- ./test/unit ./test/integration ./src --compilers js:babel-register -t 5000",
+    "test:watch": "aw-test-runner ./test/unit -w --compilers js:babel-register",
+    "test:unit": "aw-test-runner ./test/unit --compilers js:babel-register",
+    "test:unit:watch": "aw-test-runner ./test/unit -w --compilers js:babel-register",
+    "test:unit:coverage": "aw-test-coverage --dir ./coverage/unit -- ./test/unit ./src --compilers js:babel-register",
+    "test:integration": "aw-test-runner ./test/integration --compilers js:babel-register -t 5000",
+    "test:integration:coverage": "aw-test-coverage --dir ./coverage/integration  -- ./test/integration ./src --compilers js:babel-register -t 5000",
+    "lint": "eslint src test",
+    "lint:fix": "eslint src test --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qlik-oss/halyard.js"
+  },
+  "files": [
+    "/dist"
+  ],
+  "main": "dist/halyard.js",
+  "devDependencies": {
+    "after-work.js": "^2.0.0",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-env": "^1.1.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-register": "^6.7.2",
+    "bluebird": "^3.4.6",
+    "browser-sync": "^2.18.8",
+    "enigma.js": "^1.0.0",
+    "eslint": "^3.8.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "jsdoc": "^3.4.0",
+    "rimraf": "^2.5.1",
+    "webpack": "^1.13.1",
+    "ws": "^1.1.1"
+  },
+  "dependencies": {}
+}
