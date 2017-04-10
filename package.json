@@ -1,6 +1,6 @@
 {
   "name": "halyard.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Data import library for Qlik Analytics Platform",
   "author": "QlikTech International AB",
   "license": "MIT",
@@ -38,6 +38,7 @@
     "enigma.js": "^1.0.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
     "jsdoc": "^3.4.0",
     "rimraf": "^2.5.1",
     "webpack": "^1.13.1",
