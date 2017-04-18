@@ -20,19 +20,19 @@
 
 ##### Library
 ```
-* [ ] Node.js
-* [ ] Browser
+[ ] Node.js
+[ ] Browser
 ```
 ##### Operating system
 ```
-* [ ] Windows
-* [ ] OSX
-* [ ] Linux
+[ ] Windows
+[ ] OSX
+[ ] Linux
 ```
 ##### Qlik Sense
 ```
-* [ ] Desktop
-* [ ] Enterprise
+[ ] Desktop
+[ ] Enterprise
 ```
 ### Versions
 
