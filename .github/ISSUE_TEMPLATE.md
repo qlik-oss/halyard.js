@@ -19,21 +19,21 @@
 ### Environment
 
 ##### Library
-
+```
 * [ ] Node.js
 * [ ] Browser
-
+```
 ##### Operating system
-
+```
 * [ ] Windows
 * [ ] OSX
 * [ ] Linux
-
+```
 ##### Qlik Sense
-
+```
 * [ ] Desktop
 * [ ] Enterprise
-
+```
 ### Versions
 
 * Node.js: 
