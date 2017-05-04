@@ -93,6 +93,11 @@ Updates an existing app named `existingAppName` with new data from the `Halyard`
 
 ***Note that this method replaces any script that already exist in the app.***
 
+### `setScriptAndReloadWithHalyard(app, halyard, doSaveAfterReload)`
+
+Sets data from the `halyard` instance to the `app` instance. If `doSaveAfterReload` is set to true, the app is saved
+after the data has been set. This method will return the app.
+
 ## Extending with new functionality
 
 See [extending-functionality.js](examples/extending-functionality.js) in examples for more info about how to extend with new functionality.
