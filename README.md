@@ -108,4 +108,4 @@ Please follow the instructions in [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## Examples
 
-More examples can be found in [examples](examples/README.md) or in the [examples/](examples/) folder
+More examples can be found in [examples](examples/README.md) or in the [examples/](examples/) folder.
