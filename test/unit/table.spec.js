@@ -64,6 +64,16 @@ describe('Table', () => {
       expect(new Table(jsonData, 'TableName').getScript()).to.eql('LOAD\n*\nINLINE "\n""Head,er1"",Header2\n""a,1"",1\na2,b2\na3,b3\n"\n(txt);');
     });
 
+    it('should escape JSON data that contains separator character and double quotes', () => {
+      const jsonData = [{ 'Head,er1': '"a,1"', Header2: 1 }, { 'Head,er1': 'a,"2"', Header2: 'b2' }, { 'Head,er1': 'a3', Header2: 'b3' }];
+      expect(new Table(jsonData, 'TableName').getScript()).to.eql('LOAD\n*\nINLINE "\n""Head,er1"",Header2\n""""""a,1"""""",1\n""a,""""2"""""",b2\na3,b3\n"\n(txt);');
+    });
+
+    it('should replace new lines with spaces and escape JSON data that contains new lines', () => {
+      const jsonData = [{ 'Head,er1': 'a\n1', Header2: 1 }, { 'Head,er1': 'a2', Header2: 'b2' }, { 'Head,er1': 'a3', Header2: 'b3' }];
+      expect(new Table(jsonData, 'TableName').getScript()).to.eql('LOAD\n*\nINLINE "\n""Head,er1"",Header2\n""a 1"",1\na2,b2\na3,b3\n"\n(txt);');
+    });
+
     it('should be possible to add a path and a file connection should be created', () => {
       const filePath = 'C:\\data\\data.txt';
       const table = new Table(filePath, 'TableName');

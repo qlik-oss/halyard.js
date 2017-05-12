@@ -1,6 +1,6 @@
 function escapeValueContainingDelimiter(data, delimiter) {
-  if (data && typeof data === 'string' && data.indexOf(delimiter) > -1) {
-    return `"${data}"`;
+  if (data && typeof data === 'string' && (data.indexOf(delimiter) > -1 || data.indexOf('\n') > -1)) {
+    return `"${data.replace(/"/g, '""').replace(/\n/g, ' ')}"`;
   }
 
   return data;
