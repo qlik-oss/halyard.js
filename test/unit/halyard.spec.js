@@ -110,6 +110,11 @@ describe('Halyard', () => {
       expect(halyard.getScript()).to.eql('SET test=\'1\';\nSET test2=\'2\';');
     });
 
+    it('should join set statment array values with a semicolon', () => {
+      halyard.setDefaultSetStatements({ test: [1,2,3], test2: 2 });
+      expect(halyard.getScript()).to.eql('SET test=\'1;2;3\';\nSET test2=\'2\';');
+    });
+
     it('should not replace previously entered default statements', () => {
       halyard.setDefaultSetStatements({ test: 'first' });
       halyard.setDefaultSetStatements({ test: 'second', test2: 'second' }, true);
