@@ -10,10 +10,18 @@ class Table {
 
     if (typeof options === 'string') {
       this.name = options;
+      this.section = options;
       options = {};
     } else {
       this.name = options.name;
       this.fields = options.fields;
+      if (!options.appendToPreviousSection) {
+        if (options.section) {
+          this.section = options.section;
+        } else {
+          this.section = options.name;
+        }
+      }
     }
 
     this.options = options;
@@ -79,6 +87,10 @@ class Table {
 
   getName() {
     return this.name || '';
+  }
+
+  getSection() {
+    return this.section;
   }
 
   getConnection() {
