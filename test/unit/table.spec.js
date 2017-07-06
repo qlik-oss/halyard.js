@@ -52,17 +52,15 @@ describe('Table', () => {
       const table2 = new Table(mockConnector, { srcTable: 'table2' });
       expect(table2.getScript()).to.eql(
         `LOAD\n*\n${mockConnector.getScript()}\n(table is "table2");`
-      );
-
-      it('should be possible to add an optional script prefix', () => {
-      const table2 = new Table(mockConnector, { prefix: 'Mapping' });
+      );   
+      // Should work with html make sure it is documented
+    });
+    it('should be possible to add a optional script prefix', () => {
+    const table2 = new Table(mockConnector, { prefix: 'Mapping' });
       expect(table2.getScript()).to.eql(
         `Mapping\nLOAD\n*\n${mockConnector.getScript()};`
       );
-    });
-
-      // Should work with html make sure it is documented
-    });
+  });
   });
 
   describe('connection input', () => {
