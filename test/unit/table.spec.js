@@ -54,6 +54,13 @@ describe('Table', () => {
         `LOAD\n*\n${mockConnector.getScript()}\n(table is "table2");`
       );
 
+      it('should be possible to add an optional script prefix', () => {
+      const table2 = new Table(mockConnector, { prefix: 'Mapping' });
+      expect(table2.getScript()).to.eql(
+        `Mapping\nLOAD\n*\n${mockConnector.getScript()};`
+      );
+    });
+
       // Should work with html make sure it is documented
     });
   });
