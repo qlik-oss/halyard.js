@@ -79,10 +79,13 @@ Optional parameter. Can be either the table name as a String, or the following s
 | Property | Type   | Description |
 |----------|--------|-------------|
 | `name` | String | The name of the table |
+| `prefix` | String | The script prefix function to be used before the load statement |
 | `fields` | Array of Fields | See Field definition below. If no fields are specified then all will be loaded from the source's first table or if specified from srcTable. |
 | `delimiter` | String | The character that delimits a CSV file |
 | `headerRowNr` | Number | The location of the header row |
 | `srcTable` | String | The name of the table in the source file. IE: this could be the sheet name in XLSX. |
+| `section` | String | The name of the script section |
+| `appendToPreviousSection` | Boolean | Append the script to the previous script section |
 
 
 #### Field definition

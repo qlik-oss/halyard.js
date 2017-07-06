@@ -52,7 +52,11 @@ class Halyard {
     let itemScript = item.getScript();
 
     if (item.getName && item.getName()) {
-      itemScript = `"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      if (item.section) {
+        itemScript = `///$tab ${Utils.escapeText(item.section)}\n"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      } else {
+        itemScript = `"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      }
     }
 
     return itemScript;
