@@ -14,7 +14,7 @@ class Table {
       options = {};
     } else {
       this.name = options.name;
-      this.fields = options.fields;      
+      this.fields = options.fields;
       this.prefix = options.prefix;
       if (!options.appendToPreviousSection) {
         if (options.section) {
@@ -73,7 +73,7 @@ class Table {
 
   getPrefix() {
     if (this.prefix) {
-      return this.prefix + '\n';
+      return `${this.prefix}\n`;
     }
     return '';
   }
