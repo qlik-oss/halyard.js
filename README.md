@@ -47,6 +47,30 @@ halyard.addTable('c:\\data\\file.csv', 'TableName');
 
 `addTable` returns a Halyard.Table instance
 
+### `addHyperCube(hyperCube)`
+
+Adds a hyper cube to the data model representation. More info about [Halyard.HyperCube](docs/hyper-cube.md).
+
+The `addHyperCube` method accepts an explicit hyper cube definition:
+
+```javascript
+let hyperCube = new Halyard.HyperCube(qHyperCubeLayout);
+halyard.addHyperCube(hyperCube);
+```
+
+
+`addHyperCube` returns a Halyard.HyperCube instance
+
+### `addHyperCube(connection[, hyperCubeOptions])`
+
+You can also add a hyper cube by providing the hyper cube definition:
+
+```javascript
+halyard.addHyperCube(qHyperCubeLayout, 'HyperCubeName');
+```
+
+`addHyperCube` returns a Halyard.HyperCube instance
+
 ### `addItem(item)`
 
 Adds any object that responds to `getScript()`. An example of a how to use this method to extend with custom functionality [extending-functionality.js in examples](examples/extending-functionality.js)

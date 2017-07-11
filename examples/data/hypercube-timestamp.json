@@ -1,0 +1,479 @@
+{
+  "qSize": {
+    "qcx": 1,
+    "qcy": 5000
+  },
+  "qDimensionInfo": [
+    {
+      "qFallbackTitle": "Time",
+      "qApprMaxGlyphCount": 10,
+      "qCardinal": 5000,
+      "qSortIndicator": "A",
+      "qGroupFallbackTitles": [
+        "Time"
+      ],
+      "qGroupPos": 0,
+      "qStateCounts": {
+        "qLocked": 0,
+        "qSelected": 0,
+        "qOption": 5000,
+        "qDeselected": 0,
+        "qAlternative": 0,
+        "qExcluded": 0,
+        "qSelectedExcluded": 0,
+        "qLockedExcluded": 0
+      },
+      "qTags": [
+        "$numeric",
+        "$timestamp"
+      ],
+      "qDimensionType": "N",
+      "qGrouping": "N",
+      "qNumFormat": {
+        "qType": "TS",
+        "qnDec": 0,
+        "qUseThou": 0,
+        "qFmt": "DD-MM-YYYY"
+      },
+      "qIsAutoFormat": true,
+      "qGroupFieldDefs": [
+        "Time"
+      ],
+      "qMin": 42656.60913194444,
+      "qMax": 42690.331712962965,
+      "qContinuousAxes": true,
+      "qAttrExprInfo": [],
+      "qAttrDimInfo": [],
+      "autoSort": true,
+      "cId": "HPjaJL",
+      "othersLabel": "Others"
+    }
+  ],
+  "qMeasureInfo": [],
+  "qEffectiveInterColumnSortOrder": [
+    0
+  ],
+  "qGrandTotalRow": [],
+  "qDataPages": [
+    {
+      "qMatrix": [
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.60913194444,
+            "qElemNumber": 3963,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.615856481476,
+            "qElemNumber": 3964,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.62258101851,
+            "qElemNumber": 3965,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.62930555555,
+            "qElemNumber": 3966,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.63603009259,
+            "qElemNumber": 3967,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.6427662037,
+            "qElemNumber": 3968,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.64947916666,
+            "qElemNumber": 3969,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.65621527778,
+            "qElemNumber": 3970,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.662939814814,
+            "qElemNumber": 3971,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.669652777775,
+            "qElemNumber": 3972,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.676365740735,
+            "qElemNumber": 3973,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.6830787037,
+            "qElemNumber": 3974,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.689791666664,
+            "qElemNumber": 3975,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.69652777778,
+            "qElemNumber": 3976,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.703252314815,
+            "qElemNumber": 3977,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.71,
+            "qElemNumber": 3978,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.71671296296,
+            "qElemNumber": 3979,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.7234375,
+            "qElemNumber": 3980,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.730162037034,
+            "qElemNumber": 3981,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.73689814815,
+            "qElemNumber": 3982,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.743622685186,
+            "qElemNumber": 3983,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.75035879629,
+            "qElemNumber": 3984,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.75709490741,
+            "qElemNumber": 3985,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.76384259259,
+            "qElemNumber": 3986,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.77056712963,
+            "qElemNumber": 3987,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.777303240735,
+            "qElemNumber": 3988,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.78402777777,
+            "qElemNumber": 3989,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.79076388889,
+            "qElemNumber": 3990,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.797488425924,
+            "qElemNumber": 3991,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.80421296296,
+            "qElemNumber": 3992,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.8109375,
+            "qElemNumber": 3993,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.817673611105,
+            "qElemNumber": 3994,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.82440972222,
+            "qElemNumber": 3995,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.831145833334,
+            "qElemNumber": 3996,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.83788194444,
+            "qElemNumber": 3997,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.84460648148,
+            "qElemNumber": 3998,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.85134259259,
+            "qElemNumber": 3999,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.85806712963,
+            "qElemNumber": 4000,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.86479166667,
+            "qElemNumber": 4001,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.871516203704,
+            "qElemNumber": 4002,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.87824074074,
+            "qElemNumber": 4003,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.88496527778,
+            "qElemNumber": 4004,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.89168981481,
+            "qElemNumber": 4005,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.89841435185,
+            "qElemNumber": 4006,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.905138888884,
+            "qElemNumber": 4007,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.91185185185,
+            "qElemNumber": 4008,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.91857638889,
+            "qElemNumber": 4009,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.92530092593,
+            "qElemNumber": 4010,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.93203703703,
+            "qElemNumber": 4011,
+            "qState": "O"
+          }
+        ],
+        [
+          {
+            "qText": "13-10-2016",
+            "qNum": 42656.93875,
+            "qElemNumber": 4012,
+            "qState": "O"
+          }
+        ]
+      ],
+      "qTails": [
+        {
+          "qUp": 0,
+          "qDown": 0
+        }
+      ],
+      "qArea": {
+        "qLeft": 0,
+        "qTop": 0,
+        "qWidth": 1,
+        "qHeight": 50
+      }
+    }
+  ],
+  "qPivotDataPages": [],
+  "qStackedDataPages": [],
+  "qMode": "S",
+  "qNoOfLeftDims": -1
+}
