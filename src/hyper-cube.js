@@ -1,4 +1,6 @@
 import Table from './table';
+import { validFieldType } from './utils/utils';
+import * as HyperCubeUtils from './utils/hyper-cube-utils';
 
 class HyperCube {
   constructor(hyperCubeLayout, options) {
@@ -67,11 +69,7 @@ class HyperCube {
     });
     const fields = this.fields.map((field) => {
       const mappedField = { name: field.name };
-      if (
-        field.dimensionType === 'timestamp' ||
-        field.dimensionType === 'time' ||
-        field.dimensionType === 'date'
-      ) {
+      if (validFieldType(field.dimensionType)) {
         mappedField.type = field.dimensionType;
         mappedField.displayFormat = field.displayFormat;
       }
@@ -88,6 +86,7 @@ class HyperCube {
     }
     this.items.push(new Table(inlineData, options));
   }
+
   getMapTableForDualField(field, hyperCubeLayout) {
     function uniqueFilter(value, index, self) {
       return self.indexOf(value) === index;
@@ -110,20 +109,13 @@ class HyperCube {
       .map(row =>
         row
           .map((cell, index) => {
-            let value = cell.qNum;
-            if (
-              this.fields[index].type === 'dimension' &&
-              this.fields[index].dimensionType !== 'timestamp' &&
-              this.fields[index].dimensionType !== 'time' &&
-              this.fields[index].dimensionType !== 'date'
-            ) {
-              if (this.fields[index].dimensionType !== 'num') {
-                value = cell.qText;
-              } else if (
-                !this.fields[index].isDual &&
-                cell.qText !== Number(cell.qNum).toString()
-              ) {
-                this.fields[index].isDual = true;
+            let value = cell.qText;
+            if (HyperCubeUtils.storeNumeric(this.fields[index])) {
+              value = cell.qNum;
+              if (HyperCubeUtils.checkIfFieldIsDual(this.fields[index])) {
+                if (HyperCubeUtils.isCellDual(cell)) {
+                  this.fields[index].isDual = true;
+                }
               }
             }
             return value;
@@ -133,33 +125,14 @@ class HyperCube {
       .join('\n');
     return data;
   }
-  getDimensionType(dimension) {
-    let dimensionType = 'text';
-    if (dimension.qDimensionType === 'N') {
-      if (dimension.qTags.indexOf('$numeric') > -1) {
-        if (dimension.qTags.indexOf('$date') > -1 && dimension.qTags.indexOf('$integer') > -1) {
-          dimensionType = 'date';
-        } else if (dimension.qTags.indexOf('$time') > -1) {
-          dimensionType = 'time';
-        } else if (dimension.qTags.indexOf('$timestamp') > -1) {
-          dimensionType = 'timestamp';
-        } else {
-          dimensionType = 'num';
-        }
-      } else {
-        dimensionType = 'mixed';
-      }
-    } else if (dimension.qDimensionType === 'T') {
-      dimensionType = 'timestamp';
-    }
-    return dimensionType;
-  }
   getFieldsFromHyperCubeLayout(hyperCubeLayout) {
     const fields = [];
     for (let i = 0; i < hyperCubeLayout.qDimensionInfo.length; i += 1) {
       fields.push({
         type: 'dimension',
-        dimensionType: this.getDimensionType(hyperCubeLayout.qDimensionInfo[i]),
+        dimensionType: HyperCubeUtils.getDimensionType(
+          hyperCubeLayout.qDimensionInfo[i]
+        ),
         name: hyperCubeLayout.qDimensionInfo[i].qFallbackTitle,
         displayFormat: hyperCubeLayout.qDimensionInfo[i].qNumFormat.qFmt,
         index: i,
