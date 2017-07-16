@@ -96,7 +96,7 @@ export function storeNumeric(field) {
 }
 
 export function checkIfFieldIsDual(field) {
-  return field.type === 'num' && !field.isDual;
+  return field.type === 'dimension' && field.dimensionType === 'num' && !field.isDual;
 }
 
 export function isCellDual(cell) {

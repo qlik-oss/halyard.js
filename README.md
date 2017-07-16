@@ -54,22 +54,23 @@ Adds a hyper cube to the data model representation. More info about [Halyard.Hyp
 The `addHyperCube` method accepts an explicit hyper cube definition:
 
 ```javascript
-let hyperCube = new Halyard.HyperCube(qHyperCubeLayout);
+let hyperCube = new Halyard.HyperCube(qHyperCube);
 halyard.addHyperCube(hyperCube);
 ```
-
+Example [qHyperCube](examples/data/hyper-cube.json)
 
 `addHyperCube` returns a Halyard.HyperCube instance
 
-### `addHyperCube(connection[, hyperCubeOptions])`
+### `addHyperCube(hyperCubeLayout[, hyperCubeOptions])`
 
 You can also add a hyper cube by providing the hyper cube definition:
 
 ```javascript
-halyard.addHyperCube(qHyperCubeLayout, 'HyperCubeName');
+halyard.addHyperCube(qHyperCube, 'HyperCubeName');
 ```
 
-`addHyperCube` returns a Halyard.HyperCube instance
+`addHyperCube` returns a Halyard.HyperCube instance 
+An example of a how to use this method [hyper-cube.js in examples](examples/hyper-cube.js)
 
 ### `addItem(item)`
 

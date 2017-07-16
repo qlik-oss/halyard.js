@@ -29,11 +29,20 @@ class HyperCube {
   }
 
   validateHyperCubeLayout(hyperCubeLayout) {
+    if (!hyperCubeLayout) {
+      throw new Error(
+        'Hyper cube layout is undefined'
+      );
+    }
     if (hyperCubeLayout.qMode === 'P') {
-      throw new Error('qMode:P(DATA_MODE_PIVOT) is not supported');
+      throw new Error(
+        'Cannot add hyper cube in pivot mode, qMode:P(DATA_MODE_PIVOT) is not supported'
+      );
     }
     if (hyperCubeLayout.qMode === 'K') {
-      throw new Error('qMode:K(DATA_MODE_PIVOT_STACK) is not supported');
+      throw new Error(
+        'Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'
+      );
     }
     if (
       !hyperCubeLayout.qDataPages ||
@@ -67,7 +76,15 @@ class HyperCube {
         this.items.push(this.getMapTableForDualField(field, hyperCubeLayout));
       }
     });
-    const fields = this.fields.map((field) => {
+    const options = { name: this.name, fields: this.getFieldsDefinition(this.fields) };
+    if (hasDual) {
+      options.appendToPreviousSection = true;
+    }
+    this.items.push(new Table(inlineData, options));
+  }
+
+  getFieldsDefinition(fields) {
+    return fields.map((field) => {
       const mappedField = { name: field.name };
       if (validFieldType(field.dimensionType)) {
         mappedField.type = field.dimensionType;
@@ -80,11 +97,6 @@ class HyperCube {
       }
       return mappedField;
     });
-    const options = { name: this.name, fields };
-    if (hasDual) {
-      options.appendToPreviousSection = true;
-    }
-    this.items.push(new Table(inlineData, options));
   }
 
   getMapTableForDualField(field, hyperCubeLayout) {
@@ -105,16 +117,17 @@ class HyperCube {
     return new Table(inlineData, options);
   }
   getDataFromHyperCubeLayout(hyperCubeLayout) {
+    const that = this;
     const data = hyperCubeLayout.qDataPages[0].qMatrix
       .map(row =>
         row
           .map((cell, index) => {
             let value = cell.qText;
-            if (HyperCubeUtils.storeNumeric(this.fields[index])) {
+            if (HyperCubeUtils.storeNumeric(that.fields[index])) {
               value = cell.qNum;
-              if (HyperCubeUtils.checkIfFieldIsDual(this.fields[index])) {
+              if (HyperCubeUtils.checkIfFieldIsDual(that.fields[index])) {
                 if (HyperCubeUtils.isCellDual(cell)) {
-                  this.fields[index].isDual = true;
+                  that.fields[index].isDual = true;
                 }
               }
             }
@@ -146,6 +159,9 @@ class HyperCube {
       });
     }
     return fields;
+  }
+  getItems() {
+    return this.items;
   }
 }
 

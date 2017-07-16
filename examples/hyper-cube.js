@@ -11,12 +11,12 @@ enigmaConfig.mixins = enigmaMixin;
 
 const Halyard = require('../dist/halyard.js');
 
-const filePath = path.join(__dirname, './data/hypercube.json');
+const filePath = path.join(__dirname, './data/hyper-cube.json');
 
 fs.readFile(filePath, 'utf8', (err, data) => {
   const halyard = new Halyard();
-
-  const hyperCube = new Halyard.HyperCube(JSON.parse(data), 'Hyper Cube');
+  const qHyperCube = JSON.parse(data);
+  const hyperCube = new Halyard.HyperCube(qHyperCube, 'Hyper Cube');
 
   halyard.addHyperCube(hyperCube);
 
