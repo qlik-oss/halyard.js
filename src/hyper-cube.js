@@ -23,16 +23,14 @@ class HyperCube {
       }
     }
 
-    this.parseHyperCubeLayout(hyperCubeLayout, options);
+    this.parseHyperCubeLayout(options);
 
     this.options = options;
   }
 
   validateHyperCubeLayout(hyperCubeLayout) {
     if (!hyperCubeLayout) {
-      throw new Error(
-        'Hyper cube layout is undefined'
-      );
+      throw new Error('Hyper cube layout is undefined');
     }
     if (hyperCubeLayout.qMode === 'P') {
       throw new Error(
@@ -63,24 +61,28 @@ class HyperCube {
     return hyperCubeLayout;
   }
 
-  parseHyperCubeLayout(hyperCubeLayout) {
-    this.fields = this.getFieldsFromHyperCubeLayout(hyperCubeLayout);
-    this.data = this.getDataFromHyperCubeLayout(hyperCubeLayout);
-    const inlineData = `${this.fields
+  parseHyperCubeLayout() {
+    const that = this;
+    that.fields = that.getFieldsFromHyperCubeLayout();
+    that.data = that.getDataFromHyperCubeLayout();
+    const inlineData = `${that.fields
       .map(field => field.name)
       .join(',')}\n${this.data}`;
     let hasDual = false;
-    this.fields.forEach((field) => {
+    that.fields.forEach((field) => {
       if (field.isDual) {
         hasDual = true;
-        this.items.push(this.getMapTableForDualField(field, hyperCubeLayout));
+        that.items.push(that.getMapTableForDualField(field));
       }
     });
-    const options = { name: this.name, fields: this.getFieldsDefinition(this.fields) };
+    const options = {
+      name: that.name,
+      fields: that.getFieldsDefinition(that.fields),
+    };
     if (hasDual) {
       options.appendToPreviousSection = true;
     }
-    this.items.push(new Table(inlineData, options));
+    that.items.push(new Table(inlineData, options));
   }
 
   getFieldsDefinition(fields) {
@@ -99,11 +101,12 @@ class HyperCube {
     });
   }
 
-  getMapTableForDualField(field, hyperCubeLayout) {
+  getMapTableForDualField(field) {
+    const that = this;
     function uniqueFilter(value, index, self) {
       return self.indexOf(value) === index;
     }
-    const data = hyperCubeLayout.qDataPages[0].qMatrix
+    const data = that.hyperCubeLayout.qDataPages[0].qMatrix
       .map(row => `${row[field.index].qNum},${row[field.index].qText}`)
       .filter(uniqueFilter);
     const inlineData = `${field.name},${field.name}_qText\n${data.join('\n')}`;
@@ -116,9 +119,9 @@ class HyperCube {
     }
     return new Table(inlineData, options);
   }
-  getDataFromHyperCubeLayout(hyperCubeLayout) {
+  getDataFromHyperCubeLayout() {
     const that = this;
-    const data = hyperCubeLayout.qDataPages[0].qMatrix
+    const data = that.hyperCubeLayout.qDataPages[0].qMatrix
       .map(row =>
         row
           .map((cell, index) => {
@@ -138,24 +141,25 @@ class HyperCube {
       .join('\n');
     return data;
   }
-  getFieldsFromHyperCubeLayout(hyperCubeLayout) {
+  getFieldsFromHyperCubeLayout() {
+    const that = this;
     const fields = [];
-    for (let i = 0; i < hyperCubeLayout.qDimensionInfo.length; i += 1) {
+    for (let i = 0; i < that.hyperCubeLayout.qDimensionInfo.length; i += 1) {
       fields.push({
         type: 'dimension',
         dimensionType: HyperCubeUtils.getDimensionType(
-          hyperCubeLayout.qDimensionInfo[i]
+          that.hyperCubeLayout.qDimensionInfo[i]
         ),
-        name: hyperCubeLayout.qDimensionInfo[i].qFallbackTitle,
-        displayFormat: hyperCubeLayout.qDimensionInfo[i].qNumFormat.qFmt,
+        name: that.hyperCubeLayout.qDimensionInfo[i].qFallbackTitle,
+        displayFormat: that.hyperCubeLayout.qDimensionInfo[i].qNumFormat.qFmt,
         index: i,
       });
     }
-    for (let j = 0; j < hyperCubeLayout.qMeasureInfo.length; j += 1) {
+    for (let j = 0; j < that.hyperCubeLayout.qMeasureInfo.length; j += 1) {
       fields.push({
         type: 'measure',
-        name: hyperCubeLayout.qMeasureInfo[j].qFallbackTitle,
-        index: hyperCubeLayout.qDimensionInfo.length + j,
+        name: that.hyperCubeLayout.qMeasureInfo[j].qFallbackTitle,
+        index: that.hyperCubeLayout.qDimensionInfo.length + j,
       });
     }
     return fields;
