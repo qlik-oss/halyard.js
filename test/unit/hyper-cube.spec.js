@@ -1,7 +1,6 @@
 import { newlineChar, indentation } from '../../src/utils/utils';
 import HyperCube from '../../src/hyper-cube';
-import mockHyperCubes from './mocks/hyper-cubes'
-
+import mockHyperCubes from './mocks/hyper-cubes';
 
 describe('HyperCube', () => {
   it('should be possible to add a valid hyper cube layout', () => {

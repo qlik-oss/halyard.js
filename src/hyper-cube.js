@@ -8,6 +8,8 @@ class HyperCube {
     this.fields = [];
     this.hyperCubeLayout = this.validateHyperCubeLayout(hyperCubeLayout);
 
+    options = options || {};
+
     if (typeof options === 'string') {
       this.name = options;
       this.section = options;
@@ -107,9 +109,10 @@ class HyperCube {
       return self.indexOf(value) === index;
     }
     const data = that.hyperCubeLayout.qDataPages[0].qMatrix
-      .map(row => `${row[field.index].qNum},${row[field.index].qText}`)
+      .map(row => HyperCubeUtils.getDualDataRow(row[field.index]))
       .filter(uniqueFilter);
-    const inlineData = `${field.name},${field.name}_qText\n${data.join('\n')}`;
+    const headers = HyperCubeUtils.getDualHeadersForField(field);
+    const inlineData = `${headers}\n${data.join('\n')}`;
     const name = `MapDual__${field.name}`;
     const options = { name, prefix: 'Mapping' };
     if (this.section && this.items.length === 0) {
@@ -125,16 +128,14 @@ class HyperCube {
       .map(row =>
         row
           .map((cell, index) => {
-            let value = cell.qText;
-            if (HyperCubeUtils.storeNumeric(that.fields[index])) {
-              value = cell.qNum;
-              if (HyperCubeUtils.checkIfFieldIsDual(that.fields[index])) {
-                if (HyperCubeUtils.isCellDual(cell)) {
-                  that.fields[index].isDual = true;
-                }
-              }
+            const field = that.fields[index];
+            if (
+              !field.isDual &&
+              HyperCubeUtils.isCellDual(cell, field)
+            ) {
+              field.isDual = true;
             }
-            return value;
+            return HyperCubeUtils.getCellValue(cell, field);
           })
           .join(',')
       )

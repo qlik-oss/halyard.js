@@ -1,72 +1,144 @@
 import Halyard from '../../src/halyard';
 import { newlineChar } from '../../src/utils/utils';
+import mockHyperCubes from './mocks/hyper-cubes';
+import mockScripts from './mocks/scripts';
 
 describe('Halyard', () => {
-  let halyard;
+  describe('add table', () => {
+    let halyard;
 
-  beforeEach(() => {
-    halyard = new Halyard();
-  });
+    beforeEach(() => {
+      halyard = new Halyard();
+    });
 
-  it('should be possible to implicitly add a table', () => {
-    const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable' });
-    expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should be possible to implicitly add a table', () => {
+      const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable' });
+      expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should be possible to implicitly add a table and section', () => {
-    const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', section: 'New Section' });
-    expect(halyard.getScript()).to.eql(`///$tab New Section\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should be possible to implicitly add a table and section', () => {
+      const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', section: 'New Section' });
+      expect(halyard.getScript()).to.eql(`///$tab New Section\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should be possible to implicitly add a table without creating a new section', () => {
-    const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', appendToPreviousSection: true });
-    expect(halyard.getScript()).to.eql(`"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should be possible to implicitly add a table without creating a new section', () => {
+      const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', appendToPreviousSection: true });
+      expect(halyard.getScript()).to.eql(`"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should be possible to implicitly add a table without creating a new section even if section is implicitly set', () => {
-    const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', section: 'New Section', appendToPreviousSection: true });
-    expect(halyard.getScript()).to.eql(`"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should be possible to implicitly add a table without creating a new section even if section is implicitly set', () => {
+      const table = halyard.addTable('C:\\\\Data\\Data.txt', { name: 'DataTable', section: 'New Section', appendToPreviousSection: true });
+      expect(halyard.getScript()).to.eql(`"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should be possible to explicitly add a table', () => {
-    const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
-    halyard.addTable(table);
-    expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should be possible to explicitly add a table', () => {
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
+      halyard.addTable(table);
+      expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should not be possible to add two tables with the same name', () => {
-    const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
-    halyard.addTable(table);
+    it('should not be possible to add two tables with the same name', () => {
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
+      halyard.addTable(table);
 
-    const table2 = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
-    expect(() => halyard.addTable(table2)).to.throw('Cannot add another table with the same name.');
-    expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+      const table2 = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
+      expect(() => halyard.addTable(table2)).to.throw('Cannot add another table with the same name.');
+      expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should escape tableNames', () => {
-    const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'Data"Table');
-    halyard.addTable(table);
-    expect(halyard.getScript()).to.eql(`///$tab Data""Table\n"Data""Table":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should escape tableNames', () => {
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'Data"Table');
+      halyard.addTable(table);
+      expect(halyard.getScript()).to.eql(`///$tab Data""Table\n"Data""Table":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
 
-  it('should not add table name if non is provided', () => {
-    const table = new Halyard.Table('C:\\\\Data\\Data.txt');
-    halyard.addTable(table);
-    expect(halyard.getScript()).to.eql(`LOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
-  });
+    it('should not add table name if non is provided', () => {
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt');
+      halyard.addTable(table);
+      expect(halyard.getScript()).to.eql(`LOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
+  }),
+  describe('add hyper cube', () => {
+    let halyard;
 
-  it('should be possible to add item with getScript as the only method', () => {
-    const customScript = '//Custom Script';
+    beforeEach(() => {
+      halyard = new Halyard();
+    });
 
-    class CustomObject {
-      getScript() {
-        return customScript;
+    it('should be possible to implicitly add a hyper cube', () => {
+      halyard.addHyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube' });
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode);
+    });
+
+    it('should be possible to implicitly add a table and section', () => {
+      halyard.addHyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube', section: 'New Section' });
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode.replace('///$tab HyperCube\n','///$tab New Section\n'));
+    });
+
+    it('should be possible to implicitly add a table without creating a new section', () => {
+        halyard.addHyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube', appendToPreviousSection: true });
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode.replace('///$tab HyperCube\n',''));
+    });
+
+    it('should be possible to implicitly add a table without creating a new section even if section is implicitly set', () => {
+        halyard.addHyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube', section: 'New Section', appendToPreviousSection: true });
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode.replace('///$tab HyperCube\n',''));
+    });
+
+    it('should be possible to explicitly add a hyper cube', () => {
+      const hyperCube = new Halyard.HyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube' });
+      halyard.addHyperCube(hyperCube);
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode);
+    });
+
+    it('should not be possible to add a hyper cube with the same name as an already added table', () => {
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt', 'DataTable');
+      halyard.addTable(table);
+
+      const hyperCube = new Halyard.HyperCube(mockHyperCubes.StraightMode, { name: 'DataTable' });
+      
+      expect(() => halyard.addHyperCube(hyperCube)).to.throw('Cannot add another table with the same name.');
+      expect(halyard.getScript()).to.eql(`///$tab DataTable\n"DataTable":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
+
+    it('should not be possible to add a hyper cube with a dual map table with the same name as an already added table', () => {
+      const dualMapTableName = 'MapDual__sorted_country';
+      const table = new Halyard.Table('C:\\\\Data\\Data.txt',dualMapTableName);
+      halyard.addTable(table);
+
+      const hyperCube = new Halyard.HyperCube(mockHyperCubes.StraightMode, { name: 'HyperCube' });
+      
+      expect(() => halyard.addHyperCube(hyperCube)).to.throw('Cannot add another table with the same name.');
+      expect(halyard.getScript()).to.eql(`///$tab ${dualMapTableName}\n"${dualMapTableName}":\nLOAD\n*\n${table.getConnection().getScript()}\n(txt);`);
+    });
+
+    it('should not add hyper cube name if non is provided', () => {
+      const hyperCube = new Halyard.HyperCube(mockHyperCubes.StraightMode);
+      halyard.addHyperCube(hyperCube);
+      expect(halyard.getScript()).to.eql(mockScripts.HyperCubes.StraightMode.replace('///$tab HyperCube\n','').replace('"HyperCube":\n',''));
+    });
+    
+  }),
+  describe('add item', () => {
+    let halyard;
+
+    beforeEach(() => {
+      halyard = new Halyard();
+    });
+
+    it('should be possible to add item with getScript as the only method', () => {
+      const customScript = '//Custom Script';
+
+      class CustomObject {
+        getScript() {
+          return customScript;
+        }
       }
-    }
 
-    halyard.addItem(new CustomObject());
-    expect(halyard.getScript()).to.eql(customScript);
-  });
+      halyard.addItem(new CustomObject());
+      expect(halyard.getScript()).to.eql(customScript);
+    });
+  }),
 
   describe('connection', () => {
     let halyard;

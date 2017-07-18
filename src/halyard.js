@@ -83,6 +83,10 @@ class Halyard {
     }
 
     for (let i = 0; i < newHyperCube.items.length; i += 1) {
+      this.checkIfItemNameExists(newHyperCube.items[i]);
+    }
+
+    for (let i = 0; i < newHyperCube.items.length; i += 1) {
       this.addItem(newHyperCube.items[i]);
     }
 
@@ -101,13 +105,15 @@ class Halyard {
 
     return this.addItem(newTable);
   }
-
-  addItem(newItem) {
+  checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
       if (this.items.filter(item => item.getName() === newItem.getName()).length > 0) {
         throw new Error('Cannot add another table with the same name.');
       }
     }
+  }
+  addItem(newItem) {
+    this.checkIfItemNameExists(newItem);
 
     this.items.push(newItem);
 
