@@ -19,9 +19,7 @@ Optional parameter. Can be either the hyper cube name as a String, or the follow
 | Property | Type   | Description |
 |----------|--------|-------------|
 | `name` | String | The name of the table |
-| `section` | String | The name of the script section |
-| `appendToPreviousSection` | Boolean | Append the script to the previous script section |
-
+| `section` | String | The name of the script section. If left empty the script is appended to the previous script section |
 
 An example of using options:
 

@@ -2,7 +2,7 @@ const pivotMode = { qMode: 'P' };
 const stackedMode = { qMode: 'K' };
 const noData = {
   qMode: 'S',
-  qDataPages: [],
+  qDataPages: [{ qMatrix: [] }],
 };
 
 const straightMode = {

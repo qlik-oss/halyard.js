@@ -10,18 +10,13 @@ class Table {
 
     if (typeof options === 'string') {
       this.name = options;
-      this.section = options;
       options = {};
     } else {
       this.name = options.name;
       this.fields = options.fields;
       this.prefix = options.prefix;
-      if (!options.appendToPreviousSection) {
-        if (options.section) {
-          this.section = options.section;
-        } else {
-          this.section = options.name;
-        }
+      if (options.section) {
+        this.section = options.section;
       }
     }
 

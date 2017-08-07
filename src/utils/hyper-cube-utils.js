@@ -1,36 +1,25 @@
-const qTypes = {
-  timestamp: 'TS',
-  date: 'D',
-  time: 'T',
-  interval: 'IV',
-};
-
-const qDimensionType = {
-  timestamp: 'T',
-  text: 'D',
-  numeric: 'N',
-};
+import hyperCubeSpecification from './hyper-cube-specification';
 
 const DEFAULT_DELIMITER = ',';
 
 function isDimensionTypeMixed(dimension) {
   return (
-    dimension.qDimensionType === qDimensionType.numeric &&
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
     dimension.qTags.length === 0
   );
 }
 
 function isDimensionTypeText(dimension) {
-  return dimension.qDimensionType === qDimensionType.text;
+  return dimension.qDimensionType === hyperCubeSpecification.qDimensionType.text;
 }
 
 function isDimensionTypeTimestamp(dimension) {
-  if (dimension.qDimensionType === qDimensionType.timestamp) {
+  if (dimension.qDimensionType === hyperCubeSpecification.qDimensionType.timestamp) {
     return true;
   }
   if (
-    dimension.qDimensionType === qDimensionType.numeric &&
-    dimension.qNumFormat.qType === qTypes.timestamp
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
+    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.timestamp
   ) {
     return true;
   }
@@ -39,8 +28,8 @@ function isDimensionTypeTimestamp(dimension) {
 
 function isDimensionTypeDate(dimension) {
   if (
-    dimension.qDimensionType === qDimensionType.numeric &&
-    dimension.qNumFormat.qType === qTypes.date
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
+    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.date
   ) {
     return true;
   }
@@ -49,8 +38,8 @@ function isDimensionTypeDate(dimension) {
 
 function isDimensionTypeTime(dimension) {
   if (
-    dimension.qDimensionType === qDimensionType.numeric &&
-    dimension.qNumFormat.qType === qTypes.time
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
+    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.time
   ) {
     return true;
   }
@@ -59,8 +48,8 @@ function isDimensionTypeTime(dimension) {
 
 function isDimensionTypeInterval(dimension) {
   if (
-    dimension.qDimensionType === qDimensionType.numeric &&
-    dimension.qNumFormat.qType === qTypes.interval
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
+    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.interval
   ) {
     return true;
   }

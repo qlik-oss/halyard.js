@@ -12,16 +12,11 @@ class HyperCube {
 
     if (typeof options === 'string') {
       this.name = options;
-      this.section = options;
       options = {};
     } else {
       this.name = options.name;
-      if (!options.appendToPreviousSection) {
-        if (options.section) {
-          this.section = options.section;
-        } else {
-          this.section = options.name;
-        }
+      if (options.section) {
+        this.section = options.section;
       }
     }
 
@@ -44,18 +39,23 @@ class HyperCube {
         'Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'
       );
     }
+    if (!hyperCubeLayout.qDataPages) {
+      throw new Error('qDataPages are undefined');
+    }
+
     if (
-      !hyperCubeLayout.qDataPages ||
-      !hyperCubeLayout.qDataPages[0] ||
-      !hyperCubeLayout.qDataPages[0].qMatrix ||
-      !hyperCubeLayout.qDataPages[0].qMatrix.length ||
+      hyperCubeLayout.qDataPages &&
+      hyperCubeLayout.qDataPages[0] &&
+      hyperCubeLayout.qDataPages[0].qMatrix &&
       hyperCubeLayout.qDataPages[0].qMatrix.length === 0
     ) {
-      throw new Error('qDataPages is empty or undefined');
+      throw new Error('qDataPages are empty');
     }
+
     if (!hyperCubeLayout.qDimensionInfo) {
       throw new Error('qDimensionInfo is undefined');
     }
+
     if (!hyperCubeLayout.qMeasureInfo) {
       throw new Error('qMeasureInfo is undefined');
     }
@@ -81,8 +81,8 @@ class HyperCube {
       name: that.name,
       fields: that.getFieldsDefinition(that.fields),
     };
-    if (hasDual) {
-      options.appendToPreviousSection = true;
+    if (that.section && !hasDual) {
+      options.section = that.section;
     }
     that.items.push(new Table(inlineData, options));
   }
@@ -117,8 +117,6 @@ class HyperCube {
     const options = { name, prefix: 'Mapping' };
     if (this.section && this.items.length === 0) {
       options.section = this.section;
-    } else {
-      options.appendToPreviousSection = true;
     }
     return new Table(inlineData, options);
   }

@@ -84,8 +84,7 @@ Optional parameter. Can be either the table name as a String, or the following s
 | `delimiter` | String | The character that delimits a CSV file |
 | `headerRowNr` | Number | The location of the header row |
 | `srcTable` | String | The name of the table in the source file. IE: this could be the sheet name in XLSX. |
-| `section` | String | The name of the script section |
-| `appendToPreviousSection` | Boolean | Append the script to the previous script section |
+| `section` | String | The name of the script section. If left empty the script is appended to the previous script section |
 
 
 #### Field definition

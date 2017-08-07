@@ -26,7 +26,7 @@ describe('HyperCube', () => {
   it('should not be possible to add a hyper cube layout without data', () => {
     expect(
       () => new HyperCube(mockHyperCubes.NoData, 'NoDataHyperCube')
-    ).to.throw('qDataPages is empty or undefined');
+    ).to.throw('qDataPages are empty');
   });
 
   it('should not be possible to add a hyper cube layout without qDimensionInfo', () => {
@@ -50,11 +50,6 @@ describe('HyperCube', () => {
   it('should return hyper cube name', () => {
     const hyperCube = new HyperCube(mockHyperCubes.StraightMode, 'ValidHyperCube')
     expect(hyperCube.getItems()[1].getName()).to.eql('ValidHyperCube');
-  });
-
-  it('should return section', () => {
-    const hyperCube = new HyperCube(mockHyperCubes.StraightMode, 'ValidHyperCube')
-    expect(hyperCube.getItems()[0].getSection()).to.eql('ValidHyperCube');
   });
 
   describe('options', () => {
