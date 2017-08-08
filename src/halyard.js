@@ -1,4 +1,5 @@
 import Table from './table';
+import HyperCube from './hyper-cube';
 import Connections from './connections';
 import SetStatement from './set-statement';
 
@@ -52,7 +53,11 @@ class Halyard {
     let itemScript = item.getScript();
 
     if (item.getName && item.getName()) {
-      itemScript = `"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      if (item.section) {
+        itemScript = `///$tab ${Utils.escapeText(item.section)}\n"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      } else {
+        itemScript = `"${Utils.escapeText(item.getName())}":\n${itemScript}`;
+      }
     }
 
     return itemScript;
@@ -67,6 +72,27 @@ class Halyard {
         .join(SCRIPT_BLOCK_SPACING);
   }
 
+  // Support to add hyper cube explicit or implicitly
+  addHyperCube(arg1, options) {
+    let newHyperCube;
+
+    if (arg1 instanceof HyperCube) {
+      newHyperCube = arg1;
+    } else {
+      newHyperCube = new HyperCube(arg1, options);
+    }
+
+    for (let i = 0; i < newHyperCube.items.length; i += 1) {
+      this.checkIfItemNameExists(newHyperCube.items[i]);
+    }
+
+    for (let i = 0; i < newHyperCube.items.length; i += 1) {
+      this.addItem(newHyperCube.items[i]);
+    }
+
+    return newHyperCube;
+  }
+
   // Support to add table explicit or implicitly
   addTable(arg1, options) {
     let newTable;
@@ -79,13 +105,15 @@ class Halyard {
 
     return this.addItem(newTable);
   }
-
-  addItem(newItem) {
+  checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
       if (this.items.filter(item => item.getName() === newItem.getName()).length > 0) {
         throw new Error('Cannot add another table with the same name.');
       }
     }
+  }
+  addItem(newItem) {
+    this.checkIfItemNameExists(newItem);
 
     this.items.push(newItem);
 
@@ -113,6 +141,8 @@ class Halyard {
 }
 
 Halyard.Table = Table;
+
+Halyard.HyperCube = HyperCube;
 
 Halyard.Connections = Connections;
 

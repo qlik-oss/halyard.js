@@ -14,6 +14,10 @@ class Table {
     } else {
       this.name = options.name;
       this.fields = options.fields;
+      this.prefix = options.prefix;
+      if (options.section) {
+        this.section = options.section;
+      }
     }
 
     this.options = options;
@@ -62,11 +66,18 @@ class Table {
     return this.connection instanceof Table;
   }
 
+  getPrefix() {
+    if (this.prefix) {
+      return `${this.prefix}\n`;
+    }
+    return '';
+  }
+
   getScript() {
     // In the future this could be moved into a connectionMatcher
     // but for sake of clarity it is kept inline.
     if (this.isProceedingLoad()) {
-      return `LOAD\n${this.getFieldList()};\n${this.connection.getScript()}`;
+      return `${this.getPrefix()}LOAD\n${this.getFieldList()};\n${this.connection.getScript()}`;
     }
 
     // Hack!
@@ -74,11 +85,15 @@ class Table {
       this.options.fileExtension = this.connection.getFileExtension();
     }
 
-    return `LOAD\n${this.getFieldList()}\n${this.connection.getScript()}${formatSpecification(this.options)};`;
+    return `${this.getPrefix()}LOAD\n${this.getFieldList()}\n${this.connection.getScript()}${formatSpecification(this.options)};`;
   }
 
   getName() {
     return this.name || '';
+  }
+
+  getSection() {
+    return this.section;
   }
 
   getConnection() {
