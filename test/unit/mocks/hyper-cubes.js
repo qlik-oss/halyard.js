@@ -1,10 +1,3 @@
-const pivotMode = { qMode: 'P' };
-const stackedMode = { qMode: 'K' };
-const noData = {
-  qMode: 'S',
-  qDataPages: [{ qMatrix: [] }],
-};
-
 const straightMode = {
   qSize: {
     qcx: 10,
@@ -674,6 +667,17 @@ const straightMode = {
   columnWidths: [-1, -1, -1, -1, -1],
 };
 
+const pivotMode = {
+  qMode: 'P',
+  qDimensionInfo: straightMode.qDimensionInfo,
+  qMeasureInfo: straightMode.qMeasureInfo,
+};
+const stackedMode = {
+  qMode: 'K',
+  qDimensionInfo: straightMode.qDimensionInfo,
+  qMeasureInfo: straightMode.qMeasureInfo,
+};
+
 const noDimensionInfo = {
   qMode: 'S',
   qDataPages: straightMode.qDataPages,
@@ -683,6 +687,13 @@ const noMeasureInfo = {
   qMode: 'S',
   qDataPages: straightMode.qDataPages,
   qDimensionInfo: straightMode.qDimensionInfo,
+};
+
+const noData = {
+  qMode: 'S',
+  qDataPages: [{ qMatrix: [] }],
+  qDimensionInfo: straightMode.qDimensionInfo,
+  qMeasureInfo: straightMode.qMeasureInfo,
 };
 
 export default {

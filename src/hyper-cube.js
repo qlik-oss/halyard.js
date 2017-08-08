@@ -29,28 +29,6 @@ class HyperCube {
     if (!hyperCubeLayout) {
       throw new Error('Hyper cube layout is undefined');
     }
-    if (hyperCubeLayout.qMode === 'P') {
-      throw new Error(
-        'Cannot add hyper cube in pivot mode, qMode:P(DATA_MODE_PIVOT) is not supported'
-      );
-    }
-    if (hyperCubeLayout.qMode === 'K') {
-      throw new Error(
-        'Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'
-      );
-    }
-    if (!hyperCubeLayout.qDataPages) {
-      throw new Error('qDataPages are undefined');
-    }
-
-    if (
-      hyperCubeLayout.qDataPages &&
-      hyperCubeLayout.qDataPages[0] &&
-      hyperCubeLayout.qDataPages[0].qMatrix &&
-      hyperCubeLayout.qDataPages[0].qMatrix.length === 0
-    ) {
-      throw new Error('qDataPages are empty');
-    }
 
     if (!hyperCubeLayout.qDimensionInfo) {
       throw new Error('qDimensionInfo is undefined');
@@ -60,7 +38,35 @@ class HyperCube {
       throw new Error('qMeasureInfo is undefined');
     }
 
-    return hyperCubeLayout;
+    if (hyperCubeLayout.qMode === 'P') {
+      throw new Error(
+        'Cannot add hyper cube in pivot mode, qMode:P(DATA_MODE_PIVOT) is not supported'
+      );
+    }
+
+    if (hyperCubeLayout.qMode === 'K') {
+      throw new Error(
+        'Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'
+      );
+    }
+
+    if (hyperCubeLayout.qMode === 'S') {
+      if (!hyperCubeLayout.qDataPages) {
+        throw new Error('qDataPages are undefined');
+      }
+
+      if (
+        hyperCubeLayout.qDataPages[0] &&
+        hyperCubeLayout.qDataPages[0].qMatrix &&
+        hyperCubeLayout.qDataPages[0].qMatrix.length === 0
+      ) {
+        throw new Error('qDataPages are empty');
+      }
+
+      return hyperCubeLayout;
+    }
+
+    throw new Error('HyperCubeLayout is not valid');
   }
 
   parseHyperCubeLayout() {
@@ -127,10 +133,7 @@ class HyperCube {
         row
           .map((cell, index) => {
             const field = that.fields[index];
-            if (
-              !field.isDual &&
-              HyperCubeUtils.isCellDual(cell, field)
-            ) {
+            if (!field.isDual && HyperCubeUtils.isCellDual(cell, field)) {
               field.isDual = true;
             }
             return HyperCubeUtils.getCellValue(cell, field);
