@@ -85,6 +85,7 @@ Optional parameter. Can be either the table name as a String, or the following s
 | `headerRowNr` | Number | The location of the header row |
 | `srcTable` | String | The name of the table in the source file. IE: this could be the sheet name in XLSX. |
 | `section` | String | The name of the script section. If left empty the script is appended to the previous script section |
+| `characterSet` | String | The character set of the source table. Supported: 'utf8', 'unicode', 'ansi', 'oem', 'mac' or a numeric code page. |
 
 
 #### Field definition
