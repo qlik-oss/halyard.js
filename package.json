@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
+    "coverage": "nyc report --reporter=text-lcov --temp-directory=./coverage/.nyc_output | coveralls",
     "test": "aw-test-runner ./test --exit",
     "test:coverage": "aw-test-runner cover ./test -t 5000 --exit",
     "test:watch": "aw-test-runner ./test -t 5000 -w",

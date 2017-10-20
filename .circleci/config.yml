@@ -16,7 +16,10 @@ jobs:
           name: Linting
           command: npm run lint
       - run:
-          name: Unit testing
-          command: npm run test:unit
+          name: Unit testing with coverage
+          command: npm run test:unit:coverage
+      - run:
+          name: Publish coverage artifacts to coverall
+          command: npm run coverage
       - store_artifacts:
           path: dist
