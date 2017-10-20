@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install --no-save
+          command: npm install --no-save -s
       - run:
           name: Build
           command: npm run build
