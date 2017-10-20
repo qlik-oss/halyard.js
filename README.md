@@ -1,5 +1,7 @@
 ![](halyard.png)
 
+[![CircleCI](https://circleci.com/gh/qlik-oss/halyard.js.svg?style=shield)](https://circleci.com/gh/qlik-oss/halyard.js)
+
 halyard.js is a JavaScript library that simplifies the Qlik Sense data load experience as it abstracts away the need to write a load script.
 
 The functionality in halyard.js is divided into two parts where the first one is `halyard.js` itself. It generates the load script, as well as the connections needed. The second part is `halyard-enigma-mixin.js` that extends the functionality of [`enigma.js`](https://github.com/qlik-oss/enigma.js) to bring your halyard representation into the QIX engine.

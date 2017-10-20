@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as Utils from './utils';
-import Halyard from '../../dist/halyard';
+import Halyard from '../../src/halyard';
 
 const halyard = new Halyard();
 

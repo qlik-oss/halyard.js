@@ -1,5 +1,5 @@
 import path from 'path';
-import Halyard from '../../dist/halyard.js';
+import Halyard from '../../src/halyard.js';
 import * as Utils from './utils';
 
 after(() => {

@@ -1,6 +1,6 @@
 import path from 'path';
 import * as Utils from './utils';
-import Halyard from '../../dist/halyard';
+import Halyard from '../../src/halyard';
 
 const carmakersPath = path.join(__dirname, '../../examples/data/carmakers.json');
 
