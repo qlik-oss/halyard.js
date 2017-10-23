@@ -1,0 +1,7 @@
+version: "3.1"
+
+services:
+  engine:
+    image: qlik/engine:12.79.0
+    ports:
+      - "4848:9076"

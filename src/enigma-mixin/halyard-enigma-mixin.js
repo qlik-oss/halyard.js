@@ -1,4 +1,4 @@
-import convertQixGetLocalInfo from '../enigma-mixin/utils';
+import convertQixGetLocalInfo from './utils';
 
 const CONNECTION_ERROR = 'Connection Error';
 const LOADING_ERROR = 'Loading Error';
