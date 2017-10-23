@@ -1,6 +1,7 @@
 ![](halyard.png)
 
 [![CircleCI](https://circleci.com/gh/qlik-oss/halyard.js.svg?style=shield)](https://circleci.com/gh/qlik-oss/halyard.js)
+[![Coverage Status](https://img.shields.io/coveralls/qlik-oss/halyard.js/master.svg)](https://coveralls.io/github/qlik-oss/halyard.js)
 
 halyard.js is a JavaScript library that simplifies the Qlik Sense data load experience as it abstracts away the need to write a load script.
 
