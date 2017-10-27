@@ -25,8 +25,6 @@ export function removeAllTestDoc() {
 
     const integrationTestDocs = list.filter(doc => doc.qDocName.match(docNamePrefix));
 
-    // console.log(integrationTestDocs);
-
     integrationTestDocs.forEach((doc) => {
       docsToDelete.push(qix.global.deleteApp(doc.qDocId));
     });
