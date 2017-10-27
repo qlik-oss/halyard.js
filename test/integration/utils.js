@@ -40,7 +40,6 @@ export function openFile(filePath) {
 }
 
 export function httpServer() {
-
   const httpConfig = {
     logLevel: 'silent',
     notify: false,
@@ -53,13 +52,13 @@ export function httpServer() {
       baseDir: './test/fixtures',
     },
   };
-  const httpsConfig = Object.assign({}, httpConfig, { port: 9001, https: true});
+  const httpsConfig = Object.assign({}, httpConfig, { port: 9001, https: true });
 
   const startBS = (config) => {
     const bs = create();
     return new Promise((resolve, reject) => {
       bs.pause();
-  
+
       bs.init(config, (err) => {
         if (err) {
           reject(err);
@@ -68,7 +67,7 @@ export function httpServer() {
         resolve();
       });
     });
-  }
+  };
 
   return Promise.all([startBS(httpConfig), startBS(httpsConfig)]);
 }
