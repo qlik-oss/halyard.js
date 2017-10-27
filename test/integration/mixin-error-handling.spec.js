@@ -1,16 +1,12 @@
 import path from 'path';
+import getIp from 'dev-ip';
 import Halyard from '../../src/halyard.js';
 import * as Utils from './utils';
 
-after(() => {
-  console.log('Cleaning up artifacts...');
-  return Utils.removeAllTestDoc().catch((err) => { console.log(err); });
-});
-
 describe('Enigma Mixin error handling', () => {
-  const carmakersPath = path.join(__dirname, '../../examples/data/carmakers.json');
-
   let docName = '';
+  const ip = getIp()[0];
+  const url = `http://${ip}:9000/attendance.html`;
 
   beforeEach(() => {
     docName = Utils.getUniqueDocName();
@@ -32,8 +28,6 @@ describe('Enigma Mixin error handling', () => {
   it("should throw loading error if field src doesn't exist", () => {
     const halyard = new Halyard();
 
-    const url = 'https://www.allsvenskan.se/tabell/';
-
     halyard.addTable(url, { name: 'Allsvenskan', fields: [{ src: 'apa', name: 'Test' }] });
 
     return Utils.getQixService().then(qix => qix.global.createAppUsingHalyard(docName, halyard).then((result) => {})
@@ -45,7 +39,6 @@ describe('Enigma Mixin error handling', () => {
   it('should throw syntax error if expression is invalid', () => {
     const halyard = new Halyard();
 
-    const url = 'https://www.allsvenskan.se/tabell/';
     halyard.addTable(url, { name: 'Allsvenskan', fields: [{ expr: 'adsfasdfdsf(aoa)', name: 'Test' }] });
 
     return Utils.getQixService().then(qix => qix.global.createAppUsingHalyard(docName, halyard).then((result) => {})
