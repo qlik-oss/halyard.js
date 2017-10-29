@@ -3,7 +3,7 @@ import HyperCube from '../../src/hyper-cube';
 import mockHyperCubes from './mocks/hyper-cubes';
 
 describe('HyperCube', () => {
-  it('should not be possible to add a hyper cube withoug a layout', () => {
+  it('should not be possible to add a hyper cube without a layout', () => {
     expect(
       () => new HyperCube()
     ).to.throw(
@@ -50,6 +50,38 @@ describe('HyperCube', () => {
     expect(
       () => new HyperCube(mockHyperCubes.NoData, 'NoDataHyperCube')
     ).to.throw('qDataPages are empty');
+  });
+
+  it('should not be possible to add a hyper cube layout with missing data pages', () => {
+    expect(
+      () => new HyperCube(mockHyperCubes.MultipleDataPagesMissingPages, 'PivotHyperCube')
+    ).to.throw(
+      'qDataPages are missing pages.'
+    );
+  });
+
+  it('should not be possible to add a hyper cube layout with first data page starting at qTop greater than zero', () => {
+    expect(
+      () => new HyperCube(mockHyperCubes.MultipleDataPagesDoesntStartAtTopZero, 'PivotHyperCube')
+    ).to.throw(
+      'qDataPages first page should start at qTop: 0.'
+    );
+  });
+
+  it('should not be possible to add a hyper cube layout with overlapping data pages', () => {
+    expect(
+      () => new HyperCube(mockHyperCubes.MultipleDataPagesOverlapingPages, 'PivotHyperCube')
+    ).to.throw(
+      'qDataPages have overlapping data pages.'
+    );
+  });
+
+  it('should not be possible to add a hyper cube layout with data pages not of full qWidth', () => {
+    expect(
+      () => new HyperCube(mockHyperCubes.MultipleDataPagesNotFullWidth, 'PivotHyperCube')
+    ).to.throw(
+      'qDataPages have data pages that\'s not of full qWidth.'
+    );
   });
 
   it('should not be possible to add a hyper cube layout without qDimensionInfo', () => {
