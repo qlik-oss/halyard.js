@@ -51,14 +51,15 @@ class HyperCube {
     }
 
     if (hyperCubeLayout.qMode === 'S') {
-      this.validateDataPages(hyperCubeLayout.qDataPages, hyperCubeLayout);
+      this.validateDataPages(hyperCubeLayout.qDataPages);
+      this.validateDataPagesCoverage(hyperCubeLayout.qDataPages, hyperCubeLayout);
       return hyperCubeLayout;
     }
 
     throw new Error('HyperCubeLayout is not valid');
   }
 
-  validateDataPages(dataPages, hyperCubeLayout) {
+  validateDataPages(dataPages) {
     if (!dataPages) {
       throw new Error('qDataPages are undefined');
     }
@@ -72,7 +73,9 @@ class HyperCube {
     if (dataPages[0].qArea && dataPages[0].qArea.qTop > 0) {
       throw new Error('qDataPages first page should start at qTop: 0.');
     }
+  }
 
+  validateDataPagesCoverage(dataPages, hyperCubeLayout) {
     let qHeight = 0;
 
     dataPages.forEach((dataPage) => {
