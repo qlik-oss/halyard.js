@@ -31,6 +31,3 @@ describe('Enigma Mixin', () => {
     })));
   });
 });
-
-
-// app.session.close()
