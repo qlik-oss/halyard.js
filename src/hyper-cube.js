@@ -64,17 +64,6 @@ class HyperCube {
       throw new Error('qDataPages are undefined');
     }
 
-    dataPages.forEach((dataPage) => {
-      if (!dataPage.qMatrix) {
-        throw new Error('qMatrix of qDataPages are undefined');
-      } else if (dataPage.qMatrix.length === 0) {
-        throw new Error('qDataPages are empty');
-      }
-      if (!dataPage.qArea) {
-        throw new Error('qArea of qDataPages are undefined');
-      }
-    }, this);
-
     if (dataPages[0].qArea && dataPages[0].qArea.qTop > 0) {
       throw new Error('qDataPages first page should start at qTop: 0.');
     }
@@ -84,23 +73,29 @@ class HyperCube {
     let qHeight = 0;
 
     dataPages.forEach((dataPage) => {
-      if (
-        dataPage.qArea &&
-        (dataPage.qArea.qLeft > 0 ||
-          dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx)
-      ) {
-        throw new Error(
-          'qDataPages have data pages that\'s not of full qWidth.'
-        );
+      if (dataPage.qMatrix) {
+        if (dataPage.qMatrix.length === 0) {
+          throw new Error('qDataPages are empty');
+        }
+      } else {
+        throw new Error('qMatrix of qDataPages are undefined');
       }
 
-      if (dataPage.qArea && dataPage.qArea.qTop < qHeight) {
-        throw new Error('qDataPages have overlapping data pages.');
+      if (dataPage.qArea) {
+        if (dataPage.qArea.qLeft > 0 ||
+            dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx) {
+          throw new Error('qDataPages have data pages that\'s not of full qWidth.');
+        }
+        if (dataPage.qArea.qTop < qHeight) {
+          throw new Error('qDataPages have overlapping data pages.');
+        }
+        if (dataPage.qArea.qTop > qHeight) {
+          throw new Error('qDataPages are missing pages.');
+        }
+      } else {
+        throw new Error('qArea of qDataPages are undefined');
       }
 
-      if (dataPage.qArea && dataPage.qArea.qTop > qHeight) {
-        throw new Error('qDataPages are missing pages.');
-      }
       qHeight += dataPage.qArea.qHeight;
     }, this);
 
