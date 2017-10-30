@@ -73,34 +73,40 @@ class HyperCube {
     let qHeight = 0;
 
     dataPages.forEach((dataPage) => {
-      if (dataPage.qMatrix) {
-        if (dataPage.qMatrix.length === 0) {
-          throw new Error('qDataPages are empty');
-        }
-      } else {
-        throw new Error('qMatrix of qDataPages are undefined');
-      }
-
-      if (dataPage.qArea) {
-        if (dataPage.qArea.qLeft > 0 ||
-            dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx) {
-          throw new Error('qDataPages have data pages that\'s not of full qWidth.');
-        }
-        if (dataPage.qArea.qTop < qHeight) {
-          throw new Error('qDataPages have overlapping data pages.');
-        }
-        if (dataPage.qArea.qTop > qHeight) {
-          throw new Error('qDataPages are missing pages.');
-        }
-      } else {
-        throw new Error('qArea of qDataPages are undefined');
-      }
-
+      this.validateQMatrix(dataPage);
+      this.validateQArea(dataPage, hyperCubeLayout, qHeight);
       qHeight += dataPage.qArea.qHeight;
     }, this);
 
     if (hyperCubeLayout.qSize.qcy !== qHeight) {
       throw new Error('qDataPages are missing pages.');
+    }
+  }
+
+  validateQMatrix(dataPage) {
+    if (dataPage.qMatrix) {
+      if (dataPage.qMatrix.length === 0) {
+        throw new Error('qDataPages are empty');
+      }
+    } else {
+      throw new Error('qMatrix of qDataPages are undefined');
+    }
+  }
+
+  validateQArea(dataPage, hyperCubeLayout, qHeight) {
+    if (dataPage.qArea) {
+      if (dataPage.qArea.qLeft > 0 ||
+          dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx) {
+        throw new Error('qDataPages have data pages that\'s not of full qWidth.');
+      }
+      if (dataPage.qArea.qTop < qHeight) {
+        throw new Error('qDataPages have overlapping data pages.');
+      }
+      if (dataPage.qArea.qTop > qHeight) {
+        throw new Error('qDataPages are missing pages.');
+      }
+    } else {
+      throw new Error('qArea of qDataPages are undefined');
     }
   }
 
