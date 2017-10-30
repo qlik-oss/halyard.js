@@ -60,6 +60,34 @@ describe('HyperCube', () => {
     );
   });
 
+  it('should not be possible to add a hyper cube layout without qDataPages[].qMatrix', () => {
+    expect(
+      () => new HyperCube(
+        {
+          qMode: 'S',
+          qDimensionInfo: {},
+          qMeasureInfo: {},
+          qDataPages: [{qArea: {}}]
+        }, 'StackedHyperCube')
+    ).to.throw(
+      'qMatrix of qDataPages are undefined'
+    );
+  });
+
+  it('should not be possible to add a hyper cube layout without qDataPages[].qArea', () => {
+    expect(
+      () => new HyperCube(
+        {
+          qMode: 'S',
+          qDimensionInfo: {},
+          qMeasureInfo: {},
+          qDataPages: [{qMatrix: [{}]}]
+        }, 'StackedHyperCube')
+    ).to.throw(
+      'qArea of qDataPages are undefined'
+    );
+  });
+
   it('should not be possible to add a hyper cube layout with first data page starting at qTop greater than zero', () => {
     expect(
       () => new HyperCube(mockHyperCubes.MultipleDataPagesDoesntStartAtTopZero, 'PivotHyperCube')

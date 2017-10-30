@@ -64,11 +64,16 @@ class HyperCube {
       throw new Error('qDataPages are undefined');
     }
 
-    if (
-      dataPages[0] && dataPages[0].qMatrix && dataPages[0].qMatrix.length === 0
-    ) {
-      throw new Error('qDataPages are empty');
-    }
+    dataPages.forEach((dataPage) => {
+      if (!dataPage.qMatrix) {
+        throw new Error('qMatrix of qDataPages are undefined');
+      } else if (dataPage.qMatrix.length === 0) {
+        throw new Error('qDataPages are empty');
+      }
+      if (!dataPage.qArea) {
+        throw new Error('qArea of qDataPages are undefined');
+      }
+    }, this);
 
     if (dataPages[0].qArea && dataPages[0].qArea.qTop > 0) {
       throw new Error('qDataPages first page should start at qTop: 0.');
