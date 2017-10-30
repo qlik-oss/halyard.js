@@ -26,36 +26,16 @@ class HyperCube {
   }
 
   validateHyperCubeLayout(hyperCubeLayout) {
-    if (!hyperCubeLayout) {
-      throw new Error('Hyper cube layout is undefined');
-    }
-
-    if (!hyperCubeLayout.qDimensionInfo) {
-      throw new Error('qDimensionInfo is undefined');
-    }
-
-    if (!hyperCubeLayout.qMeasureInfo) {
-      throw new Error('qMeasureInfo is undefined');
-    }
-
-    if (hyperCubeLayout.qMode === 'P') {
-      throw new Error(
-        'Cannot add hyper cube in pivot mode, qMode:P(DATA_MODE_PIVOT) is not supported'
-      );
-    }
-
-    if (hyperCubeLayout.qMode === 'K') {
-      throw new Error(
-        'Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'
-      );
-    }
-
+    if (!hyperCubeLayout) { throw new Error('Hyper cube layout is undefined'); }
+    if (!hyperCubeLayout.qDimensionInfo) { throw new Error('qDimensionInfo is undefined'); }
+    if (!hyperCubeLayout.qMeasureInfo) { throw new Error('qMeasureInfo is undefined'); }
+    if (hyperCubeLayout.qMode === 'P') { throw new Error('Cannot add hyper cube in pivot mode, qMode:P(DATA_MODE_PIVOT) is not supported'); }
+    if (hyperCubeLayout.qMode === 'K') { throw new Error('Cannot add hyper cube in stacked mode, qMode:K(DATA_MODE_PIVOT_STACK) is not supported'); }
     if (hyperCubeLayout.qMode === 'S') {
       this.validateDataPages(hyperCubeLayout.qDataPages);
       this.validateDataPagesCoverage(hyperCubeLayout.qDataPages, hyperCubeLayout);
       return hyperCubeLayout;
     }
-
     throw new Error('HyperCubeLayout is not valid');
   }
 
@@ -84,29 +64,29 @@ class HyperCube {
   }
 
   validateQMatrix(dataPage) {
-    if (dataPage.qMatrix) {
-      if (dataPage.qMatrix.length === 0) {
-        throw new Error('qDataPages are empty');
-      }
-    } else {
+    if (!dataPage.qMatrix) {
       throw new Error('qMatrix of qDataPages are undefined');
+    }
+    if (dataPage.qMatrix.length === 0) {
+      throw new Error('qDataPages are empty');
     }
   }
 
   validateQArea(dataPage, hyperCubeLayout, qHeight) {
-    if (dataPage.qArea) {
-      if (dataPage.qArea.qLeft > 0 ||
-          dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx) {
-        throw new Error('qDataPages have data pages that\'s not of full qWidth.');
-      }
-      if (dataPage.qArea.qTop < qHeight) {
-        throw new Error('qDataPages have overlapping data pages.');
-      }
-      if (dataPage.qArea.qTop > qHeight) {
-        throw new Error('qDataPages are missing pages.');
-      }
-    } else {
+    if (!dataPage.qArea) {
       throw new Error('qArea of qDataPages are undefined');
+    }
+    if (dataPage.qArea.qLeft > 0) {
+      throw new Error('qDataPages have data pages that\'s not of full qWidth.');
+    }
+    if (dataPage.qArea.qWidth < hyperCubeLayout.qSize.qcx) {
+      throw new Error('qDataPages have data pages that\'s not of full qWidth.');
+    }
+    if (dataPage.qArea.qTop < qHeight) {
+      throw new Error('qDataPages have overlapping data pages.');
+    }
+    if (dataPage.qArea.qTop > qHeight) {
+      throw new Error('qDataPages are missing pages.');
     }
   }
 
