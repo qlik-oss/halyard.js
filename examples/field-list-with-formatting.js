@@ -26,10 +26,10 @@ const table = new Halyard.Table(filePath, { name: 'Temperature Data', fields: [
 
 halyard.addTable(table);
 
-enigma.getService('qix', enigmaConfig).then((qix) => {
+enigma.create(enigmaConfig).open().then((qix) => {
   const appName = `Local-Data-${Date.now()}`;
 
-  qix.global.createAppUsingHalyard(appName, halyard).then((result) => {
+  qix.createAppUsingHalyard(appName, halyard).then((result) => {
     console.log(`App created and reloaded - ${appName}.qvf`);
     process.exit(1);
   }, (err) => {console.log(err);});

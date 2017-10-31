@@ -13,8 +13,8 @@ const table = new Halyard.Table('https://www.fotbollskanalen.se/allsvenskan/', '
 
 halyard.addTable(table);
 
-enigma.getService('qix', enigmaConfig).then((qix) => {
-  qix.global.createSessionAppUsingHalyard(halyard).then((result) => {
+enigma.create(enigmaConfig).open().then((qix) => {
+  qix.createSessionAppUsingHalyard(halyard).then((result) => {
     result.getAppLayout().then((res) => {
       console.log("Successfull :", res);
       process.exit(0);

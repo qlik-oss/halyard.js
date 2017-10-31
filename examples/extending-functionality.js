@@ -32,10 +32,10 @@ const item = new CustomFunctionality();
 
 halyard.addItem(item);
 
-enigma.getService('qix', enigmaConfig).then((qix) => {
+enigma.create(enigmaConfig).open().then((qix) => {
   const appName = `Extending-Functionality-${Date.now()}`;
 
-  qix.global.createAppUsingHalyard(appName, halyard).then((result) => {
+  qix.createAppUsingHalyard(appName, halyard).then((result) => {
     console.log(`App created and reloaded - ${appName}.qvf`);
     process.exit(1);
   });

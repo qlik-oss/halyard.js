@@ -16,10 +16,10 @@ const table = new Halyard.Table(url, { name: 'Allsvenskan', headerRowNr: 1, char
 
 halyard.addTable(table);
 
-enigma.getService('qix', enigmaConfig).then((qix) => {
+enigma.create(enigmaConfig).open().then((qix) => {
   const appName = `Web-Data-${Date.now()}`;
 
-  qix.global.createAppUsingHalyard(appName, halyard).then((result) => {
+  qix.createAppUsingHalyard(appName, halyard).then((result) => {
     console.log(`App created and reloaded - ${appName}.qvf`);
     process.exit(1);
   }, (err) => {
