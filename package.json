@@ -27,7 +27,7 @@
   ],
   "main": "dist/halyard.js",
   "devDependencies": {
-    "after-work.js": "^3.1.2",
+    "after-work.js": "^3.1.4",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
@@ -38,7 +38,7 @@
     "bluebird": "^3.4.6",
     "browser-sync": "^2.18.8",
     "coveralls": "^3.0.0",
-    "cross-env": "^5.1.0",
+    "cross-env": "^5.1.1",
     "enigma.js": "^2.2.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
