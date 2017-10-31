@@ -15,11 +15,11 @@ describe('Connections', () => {
     const table = new Halyard.Table(url, { name: 'Allsvenskan', headerRowNr: 1, characterSet: 'utf8' });
 
     halyard.addTable(table);
+    const docName = Utils.getUniqueDocName();
 
-    return Utils.getQixService().then((qix) => {
-      const docName = Utils.getUniqueDocName();
+    return Utils.openSession(docName).then((session) => {
 
-      return qix.global.createAppUsingHalyard(docName, halyard).then(result => qix.global.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Allsvenskan').then((result) => {
+      return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Allsvenskan').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('Lag');
         expect(result[1].qValue[0].qText).to.eql('Hammarby');
 
@@ -37,10 +37,10 @@ describe('Connections', () => {
 
     halyard.addTable(table);
 
-    return Utils.getQixService().then((qix) => {
-      const docName = Utils.getUniqueDocName();
+    const docName = Utils.getUniqueDocName();
+    return Utils.openSession(docName).then((session) => {
 
-      return qix.global.createAppUsingHalyard(docName, halyard).then(result => qix.global.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Allsvenskan').then((result) => {
+      return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Allsvenskan').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('Lag');
         expect(result[1].qValue[0].qText).to.eql('Hammarby');
 
@@ -48,7 +48,7 @@ describe('Connections', () => {
         expect(result[1].qValue[1].qText).to.eql('11 885');
       })))
       .catch((err) => {
-        throw new Error(err.qixError.parameter);
+        throw err;
       });
     });
   });
@@ -59,10 +59,10 @@ describe('Connections', () => {
 
     halyard.addTable(JSON.parse(data), 'Car Makers');
 
-    return Utils.getQixService().then((qix) => {
-      const docName = Utils.getUniqueDocName();
+    const docName = Utils.getUniqueDocName();
+    return Utils.openSession(docName).then((session) => {
 
-      return qix.global.createAppUsingHalyard(docName, halyard).then(result => qix.global.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
+      return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('make_id');
       })));
     });
@@ -75,10 +75,10 @@ describe('Connections', () => {
 
     halyard.addTable(table);
 
-    return Utils.getQixService().then((qix) => {
-      const docName = Utils.getUniqueDocName();
+    const docName = Utils.getUniqueDocName();
+    return Utils.openSession(docName).then((session) => {
 
-      return qix.global.createAppUsingHalyard(docName, halyard).then(result => qix.global.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
+      return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('make_id');
       })));
     });
