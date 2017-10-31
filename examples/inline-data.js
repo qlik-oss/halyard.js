@@ -19,10 +19,10 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 
   halyard.addTable(table);
 
-  enigma.getService('qix', enigmaConfig).then((qix) => {
+  enigma.create(enigmaConfig).open().then((qix) => {
     const appName = `Inline-Data-${Date.now()}`;
 
-    qix.global.createAppUsingHalyard(appName, halyard).then((result) => {
+    qix.createAppUsingHalyard(appName, halyard).then((result) => {
       console.log(`App created and reloaded - ${appName}.qvf`);
       process.exit(appName);
     }, (error) => {

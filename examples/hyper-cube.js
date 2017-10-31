@@ -20,10 +20,10 @@ fs.readFile(filePath, 'utf8', (err, data) => {
 
   halyard.addHyperCube(hyperCube);
 
-  enigma.getService('qix', enigmaConfig).then((qix) => {
+  enigma.create(enigmaConfig).open().then((qix) => {
     const appName = `Hyper-Cube-${Date.now()}`;
 
-    qix.global.createAppUsingHalyard(appName, halyard).then(() => {
+    qix.createAppUsingHalyard(appName, halyard).then(() => {
       console.log(`App created and reloaded - ${appName}.qvf`);
       process.exit(appName);
     }, (error) => {

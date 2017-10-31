@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.6",
-    "enigma.js": "^1.0.0",
+    "enigma.js": "^2.0.0",
     "ws": "^1.1.1"
   }
 }
