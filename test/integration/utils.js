@@ -10,26 +10,21 @@ enigmaConfig.mixins = enigmaMixin;
 
 const docNamePrefix = 'HalyardIntegrationTest';
 
-
 export function getUniqueDocName() {
   return `${docNamePrefix}-${Math.floor(Math.random() * 100000)}`;
 }
 
-export function getQixService() {
-  return enigma.getService('qix', enigmaConfig);
+export function openSession(appId) {
+  enigmaConfig.url = `ws://localhost:4848/app/engineData-${appId}`;
+  return enigma.create(enigmaConfig).open();
 }
 
 export function removeAllTestDoc() {
-  return getQixService().then(qix => qix.global.getDocList().then((list) => {
-    const docsToDelete = [];
-
+  return openSession().then(qix => qix.getDocList().then(async (list) => {
     const integrationTestDocs = list.filter(doc => doc.qDocName.match(docNamePrefix));
-
-    integrationTestDocs.forEach((doc) => {
-      docsToDelete.push(qix.global.deleteApp(doc.qDocId));
-    });
-
-    return Promise.all(docsToDelete);
+    for (const doc of integrationTestDocs) {
+      await qix.deleteApp(doc.qDocId);
+    }
   }));
 }
 

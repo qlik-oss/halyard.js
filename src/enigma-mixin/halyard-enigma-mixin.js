@@ -15,8 +15,12 @@ function createErrorMessage(errorType, qixError, item) {
 
 const halyardMixin = {
   types: 'Global',
-  init(properties) {
-    properties.api.Promise = properties.Promise;
+  init(args) {
+    if (args.config) {
+      args.api.Promise = args.config.Promise;
+    } else {
+      args.api.Promise = args.Promise;
+    }
   },
   extend: {
     createSessionAppUsingHalyard(halyard) {
@@ -74,7 +78,6 @@ const halyardMixin = {
       return that.Promise.all(deferredConnections).then(() =>
         app.getLocaleInfo().then((localeInfoResult) => {
           halyard.setDefaultSetStatements(convertQixGetLocalInfo(localeInfoResult), true);
-
           return app.globalApi.configureReload(true, true, false).then(
             () => app.setScript(halyard.getScript()).then(
               () => app.doReload().then(() => app.globalApi.getProgress(0).then(
@@ -106,16 +109,22 @@ const halyardMixin = {
   },
 };
 
+
 const exposeGlobalApi = {
   types: 'Doc',
-  init(properties) {
-    properties.api.globalApi = properties.api.session.getObjectApi({
+  init(args) {
+    const getObjectArgs = {
       handle: -1,
       id: 'Global',
       type: 'Global',
-      customType: 'Global',
-      delta: true,
-    });
+    };
+    if (args.config) {
+      getObjectArgs.customType = 'Global';
+      getObjectArgs.delta = true;
+    } else {
+      getObjectArgs.genericType = 'Global';
+    }
+    args.api.globalApi = args.api.session.getObjectApi(getObjectArgs);
   },
 };
 

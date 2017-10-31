@@ -19,7 +19,7 @@ describe('Enigma Mixin error handling', () => {
 
     halyard.addTable(url, { name: 'Table' });
 
-    return Utils.getQixService().then(qix => qix.global.createAppUsingHalyard(docName, halyard).then((result) => {})
+    return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Connection Error');
       }));
@@ -30,7 +30,7 @@ describe('Enigma Mixin error handling', () => {
 
     halyard.addTable(url, { name: 'Allsvenskan', fields: [{ src: 'apa', name: 'Test' }] });
 
-    return Utils.getQixService().then(qix => qix.global.createAppUsingHalyard(docName, halyard).then((result) => {})
+    return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Loading Error');
       }));
@@ -41,7 +41,7 @@ describe('Enigma Mixin error handling', () => {
 
     halyard.addTable(url, { name: 'Allsvenskan', fields: [{ expr: 'adsfasdfdsf(aoa)', name: 'Test' }] });
 
-    return Utils.getQixService().then(qix => qix.global.createAppUsingHalyard(docName, halyard).then((result) => {})
+    return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Syntax Error');
       }));
