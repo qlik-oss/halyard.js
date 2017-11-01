@@ -119,10 +119,10 @@ const exposeGlobalApi = {
       type: 'Global',
     };
     if (args.config) {
+      getObjectArgs.genericType = 'Global';
+    } else {
       getObjectArgs.customType = 'Global';
       getObjectArgs.delta = true;
-    } else {
-      getObjectArgs.genericType = 'Global';
     }
     args.api.globalApi = args.api.session.getObjectApi(getObjectArgs);
   },
