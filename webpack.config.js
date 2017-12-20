@@ -17,11 +17,11 @@ function createConfig(isDebug) {
       libraryTarget: 'umd',
     },
     module: {
-      loaders: [{
+      rules: [{
         test: /\.js$/,
         include: [srcDir],
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015'],
         },
@@ -38,7 +38,7 @@ function createConfig(isDebug) {
   };
 
   if (isDebug) {
-    config.debug = true;
+    //config.debug = true;
   } else {
     config.output.filename = `${outputName}.min.js`;
     config.plugins.push(new Webpack.optimize.UglifyJsPlugin());
@@ -47,6 +47,7 @@ function createConfig(isDebug) {
   return config;
 }
 
+function createEnigmaMixinConfig(isDebug) {
 function createEnigmaMixinConfig(isDebug) {
   const config = {
     entry: path.resolve(srcDir + '/enigma-mixin/', 'halyard-enigma-mixin'),
@@ -60,7 +61,7 @@ function createEnigmaMixinConfig(isDebug) {
       loaders: [{
         include: [srcDir],
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015'],
         },
@@ -77,7 +78,7 @@ function createEnigmaMixinConfig(isDebug) {
   };
 
   if (isDebug) {
-    config.debug = true;
+    //config.debug = true;
   } else {
     config.output.filename = 'halyard-enigma-mixin.min.js';
     config.plugins.push(new Webpack.optimize.UglifyJsPlugin());

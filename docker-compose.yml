@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  engine:
+    image: qlik/engine:12.85.0
+    command:
+      -S SystemLogVerbosity=5
+    ports:
+      - "4848:9076"
+    volumes:
+      - ./examples/data:$PWD/examples/data
