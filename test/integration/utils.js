@@ -19,12 +19,14 @@ export function openSession(appId) {
   return enigma.create(enigmaConfig).open();
 }
 
-export function removeAllTestDoc() {
+export async function removeAllTestDoc() {
   return openSession().then(qix => qix.getDocList().then(async (list) => {
     const integrationTestDocs = list.filter(doc => doc.qDocName.match(docNamePrefix));
-    for (const doc of integrationTestDocs) {
-      await qix.deleteApp(doc.qDocId);
+    const results = [];
+    for (let i = 0; i < integrationTestDocs.length; i += 1) {
+      results.push(qix.deleteApp(integrationTestDocs[i].qDocId));
     }
+    return async () => { await Promise.all(results); };
   }));
 }
 
