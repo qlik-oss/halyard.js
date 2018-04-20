@@ -1,5 +1,4 @@
 {
   "glob": ["test/unit/**/*.spec.js", "test/integration/**/*.spec.js"],
-  "coverage": true,
-
+  "coverage": true
 }
