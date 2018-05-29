@@ -55,6 +55,5 @@
     "webpack": "4.6.0",
     "ws": "5.1.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
