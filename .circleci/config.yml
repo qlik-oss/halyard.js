@@ -3,12 +3,18 @@ jobs:
   build:
     working_directory: ~/halyard.js
     docker:
-      - image: circleci/node:6.11
+      - image: circleci/node:8.11.2
     steps:
       - checkout
+      - restore_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: npm install --no-save -s
+      - save_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - run:
           name: Build
           command: npm run build
