@@ -23,10 +23,10 @@ const createConfig = (overrides) => {
       // nodeGlobals(),
       nodeBuiltins(),
       commonjs(),
-      babel({
-        exclude: 'node_modules/**',
-        plugins: ['external-helpers'],
-      }),
+      // babel({
+      //   exclude: 'node_modules/**',
+      //   plugins: ['external-helpers'],
+      // }),
       license({
         banner: `
         ${pkg.name} v${pkg.version}

@@ -7,11 +7,11 @@
   "scripts": {
     "build": "rollup -c && cross-env NODE_ENV=production rollup -c",
     "coverage": "nyc report --reporter=text-lcov --temp-directory=./coverage/.nyc_output | coveralls",
-    "test": "aw -c ./test/aw.config.json",
-    "test:watch": "aw -c ./test/aw.config.json --mocha.timeout 5000 -w",
-    "test:unit": "aw -c ./test/aw.config.json --glob \"./test/unit/**/*.spec.js\"",
-    "test:unit:watch": "aw -c ./test/aw.config.json --glob \"./test/unit/**/*.spec.js\" -w",
-    "test:integration": "aw -c ./test/aw.config.json --glob \"./test/integration/**/*.spec.js\" --mocha.timeout 5000",
+    "test": "aw -c ./test/aw.config.js",
+    "test:watch": "aw -c ./test/aw.config.js --mocha.timeout 5000 -w",
+    "test:unit": "aw -c ./test/aw.config.js --glob ./test/unit/**/*.spec.js",
+    "test:unit:watch": "aw -c ./test/aw.config.js --glob ./test/unit/**/*.spec.js -w",
+    "test:integration": "aw -c ./test/aw.config.js --glob ./test/integration/**/*.spec.js --mocha.timeout 5000 --exit",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix"
   },
@@ -24,7 +24,7 @@
   ],
   "main": "dist/halyard.js",
   "devDependencies": {
-    "after-work.js": "4.1.0",
+    "after-work.js": "4.3.1",
     "babel-core": "6.26.0",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-istanbul": "4.1.6",

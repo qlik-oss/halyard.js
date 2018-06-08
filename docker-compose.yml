@@ -2,9 +2,9 @@ version: "3.1"
 
 services:
   engine:
-    image: qlikcore/engine:12.171.0
+    image: qlikcore/engine:12.181.0
     command:
-      -S SystemLogVerbosity=5 -S AcceptEULA=${ACCEPT_EULA}
+      -S AcceptEULA=${ACCEPT_EULA}
     ports:
       - "4848:9076"
     volumes:

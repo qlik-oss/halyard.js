@@ -22,7 +22,7 @@ describe('Enigma Mixin error handling', () => {
     return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Connection Error');
-      }));
+      }).then( () => session.session.close()));
   });
 
   it("should throw loading error if field src doesn't exist", () => {
@@ -33,7 +33,7 @@ describe('Enigma Mixin error handling', () => {
     return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Loading Error');
-      }));
+      }).then( () => session.session.close()));
   });
 
   it('should throw syntax error if expression is invalid', () => {
@@ -44,6 +44,6 @@ describe('Enigma Mixin error handling', () => {
     return Utils.openSession(docName).then(session => session.createAppUsingHalyard(docName, halyard).then((result) => {})
       .catch((err) => {
         expect(err.type).to.eql('Syntax Error');
-      }));
+      }).then( () => session.session.close()));
   });
 });
