@@ -9,9 +9,9 @@
     "coverage": "nyc report --reporter=text-lcov --temp-directory=./coverage/.nyc_output | coveralls",
     "test": "aw -c ./test/aw.config.js",
     "test:watch": "aw -c ./test/aw.config.js --mocha.timeout 5000 -w",
-    "test:unit": "aw -c ./test/aw.config.js --glob ./test/unit/**/*.spec.js",
-    "test:unit:watch": "aw -c ./test/aw.config.js --glob ./test/unit/**/*.spec.js -w",
-    "test:integration": "aw -c ./test/aw.config.js --glob ./test/integration/**/*.spec.js --mocha.timeout 5000 --exit",
+    "test:unit": "aw -c ./test/aw.config.js --glob 'test/unit/**/*.spec.js'",
+    "test:unit:watch": "aw -c ./test/aw.config.js --glob 'test/unit/**/*.spec.js' -w",
+    "test:integration": "aw -c ./test/aw.config.js --glob 'test/integration/**/*.spec.js' --mocha.timeout 5000 --exit",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix"
   },
