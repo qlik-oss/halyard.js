@@ -17,7 +17,7 @@ jobs:
           command: npm run lint
       - run:
           name: Unit testing with coverage
-          command: npm run test:unit:coverage
+          command: npm run test:unit
       - run:
           name: Publish coverage artifacts to coverall
           command: npm run coverage
