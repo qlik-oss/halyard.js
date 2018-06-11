@@ -60,16 +60,16 @@ const halyardMixin = {
         const qixConnectionObject = connection.getQixConnectionObject();
         if (qixConnectionObject) {
           const connectionPromise = app.createConnection(qixConnectionObject)
-          .then(result => result, (err) => {
-            const LOCERR_CONNECTION_ALREADY_EXISTS = 2000;
+            .then(result => result, (err) => {
+              const LOCERR_CONNECTION_ALREADY_EXISTS = 2000;
 
-            // Will not throw error if connection already exists.
-            // The connections guid makes the connections unique and we assumes that it
-            // is the same that was previously created
-            if (!(err.code && err.code === LOCERR_CONNECTION_ALREADY_EXISTS)) {
-              throw createErrorMessage(CONNECTION_ERROR, err, connection);
-            }
-          });
+              // Will not throw error if connection already exists.
+              // The connections guid makes the connections unique and we assumes that it
+              // is the same that was previously created
+              if (!(err.code && err.code === LOCERR_CONNECTION_ALREADY_EXISTS)) {
+                throw createErrorMessage(CONNECTION_ERROR, err, connection);
+              }
+            });
 
           deferredConnections.push(connectionPromise);
         }
@@ -78,33 +78,28 @@ const halyardMixin = {
       return that.Promise.all(deferredConnections).then(() =>
         app.getLocaleInfo().then((localeInfoResult) => {
           halyard.setDefaultSetStatements(convertQixGetLocalInfo(localeInfoResult), true);
-          return app.globalApi.configureReload(true, true, false).then(
-            () => app.setScript(halyard.getScript()).then(
-              () => app.doReload().then(() => app.globalApi.getProgress(0).then(
-                (progressResult) => {
-                  if (progressResult.qErrorData.length !== 0) {
-                    return app.checkScriptSyntax().then((syntaxCheckData) => {
-                      if (syntaxCheckData.length === 0) {
-                        throw createErrorMessage(LOADING_ERROR, progressResult.qErrorData[0]);
-                      } else {
-                        const item =
+          return app.globalApi.configureReload(true, true, false).then(() =>
+            app.setScript(halyard.getScript()).then(() => app.doReload().then(() =>
+              app.globalApi.getProgress(0).then((progressResult) => {
+                if (progressResult.qErrorData.length !== 0) {
+                  return app.checkScriptSyntax().then((syntaxCheckData) => {
+                    if (syntaxCheckData.length === 0) {
+                      throw createErrorMessage(LOADING_ERROR, progressResult.qErrorData[0]);
+                    } else {
+                      const item =
                           halyard.getItemThatGeneratedScriptAt(syntaxCheckData[0].qTextPos);
-                        throw createErrorMessage(SYNTAX_ERROR, progressResult.qErrorData[0], item);
-                      }
-                    });
-                  }
+                      throw createErrorMessage(SYNTAX_ERROR, progressResult.qErrorData[0], item);
+                    }
+                  });
+                }
 
-                  if (doSaveAfterReload) {
-                    return app.doSave().then(() => app);
-                  }
+                if (doSaveAfterReload) {
+                  return app.doSave().then(() => app);
+                }
 
-                  return app;
-                })
-              )
-            )
-          );
-        })
-      );
+                return app;
+              }))));
+        }));
     },
   },
 };

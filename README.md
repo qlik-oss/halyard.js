@@ -9,6 +9,8 @@ The functionality in halyard.js is divided into two parts where the first one is
 
 ## halyard.js - API Basics
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/qlik-oss/halyard.js.svg)](https://greenkeeper.io/)
+
 `let halyard = new Halyard();`
 
 ### `setDefaultSetStatements(defaultSetStatements[, preservePreviouslyEnteredValues])`

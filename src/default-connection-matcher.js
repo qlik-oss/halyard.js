@@ -14,8 +14,10 @@ connectionMatcher.addConnection(data => typeof data === 'string' && data.match(/
 connectionMatcher.addConnection(data => typeof data === 'string' && data.match(/^.*\.(.*)$/g), data => new Connections.File(data));
 
 // Inline JSON table to csv
-connectionMatcher.addConnection(data => data instanceof Array && JsonToCsv.isJson(data),
-    data => new Connections.Inline(JsonToCsv.convert(data)));
+connectionMatcher.addConnection(
+  data => data instanceof Array && JsonToCsv.isJson(data),
+  data => new Connections.Inline(JsonToCsv.convert(data)),
+);
 
 // Inline csv table
 connectionMatcher.addConnection(data => typeof data === 'string', data => new Connections.Inline(data));

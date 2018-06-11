@@ -141,7 +141,7 @@ class HyperCube {
     const that = this;
     const concatQMatrix = that.hyperCubeLayout.qDataPages.reduce(
       (prev, curr) => [...prev, ...curr.qMatrix],
-      []
+      [],
     );
     const data = that.mapDualFieldQMatrix(concatQMatrix, field);
     const headers = HyperCubeUtils.getDualHeadersForField(field);
@@ -167,10 +167,8 @@ class HyperCube {
                 }
                 return HyperCubeUtils.getCellValue(cell, field);
               })
-              .join(',')
-          )
-          .join('\n')
-      )
+              .join(','))
+          .join('\n'))
       .join('\n');
     return data;
   }
@@ -180,9 +178,7 @@ class HyperCube {
     for (let i = 0; i < that.hyperCubeLayout.qDimensionInfo.length; i += 1) {
       fields.push({
         type: 'dimension',
-        dimensionType: HyperCubeUtils.getDimensionType(
-          that.hyperCubeLayout.qDimensionInfo[i]
-        ),
+        dimensionType: HyperCubeUtils.getDimensionType(that.hyperCubeLayout.qDimensionInfo[i]),
         name: that.hyperCubeLayout.qDimensionInfo[i].qFallbackTitle,
         displayFormat: that.hyperCubeLayout.qDimensionInfo[i].qNumFormat.qFmt,
         index: i,

@@ -69,7 +69,7 @@ class Halyard {
 
   getScript() {
     return this.getAllScriptBlocks().map(item => this.getItemScript(item))
-        .join(SCRIPT_BLOCK_SPACING);
+      .join(SCRIPT_BLOCK_SPACING);
   }
 
   // Support to add hyper cube explicit or implicitly

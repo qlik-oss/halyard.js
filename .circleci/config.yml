@@ -3,12 +3,18 @@ jobs:
   build:
     working_directory: ~/halyard.js
     docker:
-      - image: circleci/node:6.11
+      - image: circleci/node:8.11.2
     steps:
       - checkout
+      - restore_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: npm install --no-save -s
+      - save_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - run:
           name: Build
           command: npm run build
@@ -16,8 +22,8 @@ jobs:
           name: Linting
           command: npm run lint
       - run:
-          name: Unit testing with coverage
-          command: npm run test:unit:coverage
+          name: Unit testing
+          command: npm run test:unit
       - run:
           name: Publish coverage artifacts to coverall
           command: npm run coverage

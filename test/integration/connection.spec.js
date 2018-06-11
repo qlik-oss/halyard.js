@@ -25,11 +25,12 @@ describe('Connections', () => {
 
         expect(result[0].qValue[1].qText).to.eql('Hemmasnitt');
         expect(result[1].qValue[1].qText).to.eql('11 885');
-      })));
+      })
+      .then( () => session.session.close())));
     });
   });
 
-  it('should work to load data from https', () => {
+  it.skip('should work to load data from https', () => {
     const url = `https://${ip}:9001/attendance.html`;
     const halyard = new Halyard();
 
@@ -64,7 +65,8 @@ describe('Connections', () => {
 
       return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('make_id');
-      })));
+      })
+      .then( () => session.session.close())));
     });
   }));
 
@@ -80,7 +82,8 @@ describe('Connections', () => {
 
       return session.createAppUsingHalyard(docName, halyard).then(result => session.openDoc(docName).then(app => app.getTableData(-1, 30, true, 'Car Makers').then((result) => {
         expect(result[0].qValue[0].qText).to.eql('make_id');
-      })));
-    });
+      })
+      .then( () => session.session.close())));
+    })
   });
 });

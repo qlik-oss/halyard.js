@@ -1,0 +1,11 @@
+version: "3.1"
+
+services:
+  engine:
+    image: qlikcore/engine:12.181.0
+    command:
+      -S AcceptEULA=${ACCEPT_EULA}
+    ports:
+      - "4848:9076"
+    volumes:
+      - ./examples/data:$PWD/examples/data
