@@ -22,7 +22,7 @@ jobs:
           name: Linting
           command: npm run lint
       - run:
-          name: Unit testing with coverage
+          name: Unit testing
           command: npm run test:unit
       - run:
           name: Publish coverage artifacts to coverall
