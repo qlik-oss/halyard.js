@@ -19,14 +19,8 @@ const createConfig = (overrides) => {
     },
     plugins: [
       resolve({ jsnext: true, preferBuiltins: false }),
-      // nodeGlobals() is disabled right now due to a bug: https://github.com/calvinmetcalf/rollup-plugin-node-globals/issues/9
-      // nodeGlobals(),
       nodeBuiltins(),
       commonjs(),
-      // babel({
-      //   exclude: 'node_modules/**',
-      //   plugins: ['external-helpers'],
-      // }),
       license({
         banner: `
         ${pkg.name} v${pkg.version}
