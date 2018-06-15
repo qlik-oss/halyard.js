@@ -122,7 +122,7 @@ class HyperCube {
         mappedField.displayFormat = field.displayFormat;
       }
       if (field.isDual) {
-        mappedField.expr = `Dual(ApplyMap('MapDual__${field.name}', ${field.name}), ${field.name})`;
+        mappedField.expr = `Dual(ApplyMap('MapDual__${field.name}', "${field.name}"), "${field.name}")`;
       } else {
         mappedField.src = field.name;
       }

@@ -148,4 +148,6 @@ Halyard.Connections = Connections;
 
 export default Halyard;
 
-module.exports = Halyard;
+if (typeof module !== 'undefined') {
+  module.exports = Halyard;
+}
