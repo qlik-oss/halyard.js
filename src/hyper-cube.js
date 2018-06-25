@@ -129,6 +129,7 @@ class HyperCube {
       return mappedField;
     });
   }
+
   mapDualFieldQMatrix(qMatrix, field) {
     function uniqueFilter(value, index, self) {
       return self.indexOf(value) === index;
@@ -137,6 +138,7 @@ class HyperCube {
       .map(row => HyperCubeUtils.getDualDataRow(row[field.index]))
       .filter(uniqueFilter);
   }
+
   getMapTableForDualField(field) {
     const that = this;
     const concatQMatrix = that.hyperCubeLayout.qDataPages.reduce(
@@ -153,25 +155,25 @@ class HyperCube {
     }
     return new Table(inlineData, options);
   }
+
   getDataFromHyperCubeLayout() {
     const that = this;
     const data = that.hyperCubeLayout.qDataPages
-      .map(dataPage =>
-        dataPage.qMatrix
-          .map(row =>
-            row
-              .map((cell, index) => {
-                const field = that.fields[index];
-                if (!field.isDual && HyperCubeUtils.isCellDual(cell, field)) {
-                  field.isDual = true;
-                }
-                return HyperCubeUtils.getCellValue(cell, field);
-              })
-              .join(','))
-          .join('\n'))
+      .map(dataPage => dataPage.qMatrix
+        .map(row => row
+          .map((cell, index) => {
+            const field = that.fields[index];
+            if (!field.isDual && HyperCubeUtils.isCellDual(cell, field)) {
+              field.isDual = true;
+            }
+            return HyperCubeUtils.getCellValue(cell, field);
+          })
+          .join(','))
+        .join('\n'))
       .join('\n');
     return data;
   }
+
   getFieldsFromHyperCubeLayout() {
     const that = this;
     const fields = [];
@@ -193,6 +195,7 @@ class HyperCube {
     }
     return fields;
   }
+
   getItems() {
     return this.items;
   }

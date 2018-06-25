@@ -1,9 +1,10 @@
-import { escapeText } from '../../src/utils/utils';
+import { escapeText } from './utils';
 
 function supportedCharacterSet(characterSet) {
   const validCharacterSets = ['utf8', 'unicode', 'ansi', 'oem', 'mac'];
 
-  return (validCharacterSets.indexOf(characterSet) > -1 && characterSet) || (Number(characterSet).toString() !== 'NaN' && `codepage is ${characterSet}`);
+  return (validCharacterSets.indexOf(characterSet) > -1 && characterSet)
+    || (Number(characterSet).toString() !== 'NaN' && `codepage is ${characterSet}`);
 }
 
 export default function formatSpecification(options) {
@@ -61,4 +62,3 @@ export default function formatSpecification(options) {
 
   return formatSpecificationString;
 }
-
