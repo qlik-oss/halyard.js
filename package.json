@@ -38,13 +38,13 @@
     "cross-env": "5.2.0",
     "dev-ip": "1.0.1",
     "enigma.js": "2.2.0",
-    "eslint": "4.19.1",
+    "eslint": "5.0.0",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.11.0",
     "jsdoc": "3.5.5",
     "rimraf": "2.6.2",
     "rollup": "0.58.1",
-    "rollup-plugin-babel": "3.0.3",
+    "rollup-plugin-babel": "3.0.5",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-filesize": "1.5.0",
     "rollup-plugin-license": "0.6.0",
@@ -53,7 +53,7 @@
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-uglify": "3.0.0",
     "webpack": "4.12.1",
-    "ws": "5.1.1"
+    "ws": "5.2.1"
   },
   "dependencies": {}
 }
