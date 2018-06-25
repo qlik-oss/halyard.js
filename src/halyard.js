@@ -105,6 +105,7 @@ class Halyard {
 
     return this.addItem(newTable);
   }
+
   checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
       if (this.items.filter(item => item.getName() === newItem.getName()).length > 0) {
@@ -112,6 +113,7 @@ class Halyard {
       }
     }
   }
+
   addItem(newItem) {
     this.checkIfItemNameExists(newItem);
 
@@ -126,8 +128,8 @@ class Halyard {
 
     for (let i = 0; i < allScriptBlocks.length; i += 1) {
       const itemScript = this.getItemScript(allScriptBlocks[i]);
-      const scriptBlockEndPosition = scriptBlockStartPosition +
-          (`${itemScript}${SCRIPT_BLOCK_SPACING}`).length;
+      const scriptBlockEndPosition = scriptBlockStartPosition
+          + (`${itemScript}${SCRIPT_BLOCK_SPACING}`).length;
 
       if (scriptBlockStartPosition <= charPosition && charPosition <= scriptBlockEndPosition) {
         return allScriptBlocks[i];

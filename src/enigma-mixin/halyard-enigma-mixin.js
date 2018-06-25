@@ -25,16 +25,14 @@ const halyardMixin = {
   extend: {
     createSessionAppUsingHalyard(halyard) {
       const that = this;
-      return that.createSessionApp().then(app =>
-        that.setScriptAndReloadWithHalyard(app, halyard, false));
+      return that.createSessionApp().then(app => that.setScriptAndReloadWithHalyard(app, halyard, false));
     },
 
     createAppUsingHalyard(appName, halyard) {
       const that = this;
       return that.createApp(appName).then((app) => {
         const appId = app.qAppId;
-        return that.openDoc(appId).then(result =>
-          that.setScriptAndReloadWithHalyard(result, halyard, true));
+        return that.openDoc(appId).then(result => that.setScriptAndReloadWithHalyard(result, halyard, true));
       });
     },
 
@@ -75,31 +73,28 @@ const halyardMixin = {
         }
       });
 
-      return that.Promise.all(deferredConnections).then(() =>
-        app.getLocaleInfo().then((localeInfoResult) => {
-          halyard.setDefaultSetStatements(convertQixGetLocalInfo(localeInfoResult), true);
-          return app.globalApi.configureReload(true, true, false).then(() =>
-            app.setScript(halyard.getScript()).then(() => app.doReload().then(() =>
-              app.globalApi.getProgress(0).then((progressResult) => {
-                if (progressResult.qErrorData.length !== 0) {
-                  return app.checkScriptSyntax().then((syntaxCheckData) => {
-                    if (syntaxCheckData.length === 0) {
-                      throw createErrorMessage(LOADING_ERROR, progressResult.qErrorData[0]);
-                    } else {
-                      const item =
-                          halyard.getItemThatGeneratedScriptAt(syntaxCheckData[0].qTextPos);
-                      throw createErrorMessage(SYNTAX_ERROR, progressResult.qErrorData[0], item);
-                    }
-                  });
+      return that.Promise.all(deferredConnections).then(() => app.getLocaleInfo().then((localeInfoResult) => {
+        halyard.setDefaultSetStatements(convertQixGetLocalInfo(localeInfoResult), true);
+        return app.globalApi.configureReload(true, true, false).then(() => app.setScript(halyard.getScript())
+          .then(() => app.doReload().then(() => app.globalApi.getProgress(0).then((progressResult) => {
+            if (progressResult.qErrorData.length !== 0) {
+              return app.checkScriptSyntax().then((syntaxCheckData) => {
+                if (syntaxCheckData.length === 0) {
+                  throw createErrorMessage(LOADING_ERROR, progressResult.qErrorData[0]);
+                } else {
+                  const item = halyard.getItemThatGeneratedScriptAt(syntaxCheckData[0].qTextPos);
+                  throw createErrorMessage(SYNTAX_ERROR, progressResult.qErrorData[0], item);
                 }
+              });
+            }
 
-                if (doSaveAfterReload) {
-                  return app.doSave().then(() => app);
-                }
+            if (doSaveAfterReload) {
+              return app.doSave().then(() => app);
+            }
 
-                return app;
-              }))));
-        }));
+            return app;
+          }))));
+      }));
     },
   },
 };

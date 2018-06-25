@@ -4,8 +4,8 @@ const DEFAULT_DELIMITER = ',';
 
 function isDimensionTypeMixed(dimension) {
   return (
-    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
-    dimension.qTags.length === 0
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
+    && dimension.qTags.length === 0
   );
 }
 
@@ -18,8 +18,8 @@ function isDimensionTypeTimestamp(dimension) {
     return true;
   }
   if (
-    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
-    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.timestamp
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
+    && dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.timestamp
   ) {
     return true;
   }
@@ -28,8 +28,8 @@ function isDimensionTypeTimestamp(dimension) {
 
 function isDimensionTypeDate(dimension) {
   if (
-    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
-    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.date
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
+    && dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.date
   ) {
     return true;
   }
@@ -38,8 +38,8 @@ function isDimensionTypeDate(dimension) {
 
 function isDimensionTypeTime(dimension) {
   if (
-    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
-    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.time
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
+    && dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.time
   ) {
     return true;
   }
@@ -48,8 +48,8 @@ function isDimensionTypeTime(dimension) {
 
 function isDimensionTypeInterval(dimension) {
   if (
-    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric &&
-    dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.interval
+    dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
+    && dimension.qNumFormat.qType === hyperCubeSpecification.qTypes.interval
   ) {
     return true;
   }
