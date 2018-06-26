@@ -39,7 +39,7 @@
     "dev-ip": "1.0.1",
     "enigma.js": "2.2.0",
     "eslint-config-airbnb": "17.0.0",
-    "eslint": "5.0.0",
+    "eslint": "5.0.1",
     "eslint-plugin-import": "2.13.0",
     "jsdoc": "3.5.5",
     "rimraf": "2.6.2",
