@@ -25,7 +25,7 @@
   "main": "dist/halyard.js",
   "devDependencies": {
     "after-work.js": "4.3.1",
-    "babel-core": "6.26.0",
+    "babel-core": "6.26.3",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-istanbul": "4.1.6",
     "babel-plugin-transform-object-assign": "6.22.0",
