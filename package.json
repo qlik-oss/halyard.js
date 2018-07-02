@@ -52,7 +52,7 @@
     "rollup-plugin-node-globals": "1.2.0",
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-uglify": "3.0.0",
-    "webpack": "4.13.0",
+    "webpack": "4.14.0",
     "ws": "5.2.1"
   },
   "dependencies": {}
