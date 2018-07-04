@@ -34,7 +34,7 @@
     "babel-register": "6.26.0",
     "bluebird": "3.5.1",
     "browser-sync": "2.24.5",
-    "coveralls": "3.0.0",
+    "coveralls": "3.0.2",
     "cross-env": "5.2.0",
     "dev-ip": "1.0.1",
     "enigma.js": "2.2.1",
