@@ -4,15 +4,17 @@ jobs:
     working_directory: ~/halyard.js
     docker:
       - image: circleci/node:8.11.2
+    environment:
+      - NPM_CONFIG_LOGLEVEL=warn
     steps:
       - checkout
       - restore_cache:
-          key: npm-dependency-cache-{{ checksum "package.json" }}
+          key: npm-dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install dependencies
-          command: npm install --no-save -s
+          command: npm install
       - save_cache:
-          key: npm-dependency-cache-{{ checksum "package.json" }}
+          key: npm-dependency-cache-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run:
