@@ -54,7 +54,7 @@
     "rollup-plugin-uglify": "4.0.0",
     "uglify-es": "3.3.9",
     "webpack": "4.16.0",
-    "ws": "5.2.1"
+    "ws": "5.2.2"
   },
   "dependencies": {}
 }
