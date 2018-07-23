@@ -33,7 +33,7 @@
     "babel-preset-env": "1.7.0",
     "babel-register": "6.26.0",
     "bluebird": "3.5.1",
-    "browser-sync": "2.24.5",
+    "browser-sync": "2.24.6",
     "coveralls": "3.0.2",
     "cross-env": "5.2.0",
     "dev-ip": "1.0.1",
