@@ -53,7 +53,7 @@
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-uglify": "4.0.0",
     "uglify-es": "3.3.9",
-    "webpack": "4.16.3",
+    "webpack": "4.16.4",
     "ws": "6.0.0"
   },
   "dependencies": {}
