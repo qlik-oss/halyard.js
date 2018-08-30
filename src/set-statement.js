@@ -1,6 +1,7 @@
 class SetStatement {
   /**
    * Define set statements
+   * @public
    * @param {object} defaultSetStatements - A representation where each property name will be used as key and the property will be the value
    * @constructor
    */
@@ -10,6 +11,7 @@ class SetStatement {
 
   /**
    * Get the entire set statement as script
+   * @public
    * @returns {string}
    */
   getScript() {
@@ -21,7 +23,7 @@ class SetStatement {
 
   /**
    * Returns the name but since statement doesn't have names it will be empty
-   * @private
+   * @public
    * @returns {string}
    */
   getName() {

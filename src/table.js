@@ -5,10 +5,11 @@ import { escapeText, validFieldType, indentation } from './utils/utils';
 class Table {
   /**
    * Table definition
-   * @param {connection} connection
+   * @public
+   * @param {object} connection
    * @param {object} options - Table options
    * @param {string} name - Table name
-   * @param {array<fields>} fields - Array of field objects
+   * @param {object[]} fields - Array of field objects
    * @param {string} prefix - Add prefix before the table
    * @param {string} section - Section to add table to
    * @constructor
@@ -35,7 +36,8 @@ class Table {
 
   /**
    * Get the fields from a table
-   * @returns {array<fields>}
+   * @public
+   * @returns {object[]} Array of fields
    */
   getFields() {
     return this.fields;
@@ -43,6 +45,7 @@ class Table {
 
   /**
    * Get the script representation of the field list. If nothing is specified than all the fields will be returned.
+   * @public
    * @returns {string}
    */
   getFieldList() {
@@ -82,6 +85,7 @@ class Table {
 
   /**
    * Is the table used as a proceeding load
+   * @public
    * @returns {boolean}
    */
   isProceedingLoad() {
@@ -90,6 +94,7 @@ class Table {
 
   /**
    * Get specified prefix
+   * @public
    * @returns {string}
    */
   getPrefix() {
@@ -101,6 +106,7 @@ class Table {
 
   /**
    * Get the script representation of the table
+   * @public
    * @returns {string}
    */
   getScript() {
@@ -120,6 +126,7 @@ class Table {
 
   /**
    * Get the name of the table
+   * @public
    * @returns {string}
    */
   getName() {
@@ -128,6 +135,7 @@ class Table {
 
   /**
    * Get the section that the table belongs to
+   * @public
    * @returns {string}
    */
   getSection() {
@@ -136,7 +144,8 @@ class Table {
 
   /**
    * Returns the connection or table that the table uses.
-   * @returns {connection|table}
+   * @public
+   * @returns {object} Connection or Table
    */
   getConnection() {
     return this.connection;

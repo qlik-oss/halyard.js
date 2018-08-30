@@ -11,6 +11,7 @@ const SCRIPT_BLOCK_SPACING = '\n\n';
 class Halyard {
   /**
    * Representation of tables or hypercubes to load
+   * @public
    * @constructor
    */
   constructor() {
@@ -23,7 +24,7 @@ class Halyard {
   /**
    * Get connections object that are used in the model
    * @public
-   * @returns {Array}
+   * @returns {object[]}
    */
   getConnections() {
     return this.items.filter(item => item.getConnection).map(item => item.getConnection());
@@ -31,7 +32,8 @@ class Halyard {
 
   /**
    * Get the QIX connections definitions that are used in the model
-   * @returns {Array.<connections>}
+   * @public
+   * @returns {object}
    */
   getQixConnections() {
     return this.getConnections().map(connection => connection.getQixConnectionObject())
@@ -40,8 +42,9 @@ class Halyard {
 
   /**
    * Get fields that matches pattern sent in as params
-   * @param matcherFn
-   * @returns {Array}
+   * @public
+   * @param {callback} matcherFn
+   * @returns {object[]}
    */
   getFields(matcherFn) {
     matcherFn = matcherFn || (() => true);
@@ -59,6 +62,7 @@ class Halyard {
 
   /**
    * Configure the default set statements like time, date, currency formats
+   * @public
    * @param {object} defaultSetStatements
    * @param {boolean} preservePreviouslyEnteredValues
    */
@@ -74,8 +78,9 @@ class Halyard {
 
   /**
    * Get the script for a item (table, preceeding load)
-   * @param item
-   * @returns {*}
+   * @public
+   * @param {object} item
+   * @returns {string}
    */
   getItemScript(item) {
     let itemScript = item.getScript();
@@ -93,7 +98,8 @@ class Halyard {
 
   /**
    * Fetch all script blocks
-   * @returns {Array.<string>}
+   * @public
+   * @returns {string[]}
    */
   getAllScriptBlocks() {
     return this.items.concat(this.lastItems).filter(item => item.getScript());
@@ -101,6 +107,7 @@ class Halyard {
 
   /**
    * Fetches the entire script
+   * @public
    * @returns {string}
    */
   getScript() {
@@ -110,9 +117,10 @@ class Halyard {
 
   /**
    * Add hyper cube explicit or implicitly
-   * @param {hypercube} arg1
+   * @public
+   * @param {object} arg1 - Hypercube
    * @param {object} options
-   * @returns {hypercube}
+   * @returns {object} Hypercube
    */
   addHyperCube(arg1, options) {
     let newHyperCube;
@@ -136,9 +144,10 @@ class Halyard {
 
   /**
    * Support to add table explicit or implicitly
-   * @param {table} arg1
+   * @public
+   * @param {object} arg1 - Table
    * @param options
-   * @returns {table}
+   * @returns {object} Table
    */
   addTable(arg1, options) {
     let newTable;
@@ -154,7 +163,8 @@ class Halyard {
 
   /**
    * Verify that item doesn't exist in model
-   * @param {table|hypercube} newItem
+   * @public
+   * @param {object} newItem - Table or Hypercube
    */
   checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
@@ -166,8 +176,9 @@ class Halyard {
 
   /**
    * Add new item to the model
-   * @param {table|hypercube} newItem
-   * @returns {table|hypercube}
+   * @public
+   * @param {object} newItem - Table or Hypercube
+   * @returns {object} - Table or Hypercube
    */
   addItem(newItem) {
     this.checkIfItemNameExists(newItem);
@@ -179,8 +190,9 @@ class Halyard {
 
   /**
    * Locate which item that generated a script at the specified character position
+   * @public
    * @param {number} charPosition
-   * @returns {table|hypercube}
+   * @returns {object} - Table or Hypercube
    */
   getItemThatGeneratedScriptAt(charPosition) {
     const allScriptBlocks = this.getAllScriptBlocks();

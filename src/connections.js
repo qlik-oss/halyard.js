@@ -4,7 +4,8 @@ import InlineData from './connections/inline-data';
 
 /**
  * Default set of Connection that are available
- * @private
+ * @constant
+ * @type {object}
  */
 export default {
   File: FileConnection,

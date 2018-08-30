@@ -3,6 +3,7 @@ import { getFieldName, escapeText } from './utils/utils';
 class DerivedFieldsTemplate {
   /**
    * Declare fields that can be derived from a template. An example can be a calendar template.
+   * @public
    * @param {object} options - Derived Field Template definition.
    * @param {callback} fieldMatchFunction - Matching function that will apply a field template definition.
    * @param {string} name - Name of derived field.
@@ -19,6 +20,7 @@ class DerivedFieldsTemplate {
 
   /**
    * Returns the script
+   * @public
    * @returns {string}
    */
   getScript() {
@@ -33,7 +35,8 @@ class DerivedFieldsTemplate {
 
   /**
    * Get the script definition for a set of specific fields
-   * @param {array} fieldNames - An array of strings with field names.
+   * @public
+   * @param {string[]} fieldNames - An array of strings with field names.
    * @returns {string}
    */
   getDefinition(fieldNames) {

@@ -4,6 +4,7 @@ import * as Utils from '../utils/utils';
 class InlineData extends ConnectionBase {
   /**
    * Inline data representation. This is typically CSV formatted data.
+   * @public
    * @param {string} data
    * @constructor
    */
@@ -17,6 +18,7 @@ class InlineData extends ConnectionBase {
 
   /**
    * Get the load script representation
+   * @public
    * @returns {string}
    */
   getScript() {
@@ -24,12 +26,14 @@ class InlineData extends ConnectionBase {
   }
 
   /**
+   * Get lib statement but there are none for inline data
    * @private
    */
   getLibStatement() {
   }
 
   /**
+   * Get the qix connection object but there are none for inline data
    * @private
    */
   getQixConnectionObject() {

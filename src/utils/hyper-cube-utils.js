@@ -16,7 +16,7 @@ function isDimensionTypeMixed(dimension) {
 }
 
 /**
- * Is dimension type text
+ * Is dimension type a text
  * @private
  * @param {object} dimension
  * @returns {boolean}
@@ -26,7 +26,7 @@ function isDimensionTypeText(dimension) {
 }
 
 /**
- * Is dimension type timestamp
+ * Is dimension type a timestamp
  * @private
  * @param {object} dimension
  * @returns {boolean}
@@ -45,7 +45,7 @@ function isDimensionTypeTimestamp(dimension) {
 }
 
 /**
- * Is dimension type date
+ * Is dimension type a date
  * @private
  * @param {object} dimension
  * @returns {boolean}
@@ -61,7 +61,7 @@ function isDimensionTypeDate(dimension) {
 }
 
 /**
- * Is dimension type time
+ * Is dimension type a time
  * @private
  * @param {object} dimension
  * @returns {boolean}
@@ -77,7 +77,7 @@ function isDimensionTypeTime(dimension) {
 }
 
 /**
- * Is dimension type interval
+ * Is dimension type an interval
  * @private
  * @param {object} dimension
  * @returns {boolean}

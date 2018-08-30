@@ -16,7 +16,7 @@ function supportedCharacterSet(characterSet) {
 /**
  * Get the QIX specific format of a file
  * @private
- * @param { { fileExtension: string, headerRowNr: Number, delimiter: string, characterSet: string, srcTable: string, noLabels: boolean } } options
+ * @param {{ fileExtension: string, headerRowNr: number, delimiter: string, characterSet: string, srcTable: string, noLabels: boolean }} options
  * @returns {string}
  */
 export default function formatSpecification(options) {

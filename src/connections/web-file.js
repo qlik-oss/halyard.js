@@ -2,7 +2,8 @@ import ConnectionBase from './connection-base';
 
 class WebFileConnection extends ConnectionBase {
   /**
-   * Web file connector structure. It will setup a QIX internet connection.
+   * Web file connector structure. It will setup everything to create a QIX internet connection.
+   * @public
    * @param {string} url
    * @param {string} fileExtension
    */

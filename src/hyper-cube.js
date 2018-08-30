@@ -37,7 +37,7 @@ class HyperCube {
   /**
    * Validate the hypercube layout
    * @private
-   * @param {hyperCubeLayout} hyperCubeLayout
+   * @param {object} hyperCubeLayout
    * @returns {object} hyperCubeLayout
    */
   validateHyperCubeLayout(hyperCubeLayout) {
@@ -72,7 +72,7 @@ class HyperCube {
   /**
    * Validates that all datapages in the hypercube is covered
    * @private
-   * @param {array<object>} dataPages
+   * @param {object[]} dataPages
    * @param {object} hyperCubeLayout
    */
   validateDataPagesCoverage(dataPages, hyperCubeLayout) {
@@ -108,7 +108,7 @@ class HyperCube {
    * @private
    * @param {object} dataPage
    * @param {object} hyperCubeLayout
-   * @param {Number} qHeight
+   * @param {number} qHeight
    */
   validateQArea(dataPage, hyperCubeLayout, qHeight) {
     if (!dataPage.qArea) {
@@ -159,8 +159,8 @@ class HyperCube {
   /**
    * Get the field definition
    * @private
-   * @param {array<field>} fields
-   * @returns {array<field>}
+   * @param {object[]} fields
+   * @returns {object[]} fields
    */
   getFieldsDefinition(fields) {
     return fields.map((field) => {
@@ -183,7 +183,7 @@ class HyperCube {
    * @private
    * @param {object} qMatrix
    * @param {object} field
-   * @returns {array<fields>}
+   * @returns {object} field
    */
   mapDualFieldQMatrix(qMatrix, field) {
     function uniqueFilter(value, index, self) {
@@ -198,7 +198,7 @@ class HyperCube {
    * Get table with dual fields
    * @private
    * @param {object} field
-   * @returns {Table}
+   * @returns {object} Table
    */
   getMapTableForDualField(field) {
     const that = this;
@@ -243,7 +243,7 @@ class HyperCube {
   /**
    * Get the fields from the hyper cube
    * @private
-   * @returns {Array< { type:string, name:string, index: Number} > }
+   * @returns {object[]}
    */
   getFieldsFromHyperCubeLayout() {
     const that = this;
@@ -270,7 +270,7 @@ class HyperCube {
   /**
    * Get tables from the hypercube
    * @public
-   * @returns {Array<Tables>}
+   * @returns {object[]} Tables
    */
   getItems() {
     return this.items;

@@ -3,8 +3,9 @@ import { uniqueName } from '../utils/utils';
 class ConnectionBase {
   /**
    * A base set of methods used by Connections
-   * @param { string } path - The Path to a resource
-   * @param { string } connectionType
+   * @public
+   * @param {string} path - The Path to a resource
+   * @param {string} connectionType
    */
   constructor(path, connectionType) {
     this.path = path;
@@ -14,6 +15,7 @@ class ConnectionBase {
 
   /**
    * Returns specified file extension.
+   * @public
    * @returns {string}
    */
   getFileExtension() {
@@ -22,7 +24,8 @@ class ConnectionBase {
 
   /**
    * Get specified connection type.
-   * @returns {string|*}
+   * @public
+   * @returns {string}
    */
   getConnectionType() {
     return this.connectionType;
@@ -30,6 +33,7 @@ class ConnectionBase {
 
   /**
    * Get the QIX representation of a connection.
+   * @public
    * @returns {{qName: (string), qConnectionString: (string), qType: (string)}}
    */
   getQixConnectionObject() {
@@ -42,6 +46,7 @@ class ConnectionBase {
 
   /**
    * Get the name and if nothing is set then it will receive a unique name
+   * @public
    * @returns {string}
    */
   getName() {
@@ -54,6 +59,7 @@ class ConnectionBase {
 
   /**
    * Get the lib statement used in the load script to connect to a connection
+   * @public
    * @returns {string}
    */
   getLibStatement() {
@@ -62,6 +68,7 @@ class ConnectionBase {
 
   /**
    * Get the load script for this connection
+   * @public
    * @returns {string}
    */
   getScript() {

@@ -1,3 +1,8 @@
+/**
+ * @public
+ * @param {object} localInfoData
+ * @returns {object}
+ */
 export default function convertQixGetLocalInfo(localInfoData) {
   return {
     ThousandSep: localInfoData.qThousandSep,

@@ -24,6 +24,7 @@ Week(Today())-Week($1) AS [WeekRelNo];`;
 
 /**
  * Get the derived field definition for a field that matches the pattern
+ * @public
  * @param fn - Field matcher function
  * @returns {DerivedFieldsTemplate}
  */
