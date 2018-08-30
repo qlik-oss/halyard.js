@@ -29,5 +29,3 @@ export default function convertQixGetLocalInfo(localInfoData) {
     LongDayNames: localInfoData.qCalendarStrings.qLongDayNames,
   };
 }
-
-
