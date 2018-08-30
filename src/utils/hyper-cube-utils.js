@@ -93,7 +93,7 @@ function isDimensionTypeInterval(dimension) {
 }
 
 /**
- * Get dimension type
+ * Get dimension type where the dimension matches one of the following text, mixed, timestamp, time, data, interval or num.
  * @private
  * @param {object} dimension
  * @returns {string}

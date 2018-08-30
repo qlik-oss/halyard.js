@@ -1,11 +1,19 @@
 import { uniqueName } from '../utils/utils';
 
+/**
+ * A base set of methods used by Connections
+ * @typedef {object} Connection
+ * @property {string} path - The Path to a resource
+ * @property {string} connectionType - The type can be either 'folder' or 'internet'
+ */
+
 class ConnectionBase {
   /**
    * A base set of methods used by Connections
    * @public
    * @param {string} path - The Path to a resource
    * @param {string} connectionType - The type can be either 'folder' or 'internet'
+   * @class
    */
   constructor(path, connectionType) {
     this.path = path;

@@ -24,7 +24,7 @@ class Halyard {
   /**
    * Get connections object that are used in the model
    * @public
-   * @returns {object[]}
+   * @returns {Connection[]}
    */
   getConnections() {
     return this.items.filter(item => item.getConnection).map(item => item.getConnection());
