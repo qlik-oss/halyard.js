@@ -157,7 +157,7 @@ class HyperCube {
   }
 
   /**
-   * Get the field definition
+   * Get the Fields definition
    * @private
    * @param {object[]} fields
    * @returns {object[]} fields
@@ -241,9 +241,9 @@ class HyperCube {
   }
 
   /**
-   * Get the fields from the hyper cube
+   * Get the fields from the hypercube
    * @private
-   * @returns {object[]}
+   * @returns {{type: string, dimensionType: string, name: string, displayFormat: string, index: number }[]} - An array of dimension and measures
    */
   getFieldsFromHyperCubeLayout() {
     const that = this;

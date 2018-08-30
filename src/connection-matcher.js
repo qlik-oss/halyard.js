@@ -12,7 +12,7 @@ class ConnectionLookup {
    * Add a matching function with a connection instance
    * @private
    * @param matchingFn - Matching function to decide what connection function to invoke
-   * @param connectionFn - Should return a connection instance
+   * @param connection - Callback that returns a Connection instance
    */
   addConnection(matchingFn, connection) {
     this.connectionsRegistry.push({
@@ -24,7 +24,7 @@ class ConnectionLookup {
   /**
    * Find a match for connection based on the input data
    * @private
-   * @param {string} data - Url, file path, csv data
+   * @param {string} data - The data can be an Url, a file path or a csv data blob
    * @returns {object}
    */
   findMatch(data) {

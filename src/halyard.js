@@ -119,7 +119,9 @@ class Halyard {
    * Add hyper cube explicit or implicitly
    * @public
    * @param {object} arg1 - Hypercube
-   * @param {object} options
+   * @param {object} options - Hypercube options
+   * @param {string} name - Name
+   * @param {string} section - Section to add hypercube data to
    * @returns {object} Hypercube
    */
   addHyperCube(arg1, options) {

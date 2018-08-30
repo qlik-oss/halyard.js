@@ -5,7 +5,7 @@ class ConnectionBase {
    * A base set of methods used by Connections
    * @public
    * @param {string} path - The Path to a resource
-   * @param {string} connectionType
+   * @param {string} connectionType - The type can be either 'folder' or 'internet'
    */
   constructor(path, connectionType) {
     this.path = path;

@@ -93,7 +93,8 @@ class Table {
   }
 
   /**
-   * Get specified prefix
+   * Returns the specified prefix of the table if it exists.
+   * The prefix can be for instance be a Qlik script snippet that always should be executed before the table is loaded.
    * @public
    * @returns {string}
    */

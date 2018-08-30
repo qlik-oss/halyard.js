@@ -22,7 +22,7 @@ class SetStatement {
   }
 
   /**
-   * Returns the name but since statement doesn't have names it will be empty
+   * Always returns the name as empty
    * @public
    * @returns {string}
    */

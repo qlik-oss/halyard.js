@@ -3,7 +3,7 @@ import WebConnection from './connections/web-file';
 import InlineData from './connections/inline-data';
 
 /**
- * Default set of Connection that are available
+ * Default set of Connections that are available
  * @constant
  * @type {object}
  */
