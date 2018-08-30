@@ -1,5 +1,11 @@
 import { escapeText } from './utils';
 
+/**
+ * Validates supported character sets
+ * @private
+ * @param {string} characterSet
+ * @returns {boolean|string}
+ */
 function supportedCharacterSet(characterSet) {
   const validCharacterSets = ['utf8', 'unicode', 'ansi', 'oem', 'mac'];
 
@@ -7,6 +13,12 @@ function supportedCharacterSet(characterSet) {
     || (Number(characterSet).toString() !== 'NaN' && `codepage is ${characterSet}`);
 }
 
+/**
+ * Get the QIX specific format of a file
+ * @private
+ * @param { { fileExtension: string, headerRowNr: Number, delimiter: string, characterSet: string, srcTable: string, noLabels: boolean } } options
+ * @returns {string}
+ */
 export default function formatSpecification(options) {
   if (!options) {
     options = {};

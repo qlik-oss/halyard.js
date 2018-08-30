@@ -1,3 +1,9 @@
+/**
+ * Get folder path from file path
+ * @private
+ * @param {string} path
+ * @returns {string}
+ */
 export function folderPath(path) {
   let folderPathMatch = path.match(/^(.*)(\\.*\..*$|\\.*)$/);
 
@@ -11,6 +17,12 @@ export function folderPath(path) {
   return folderPathMatch && folderPathMatch[1];
 }
 
+/**
+ * Get file name from file path
+ * @private
+ * @param {string} path
+ * @returns {string}
+ */
 export function fileName(path) {
   let fileNameMatch = path.match(/^.*\\(.*\..*|.*)$/);
 
@@ -23,16 +35,33 @@ export function fileName(path) {
   return fileNameMatch && fileNameMatch[1];
 }
 
+/**
+ * Get file extension from file path
+ * @private
+ * @param {string} path
+ * @returns {string}
+ */
 export function fileExtension(path) {
   const fileExtensionMatch = path.match(/^.*\.(.*)$/);
 
   return fileExtensionMatch && fileExtensionMatch[1];
 }
 
+/**
+ * Escape text with double quotes
+ * @private
+ * @param {string} text
+ * @returns {string}
+ */
 export function escapeText(text) {
   return text.replace(/"/g, '""');
 }
 
+/**
+ * Get a unique name
+ * @private
+ * @returns {string}
+ */
 export function uniqueName() {
   /* eslint no-bitwise: ["off"] */
   /* eslint no-mixed-operators: ["off"] */
@@ -44,6 +73,12 @@ export function uniqueName() {
   });
 }
 
+/**
+ * Validate the field type
+ * @private
+ * @param {string} type
+ * @returns {boolean}
+ */
 export function validFieldType(type) {
   const validFieldTypes = ['time', 'timestamp', 'date', 'interval'];
 
@@ -52,10 +87,21 @@ export function validFieldType(type) {
   return validFieldTypes.indexOf(type.toLowerCase()) > -1;
 }
 
+/**
+ * Get indentation characters
+ * @private
+ * @returns {string}
+ */
 export function indentation() {
   return '  ';
 }
 
+/**
+ * Get the field name
+ * @private
+ * @param {object }field
+ * @returns {string}
+ */
 export function getFieldName(field) {
   return field.name || field.src;
 }

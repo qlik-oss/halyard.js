@@ -9,6 +9,10 @@ import getDerivedFieldDefinition from './calendar-derived-fields';
 const SCRIPT_BLOCK_SPACING = '\n\n';
 
 class Halyard {
+  /**
+   * Representation of tables or hypercubes to load
+   * @constructor
+   */
   constructor() {
     this.defaultSetStatements = {};
     this.items = [];
@@ -16,15 +20,29 @@ class Halyard {
     this.lastItems = [getDerivedFieldDefinition(x => this.getFields(x))];
   }
 
+  /**
+   * Get connections object that are used in the model
+   * @public
+   * @returns {Array}
+   */
   getConnections() {
     return this.items.filter(item => item.getConnection).map(item => item.getConnection());
   }
 
+  /**
+   * Get the QIX connections definitions that are used in the model
+   * @returns {Array.<connections>}
+   */
   getQixConnections() {
     return this.getConnections().map(connection => connection.getQixConnectionObject())
       .filter(connection => connection);
   }
 
+  /**
+   * Get fields that matches pattern sent in as params
+   * @param matcherFn
+   * @returns {Array}
+   */
   getFields(matcherFn) {
     matcherFn = matcherFn || (() => true);
 
@@ -39,6 +57,11 @@ class Halyard {
     return fields;
   }
 
+  /**
+   * Configure the default set statements like time, date, currency formats
+   * @param {object} defaultSetStatements
+   * @param {boolean} preservePreviouslyEnteredValues
+   */
   setDefaultSetStatements(defaultSetStatements, preservePreviouslyEnteredValues) {
     const that = this;
 
@@ -49,6 +72,11 @@ class Halyard {
     });
   }
 
+  /**
+   * Get the script for a item (table, preceeding load)
+   * @param item
+   * @returns {*}
+   */
   getItemScript(item) {
     let itemScript = item.getScript();
 
@@ -63,16 +91,29 @@ class Halyard {
     return itemScript;
   }
 
+  /**
+   * Fetch all script blocks
+   * @returns {Array.<string>}
+   */
   getAllScriptBlocks() {
     return this.items.concat(this.lastItems).filter(item => item.getScript());
   }
 
+  /**
+   * Fetches the entire script
+   * @returns {string}
+   */
   getScript() {
     return this.getAllScriptBlocks().map(item => this.getItemScript(item))
       .join(SCRIPT_BLOCK_SPACING);
   }
 
-  // Support to add hyper cube explicit or implicitly
+  /**
+   * Add hyper cube explicit or implicitly
+   * @param {hypercube} arg1
+   * @param {object} options
+   * @returns {hypercube}
+   */
   addHyperCube(arg1, options) {
     let newHyperCube;
 
@@ -93,7 +134,12 @@ class Halyard {
     return newHyperCube;
   }
 
-  // Support to add table explicit or implicitly
+  /**
+   * Support to add table explicit or implicitly
+   * @param {table} arg1
+   * @param options
+   * @returns {table}
+   */
   addTable(arg1, options) {
     let newTable;
 
@@ -106,6 +152,10 @@ class Halyard {
     return this.addItem(newTable);
   }
 
+  /**
+   * Verify that item doesn't exist in model
+   * @param {table|hypercube} newItem
+   */
   checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
       if (this.items.filter(item => item.getName() === newItem.getName()).length > 0) {
@@ -114,6 +164,11 @@ class Halyard {
     }
   }
 
+  /**
+   * Add new item to the model
+   * @param {table|hypercube} newItem
+   * @returns {table|hypercube}
+   */
   addItem(newItem) {
     this.checkIfItemNameExists(newItem);
 
@@ -122,6 +177,11 @@ class Halyard {
     return newItem;
   }
 
+  /**
+   * Locate which item that generated a script at the specified character position
+   * @param {number} charPosition
+   * @returns {table|hypercube}
+   */
   getItemThatGeneratedScriptAt(charPosition) {
     const allScriptBlocks = this.getAllScriptBlocks();
     let scriptBlockStartPosition = 0;

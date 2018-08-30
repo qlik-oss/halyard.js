@@ -1,8 +1,17 @@
 class SetStatement {
+  /**
+   * Define set statements
+   * @param {object} defaultSetStatements - A representation where each property name will be used as key and the property will be the value
+   * @constructor
+   */
   constructor(defaultSetStatements) {
     this.defaultSetStatements = defaultSetStatements;
   }
 
+  /**
+   * Get the entire set statement as script
+   * @returns {string}
+   */
   getScript() {
     return Object.keys(this.defaultSetStatements)
       .map(key => `SET ${key}='${Array.isArray(this.defaultSetStatements[key])
@@ -10,6 +19,11 @@ class SetStatement {
       .join('\n');
   }
 
+  /**
+   * Returns the name but since statement doesn't have names it will be empty
+   * @private
+   * @returns {string}
+   */
   getName() {
     return '';
   }

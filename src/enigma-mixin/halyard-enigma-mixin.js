@@ -3,7 +3,14 @@ import convertQixGetLocalInfo from './utils';
 const CONNECTION_ERROR = 'Connection Error';
 const LOADING_ERROR = 'Loading Error';
 const SYNTAX_ERROR = 'Syntax Error';
-
+/**
+ * Create error message
+ * @private
+ * @param {string} errorType
+ * @param qixError
+ * @param item
+ * @returns {{type: string, message: string, item: object, qixError: string}}
+ */
 function createErrorMessage(errorType, qixError, item) {
   return {
     type: errorType,
@@ -23,11 +30,22 @@ const halyardMixin = {
     }
   },
   extend: {
+    /**
+     * Creates a session app based on the model in the halyard instance
+     *  @param {object} halyard - A halyard instance
+     * @returns {Promise.<TResult>}
+     */
     createSessionAppUsingHalyard(halyard) {
       const that = this;
       return that.createSessionApp().then(app => that.setScriptAndReloadWithHalyard(app, halyard, false));
     },
 
+    /**
+     * Creates an app with the model in the halyard instance.
+     * @param {string} appName
+     * @param {object} halyard
+     * @returns {Promise.<TResult>}
+     */
     createAppUsingHalyard(appName, halyard) {
       const that = this;
       return that.createApp(appName).then((app) => {
@@ -36,6 +54,13 @@ const halyardMixin = {
       });
     },
 
+    /**
+     * Reloads an existing app with the model in the halyard instance. Can also create an app is createIfMissing is set to true.
+     * @param {string} existingAppName
+     * @param {object} halyard
+     * @param {boolean} createIfMissing
+     * @returns {Promise.<TResult>}
+     */
     reloadAppUsingHalyard(existingAppName, halyard, createIfMissing) {
       const that = this;
       return that.openDoc(existingAppName)
@@ -50,6 +75,13 @@ const halyardMixin = {
         .then(result => that.setScriptAndReloadWithHalyard(result, halyard, true));
     },
 
+    /**
+     * Use the model in halyard to set the script of an app and save it
+     * @param {object} app
+     * @param {object} halyard
+     * @param {boolean} doSaveAfterReload
+     * @returns {Promise.<TResult>}
+     */
     setScriptAndReloadWithHalyard(app, halyard, doSaveAfterReload) {
       const that = this;
       const deferredConnections = [];

@@ -3,6 +3,16 @@ import formatSpecification from './utils/format-specification';
 import { escapeText, validFieldType, indentation } from './utils/utils';
 
 class Table {
+  /**
+   * Table definition
+   * @param {connection} connection
+   * @param {object} options - Table options
+   * @param {string} name - Table name
+   * @param {array<fields>} fields - Array of field objects
+   * @param {string} prefix - Add prefix before the table
+   * @param {string} section - Section to add table to
+   * @constructor
+   */
   constructor(connection, options) {
     this.connection = defaultConnectionMatcher.findMatch(connection);
 
@@ -23,10 +33,18 @@ class Table {
     this.options = options;
   }
 
+  /**
+   * Get the fields from a table
+   * @returns {array<fields>}
+   */
   getFields() {
     return this.fields;
   }
 
+  /**
+   * Get the script representation of the field list. If nothing is specified than all the fields will be returned.
+   * @returns {string}
+   */
   getFieldList() {
     if (this.fields) {
       return this.fields.map((field) => {
@@ -62,10 +80,18 @@ class Table {
     return '*';
   }
 
+  /**
+   * Is the table used as a proceeding load
+   * @returns {boolean}
+   */
   isProceedingLoad() {
     return this.connection instanceof Table;
   }
 
+  /**
+   * Get specified prefix
+   * @returns {string}
+   */
   getPrefix() {
     if (this.prefix) {
       return `${this.prefix}\n`;
@@ -73,6 +99,10 @@ class Table {
     return '';
   }
 
+  /**
+   * Get the script representation of the table
+   * @returns {string}
+   */
   getScript() {
     // In the future this could be moved into a connectionMatcher
     // but for sake of clarity it is kept inline.
@@ -88,14 +118,26 @@ class Table {
     return `${this.getPrefix()}LOAD\n${this.getFieldList()}\n${this.connection.getScript()}${formatSpecification(this.options)};`;
   }
 
+  /**
+   * Get the name of the table
+   * @returns {string}
+   */
   getName() {
     return this.name || '';
   }
 
+  /**
+   * Get the section that the table belongs to
+   * @returns {string}
+   */
   getSection() {
     return this.section;
   }
 
+  /**
+   * Returns the connection or table that the table uses.
+   * @returns {connection|table}
+   */
   getConnection() {
     return this.connection;
   }

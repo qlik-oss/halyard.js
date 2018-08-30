@@ -1,11 +1,8 @@
 import Connections from './connections';
-
 import * as JsonToCsv from './utils/json-to-csv';
-
 import ConnectionMatcher from './connection-matcher';
 
 const connectionMatcher = new ConnectionMatcher();
-
 
 // url to a table file
 connectionMatcher.addConnection(data => typeof data === 'string' && data.match(/^https?:\/\/(.*)$/g), data => new Connections.Web(data));

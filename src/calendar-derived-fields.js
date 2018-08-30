@@ -22,6 +22,11 @@ Month(Today())-Month($1) AS [MonthRelNo] ,
 (WeekStart(Today())-WeekStart($1))/7 AS [WeeksAgo] ,
 Week(Today())-Week($1) AS [WeekRelNo];`;
 
+/**
+ * Get the derived field definition for a field that matches the pattern
+ * @param fn - Field matcher function
+ * @returns {DerivedFieldsTemplate}
+ */
 function getCalenderDerivedFieldDefinition(fn) {
   return new DerivedFieldTemplate({
     name: 'autoCalendar',

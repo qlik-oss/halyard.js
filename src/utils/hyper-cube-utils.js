@@ -2,6 +2,12 @@ import hyperCubeSpecification from './hyper-cube-specification';
 
 const DEFAULT_DELIMITER = ',';
 
+/**
+ * If a dimension has mixed types
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeMixed(dimension) {
   return (
     dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
@@ -9,10 +15,22 @@ function isDimensionTypeMixed(dimension) {
   );
 }
 
+/**
+ * Is dimension type text
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeText(dimension) {
   return dimension.qDimensionType === hyperCubeSpecification.qDimensionType.text;
 }
 
+/**
+ * Is dimension type timestamp
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeTimestamp(dimension) {
   if (dimension.qDimensionType === hyperCubeSpecification.qDimensionType.timestamp) {
     return true;
@@ -26,6 +44,12 @@ function isDimensionTypeTimestamp(dimension) {
   return false;
 }
 
+/**
+ * Is dimension type date
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeDate(dimension) {
   if (
     dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
@@ -36,6 +60,12 @@ function isDimensionTypeDate(dimension) {
   return false;
 }
 
+/**
+ * Is dimension type time
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeTime(dimension) {
   if (
     dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
@@ -46,6 +76,12 @@ function isDimensionTypeTime(dimension) {
   return false;
 }
 
+/**
+ * Is dimension type interval
+ * @private
+ * @param {object} dimension
+ * @returns {boolean}
+ */
 function isDimensionTypeInterval(dimension) {
   if (
     dimension.qDimensionType === hyperCubeSpecification.qDimensionType.numeric
@@ -56,6 +92,12 @@ function isDimensionTypeInterval(dimension) {
   return false;
 }
 
+/**
+ * Get dimension type
+ * @private
+ * @param {object} dimension
+ * @returns {string}
+ */
 export function getDimensionType(dimension) {
   if (isDimensionTypeText(dimension)) {
     return 'text';
@@ -77,6 +119,13 @@ export function getDimensionType(dimension) {
   }
   return 'num';
 }
+
+/**
+ * Is numeric dimension type
+ * @private
+ * @param {string} dimensionType
+ * @returns {boolean}
+ */
 function isNumericDimensionType(dimensionType) {
   const numericDimensionTypes = [
     'timestamp',
@@ -88,6 +137,13 @@ function isNumericDimensionType(dimensionType) {
   dimensionType = dimensionType || '';
   return numericDimensionTypes.indexOf(dimensionType.toLowerCase()) > -1;
 }
+
+/**
+ * Is field numeric
+ * @private
+ * @param {object} field
+ * @returns {boolean}
+ */
 function storeNumeric(field) {
   if (field.type === 'measure') {
     return true;
@@ -100,14 +156,34 @@ function storeNumeric(field) {
   return false;
 }
 
+/**
+ * Check if field is a dual value
+ * @private
+ * @param {object} field
+ * @returns {boolean}
+ */
 export function checkIfFieldIsDual(field) {
   return field.type === 'dimension' && field.dimensionType === 'num';
 }
 
+/**
+ * Has cell a dual value
+ * @private
+ * @param {object} cell
+ * @param {object} field
+ * @returns {boolean}
+ */
 export function isCellDual(cell, field) {
   return checkIfFieldIsDual(field) && cell.qText !== Number(cell.qNum).toString();
 }
 
+/**
+ * Escape string containing delimiter
+ * @private
+ * @param {string} string
+ * @param {string} delimiter
+ * @returns {string}
+ */
 function escapeStringContainingDelimiter(string, delimiter) {
   if (string.indexOf(delimiter) > -1 || string.indexOf('\n') > -1) {
     return `'${string.replace(/'/g, "''").replace(/\n/g, ' ')}'`;
@@ -115,14 +191,33 @@ function escapeStringContainingDelimiter(string, delimiter) {
   return string;
 }
 
+/**
+ * Get the numeric from cell value
+ * @private
+ * @param {object} cell
+ * @returns {number}
+ */
 function getNumericCellValue(cell) {
   return cell.qNum;
 }
 
+/**
+ * Get the text from a cell value
+ * @private
+ * @param {object} cell
+ * @returns {string}
+ */
 function getTextCellValue(cell) {
   return escapeStringContainingDelimiter(cell.qText, DEFAULT_DELIMITER);
 }
 
+/**
+ * Get the value of a cell
+ * @private
+ * @param {object} cell
+ * @param {object} field
+ * @returns {(string|number)}
+ */
 export function getCellValue(cell, field) {
   if (storeNumeric(field)) {
     return getNumericCellValue(cell);
@@ -130,10 +225,22 @@ export function getCellValue(cell, field) {
   return getTextCellValue(cell);
 }
 
+/**
+ * Get dual data row
+ * @private
+ * @param {object} cell
+ * @returns {string}
+ */
 export function getDualDataRow(cell) {
   return `${cell.qNum}${DEFAULT_DELIMITER}${escapeStringContainingDelimiter(cell.qText, DEFAULT_DELIMITER)}`;
 }
 
+/**
+ * Get dual headers from a field
+ * @private
+ * @param {object} field
+ * @returns {string}
+ */
 export function getDualHeadersForField(field) {
   return `${field.name}${DEFAULT_DELIMITER}${field.name}_qText}`;
 }
