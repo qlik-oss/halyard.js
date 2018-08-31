@@ -9,10 +9,17 @@ class ConnectionLookup {
   }
 
   /**
+   * Connection matching callback to identify which connection to use for an implicitly declared source.
+   * @callback connectionMatchingCallback
+   * @param {string} data - Url, file path, csv data
+   * @returns {Connection}
+   */
+
+  /**
    * Add a matching function with a connection instance
    * @private
-   * @param matchingFn - Matching function to decide what connection function to invoke
-   * @param connection - Callback that returns a Connection instance
+   * @param {connectionMatchingCallback} matchingFn - Matching function to decide what connection function to invoke
+   * @param {Connection} connection - Callback that returns a Connection instance
    */
   addConnection(matchingFn, connection) {
     this.connectionsRegistry.push({

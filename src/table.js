@@ -6,12 +6,13 @@ class Table {
   /**
    * Table definition
    * @public
-   * @param {object} connection
+   * @class
+   * @param {Connection} connection
    * @param {object} options - Table options
-   * @param {string} name - Table name
-   * @param {object[]} fields - Array of field objects
-   * @param {string} prefix - Add prefix before the table
-   * @param {string} section - Section to add table to
+   * @param {string} options.name - Table name
+   * @param {Field[]} options.fields - Array of field objects
+   * @param {string} options.prefix - Add prefix before the table
+   * @param {string} options.section - Section to add table to
    * @constructor
    */
   constructor(connection, options) {
@@ -35,9 +36,19 @@ class Table {
   }
 
   /**
+   * @typedef Field
+   * @public
+   * @property {string} src - Name in the data source of the field
+   * @property {string} name - Name after reload
+   * @property {string} type - Date, Time, TimeStamp
+   * @property {string} inputFormat - Input format to explain how a field should be parsed.
+   * @property {string} displayFormat - Display format that should be used after reload.
+   * @property {string} expr - Customize how this field should be loaded with Qlik Script.
+   */
+  /**
    * Get the fields from a table
    * @public
-   * @returns {object[]} Array of fields
+   * @returns {Field[]} Array of fields
    */
   getFields() {
     return this.fields;
@@ -146,7 +157,7 @@ class Table {
   /**
    * Returns the connection or table that the table uses.
    * @public
-   * @returns {object} Connection or Table
+   * @returns {(Connection|Table)} Connection or Table
    */
   getConnection() {
     return this.connection;

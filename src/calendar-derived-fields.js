@@ -23,9 +23,16 @@ Month(Today())-Month($1) AS [MonthRelNo] ,
 Week(Today())-Week($1) AS [WeekRelNo];`;
 
 /**
+ * A field matching callback to identify which fields that are associated with a specific calendarTemplate.
+ * @callback fieldMatchingCalendarCallback
+ * @param {string} calendarTemplate
+ * @param {Field}
+ */
+
+/**
  * Get the derived field definition for a field that matches the pattern
  * @public
- * @param fn - Field matcher function
+ * @param {fieldMatchingCalendarCallback} fn - Field matcher function
  * @returns {DerivedFieldsTemplate}
  */
 function getCalenderDerivedFieldDefinition(fn) {

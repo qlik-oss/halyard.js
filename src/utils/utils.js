@@ -99,7 +99,7 @@ export function indentation() {
 /**
  * Get the field name
  * @private
- * @param {object }field
+ * @param {Field} field
  * @returns {string}
  */
 export function getFieldName(field) {

@@ -7,8 +7,8 @@ const SYNTAX_ERROR = 'Syntax Error';
  * Create error message
  * @private
  * @param {string} errorType
- * @param {objcet} qixError
- * @param {object} item
+ * @param {object} qixError
+ * @param {(Table|HyperCube)} item
  * @returns {{type: string, message: string, item: object, qixError: string}}
  */
 function createErrorMessage(errorType, qixError, item) {
@@ -33,7 +33,7 @@ const halyardMixin = {
     /**
      * Creates a session app based on the model in the halyard instance
      * @public
-     * @param {object} halyard - A halyard instance
+     * @param {Halyard} halyard - A halyard instance
      * @returns {Promise.<TResult>}
      */
     createSessionAppUsingHalyard(halyard) {
@@ -45,7 +45,7 @@ const halyardMixin = {
      * Creates an app with the model in the halyard instance.
      * @public
      * @param {string} appName
-     * @param {object} halyard
+     * @param {Halyard} halyard
      * @returns {Promise.<TResult>}
      */
     createAppUsingHalyard(appName, halyard) {
@@ -60,7 +60,7 @@ const halyardMixin = {
      * Reloads an existing app with the model in the halyard instance. Can also create an app is createIfMissing is set to true.
      * @public
      * @param {string} existingAppName
-     * @param {object} halyard
+     * @param {Halyard} halyard
      * @param {boolean} createIfMissing
      * @returns {Promise.<TResult>}
      */
@@ -81,8 +81,8 @@ const halyardMixin = {
     /**
      * Use the model in halyard to set the script of an app and save it
      * @public
-     * @param {object} app
-     * @param {object} halyard
+     * @param {Qix.app} app
+     * @param {Halyard} halyard
      * @param {boolean} doSaveAfterReload
      * @returns {Promise.<TResult>}
      */

@@ -6,6 +6,7 @@ class HyperCube {
   /**
    * Hypercube representation
    * @public
+   * @class
    * @param {object} hyperCubeLayout - The QIX representation of a hypercube
    * @param {object} options - Hypercube options
    * @param {string} name - Name

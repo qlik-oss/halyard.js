@@ -1,6 +1,7 @@
 class SetStatement {
   /**
    * Define set statements
+   * @class
    * @public
    * @param {object} defaultSetStatements - A representation where each property name will be used as key and the property will be the value
    * @constructor

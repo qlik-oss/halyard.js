@@ -5,10 +5,10 @@ class DerivedFieldsTemplate {
    * Declare fields that can be derived from a template. An example can be a calendar template.
    * @public
    * @param {object} options - Derived Field Template definition.
-   * @param {callback} fieldMatchFunction - Matching function that will apply a field template definition.
-   * @param {string} name - Name of derived field.
-   * @param {string} fieldTag - What field tag that will be used in the derived field.
-   * @param {string} derivedFieldDefinition - What script definition should be used in the derived field.
+   * @param {callback} options.fieldMatchFunction - Matching function that will apply a field template definition.
+   * @param {string} options.name - Name of derived field.
+   * @param {string} options.fieldTag - What field tag that will be used in the derived field.
+   * @param {string} options.derivedFieldDefinition - What script definition should be used in the derived field.
    * @constructor
    */
   constructor(options) {
