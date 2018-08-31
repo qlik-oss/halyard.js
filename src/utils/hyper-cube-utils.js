@@ -5,7 +5,7 @@ const DEFAULT_DELIMITER = ',';
 /**
  * If a dimension has mixed types
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeMixed(dimension) {
@@ -18,7 +18,7 @@ function isDimensionTypeMixed(dimension) {
 /**
  * Is dimension type a text
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeText(dimension) {
@@ -28,7 +28,7 @@ function isDimensionTypeText(dimension) {
 /**
  * Is dimension type a timestamp
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeTimestamp(dimension) {
@@ -47,7 +47,7 @@ function isDimensionTypeTimestamp(dimension) {
 /**
  * Is dimension type a date
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeDate(dimension) {
@@ -63,7 +63,7 @@ function isDimensionTypeDate(dimension) {
 /**
  * Is dimension type a time
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeTime(dimension) {
@@ -79,7 +79,7 @@ function isDimensionTypeTime(dimension) {
 /**
  * Is dimension type an interval
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {boolean}
  */
 function isDimensionTypeInterval(dimension) {
@@ -95,7 +95,7 @@ function isDimensionTypeInterval(dimension) {
 /**
  * Get dimension type where the dimension matches one of the following text, mixed, timestamp, time, data, interval or num.
  * @private
- * @param {object} dimension
+ * @param {QAE.NxDimension} dimension
  * @returns {string}
  */
 export function getDimensionType(dimension) {
@@ -141,7 +141,7 @@ function isNumericDimensionType(dimensionType) {
 /**
  * Is field numeric
  * @private
- * @param {object} field
+ * @param {QAE.NxField} field
  * @returns {boolean}
  */
 function storeNumeric(field) {
@@ -159,7 +159,7 @@ function storeNumeric(field) {
 /**
  * Check if field is a dual value
  * @private
- * @param {object} field
+ * @param {Field} field
  * @returns {boolean}
  */
 export function checkIfFieldIsDual(field) {
@@ -169,8 +169,8 @@ export function checkIfFieldIsDual(field) {
 /**
  * Has cell a dual value
  * @private
- * @param {object} cell
- * @param {object} field
+ * @param {QAE.NxCell} cell
+ * @param {Field} field
  * @returns {boolean}
  */
 export function isCellDual(cell, field) {
@@ -194,7 +194,7 @@ function escapeStringContainingDelimiter(string, delimiter) {
 /**
  * Get the numeric from cell value
  * @private
- * @param {object} cell
+ * @param {QAE.NxCell} cell
  * @returns {number}
  */
 function getNumericCellValue(cell) {
@@ -204,7 +204,7 @@ function getNumericCellValue(cell) {
 /**
  * Get the text from a cell value
  * @private
- * @param {object} cell
+ * @param {QAE.NxCell} cell
  * @returns {string}
  */
 function getTextCellValue(cell) {
@@ -214,8 +214,8 @@ function getTextCellValue(cell) {
 /**
  * Get the value of a cell
  * @private
- * @param {object} cell
- * @param {object} field
+ * @param {QAE.NxCell} cell
+ * @param {Field} field
  * @returns {(string|number)}
  */
 export function getCellValue(cell, field) {
@@ -228,7 +228,7 @@ export function getCellValue(cell, field) {
 /**
  * Get dual data row
  * @private
- * @param {object} cell
+ * @param {QAE.NxCell} cell
  * @returns {string}
  */
 export function getDualDataRow(cell) {
@@ -238,7 +238,7 @@ export function getDualDataRow(cell) {
 /**
  * Get dual headers from a field
  * @private
- * @param {object} field
+ * @param {Field} field
  * @returns {string}
  */
 export function getDualHeadersForField(field) {

@@ -33,7 +33,7 @@ class InlineData extends ConnectionBase {
   }
 
   /**
-   * Get the qix connection object but there are none for inline data
+   * Get the QAE connection object but there are none for inline data
    * @private
    */
   getQixConnectionObject() {
