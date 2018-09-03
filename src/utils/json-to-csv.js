@@ -1,3 +1,10 @@
+/**
+ * Escape values containing delimiter
+ * @private
+ * @param {string} data
+ * @param {string} delimiter
+ * @returns {string}
+ */
 function escapeValueContainingDelimiter(data, delimiter) {
   if (data && typeof data === 'string' && (data.indexOf(delimiter) > -1 || data.indexOf('\n') > -1)) {
     return `"${data.replace(/"/g, '""').replace(/\n/g, ' ')}"`;
@@ -6,6 +13,12 @@ function escapeValueContainingDelimiter(data, delimiter) {
   return data;
 }
 
+/**
+ * Convert array date to a string in a csv format
+ * @private
+ * @param {array} data
+ * @returns {string}
+ */
 export function convert(data) {
   if (data instanceof Array === false) {
     data = [data];
@@ -36,6 +49,12 @@ export function convert(data) {
   return csv;
 }
 
+/**
+ * Validate that the data is an JSON array
+ * @private
+ * @param {array} data
+ * @returns {boolean}
+ */
 export function isJson(data) {
   if (data instanceof Array) {
     if (data[0] && typeof data[0] === 'object') {

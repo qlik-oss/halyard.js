@@ -3,6 +3,16 @@ import { validFieldType } from './utils/utils';
 import * as HyperCubeUtils from './utils/hyper-cube-utils';
 
 class HyperCube {
+  /**
+   * Hypercube representation
+   * @public
+   * @class
+   * @param {object} hyperCubeLayout - The QIX representation of a hypercube
+   * @param {object} options - Hypercube options
+   * @param {string} name - Name
+   * @param {string} section - Section to add hypercube data to
+   * @constructor
+   */
   constructor(hyperCubeLayout, options) {
     this.items = [];
     this.fields = [];
@@ -25,6 +35,12 @@ class HyperCube {
     this.options = options;
   }
 
+  /**
+   * Validate the hypercube layout
+   * @private
+   * @param {object} hyperCubeLayout
+   * @returns {object} hyperCubeLayout
+   */
   validateHyperCubeLayout(hyperCubeLayout) {
     if (!hyperCubeLayout) { throw new Error('Hyper cube layout is undefined'); }
     if (!hyperCubeLayout.qDimensionInfo) { throw new Error('qDimensionInfo is undefined'); }
@@ -39,6 +55,11 @@ class HyperCube {
     throw new Error('HyperCubeLayout is not valid');
   }
 
+  /**
+   * Validates the datapages of the hypercube
+   * @private
+   * @param {object} dataPages
+   */
   validateDataPages(dataPages) {
     if (!dataPages) {
       throw new Error('qDataPages are undefined');
@@ -49,6 +70,12 @@ class HyperCube {
     }
   }
 
+  /**
+   * Validates that all datapages in the hypercube is covered
+   * @private
+   * @param {object[]} dataPages
+   * @param {object} hyperCubeLayout
+   */
   validateDataPagesCoverage(dataPages, hyperCubeLayout) {
     let qHeight = 0;
 
@@ -63,6 +90,11 @@ class HyperCube {
     }
   }
 
+  /**
+   * Validates the QMatrix in the datapage
+   * @private
+   * @param {object} dataPage
+   */
   validateQMatrix(dataPage) {
     if (!dataPage.qMatrix) {
       throw new Error('qMatrix of qDataPages are undefined');
@@ -72,6 +104,13 @@ class HyperCube {
     }
   }
 
+  /**
+   * Validates the QArea in the datapage
+   * @private
+   * @param {object} dataPage
+   * @param {object} hyperCubeLayout
+   * @param {number} qHeight
+   */
   validateQArea(dataPage, hyperCubeLayout, qHeight) {
     if (!dataPage.qArea) {
       throw new Error('qArea of qDataPages are undefined');
@@ -90,6 +129,10 @@ class HyperCube {
     }
   }
 
+  /**
+   * Parses the hypercube an extracts the data
+   * @private
+   */
   parseHyperCubeLayout() {
     const that = this;
     that.fields = that.getFieldsFromHyperCubeLayout();
@@ -114,6 +157,12 @@ class HyperCube {
     that.items.push(new Table(inlineData, options));
   }
 
+  /**
+   * Get the Fields definition
+   * @private
+   * @param {object[]} fields
+   * @returns {object[]} fields
+   */
   getFieldsDefinition(fields) {
     return fields.map((field) => {
       const mappedField = { name: field.name };
@@ -130,6 +179,13 @@ class HyperCube {
     });
   }
 
+  /**
+   * Return qmatrix with dual fields
+   * @private
+   * @param {object} qMatrix
+   * @param {object} field
+   * @returns {object} field
+   */
   mapDualFieldQMatrix(qMatrix, field) {
     function uniqueFilter(value, index, self) {
       return self.indexOf(value) === index;
@@ -139,6 +195,12 @@ class HyperCube {
       .filter(uniqueFilter);
   }
 
+  /**
+   * Get table with dual fields
+   * @private
+   * @param {object} field
+   * @returns {object} Table
+   */
   getMapTableForDualField(field) {
     const that = this;
     const concatQMatrix = that.hyperCubeLayout.qDataPages.reduce(
@@ -156,6 +218,11 @@ class HyperCube {
     return new Table(inlineData, options);
   }
 
+  /**
+   * Extracts the data from the hypercube layout as a csv representation
+   * @private
+   * @returns {string}
+   */
   getDataFromHyperCubeLayout() {
     const that = this;
     const data = that.hyperCubeLayout.qDataPages
@@ -174,6 +241,11 @@ class HyperCube {
     return data;
   }
 
+  /**
+   * Get the fields from the hypercube
+   * @private
+   * @returns {{type: string, dimensionType: string, name: string, displayFormat: string, index: number }[]} - An array of dimension and measures
+   */
   getFieldsFromHyperCubeLayout() {
     const that = this;
     const fields = [];
@@ -196,6 +268,11 @@ class HyperCube {
     return fields;
   }
 
+  /**
+   * Get tables from the hypercube
+   * @public
+   * @returns {object[]} Tables
+   */
   getItems() {
     return this.items;
   }

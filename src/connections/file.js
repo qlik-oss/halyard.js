@@ -2,6 +2,12 @@ import ConnectionBase from './connection-base';
 import * as Utils from '../utils/utils';
 
 class FileConnection extends ConnectionBase {
+  /**
+   * File Connection representation. It will create a folder connection in QIX.
+   * @public
+   * @param {string} path - Absolute file path
+   * @constructor
+   */
   constructor(path) {
     super(Utils.folderPath(path), 'folder');
 
@@ -10,6 +16,11 @@ class FileConnection extends ConnectionBase {
     this.fileExtension = Utils.fileExtension(path) || 'txt';
   }
 
+  /**
+   * Get the lib statement for the specified file path
+   * @public
+   * @returns {string}
+   */
   getLibStatement() {
     return `${super.getLibStatement()}/${this.fileName}`;
   }
