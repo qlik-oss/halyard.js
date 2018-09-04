@@ -126,11 +126,11 @@ class Halyard {
   /**
    * Add hyper cube explicit or implicitly
    * @public
-   * @param {Hypercube} arg1 - Hypercube
+   * @param {HyperCube} arg1 - Hypercube
    * @param {object} options - Hypercube options
    * @param {string} options.name - Name
    * @param {string} options.section - Section to add hypercube data to
-   * @returns {Hypercube} Hypercube
+   * @returns {object} Hypercube
    */
   addHyperCube(arg1, options) {
     let newHyperCube;
@@ -178,7 +178,7 @@ class Halyard {
   /**
    * Verify that item doesn't exist in model
    * @public
-   * @param {(Table|Hypercube)} newItem - Table or Hypercube
+   * @param {(Table|HyperCube)} newItem - Table or Hypercube
    */
   checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
@@ -191,8 +191,8 @@ class Halyard {
   /**
    * Add new item to the model
    * @public
-   * @param {(Table|Hypercube)} newItem - Table or Hypercube
-   * @returns {(Table|Hypercube)} - Table or Hypercube
+   * @param {(Table|HyperCube)} newItem - Table or Hypercube
+   * @returns {(Table|HyperCube)} - Table or Hypercube
    */
   addItem(newItem) {
     this.checkIfItemNameExists(newItem);
@@ -206,7 +206,7 @@ class Halyard {
    * Locate which item that generated a script at the specified character position
    * @public
    * @param {number} charPosition
-   * @returns {(Table|Hypercube)} - Table or Hypercube
+   * @returns {(Table|HyperCube)} - Table or Hypercube
    */
   getItemThatGeneratedScriptAt(charPosition) {
     const allScriptBlocks = this.getAllScriptBlocks();

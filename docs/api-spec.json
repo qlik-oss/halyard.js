@@ -459,7 +459,7 @@
             {
               "name": "arg1",
               "description": "Hypercube",
-              "type": "Hypercube"
+              "type": "#/definitions/HyperCube"
             },
             {
               "name": "options",
@@ -479,7 +479,7 @@
           ],
           "returns": {
             "description": "Hypercube",
-            "type": "Hypercube"
+            "type": "object"
           }
         },
         "addTable": {
@@ -535,7 +535,7 @@
                   "type": "#/definitions/Table"
                 },
                 {
-                  "type": "Hypercube"
+                  "type": "#/definitions/HyperCube"
                 }
               ],
               "type": "any"
@@ -555,7 +555,7 @@
                   "type": "#/definitions/Table"
                 },
                 {
-                  "type": "Hypercube"
+                  "type": "#/definitions/HyperCube"
                 }
               ],
               "type": "any"
@@ -569,7 +569,7 @@
                 "type": "#/definitions/Table"
               },
               {
-                "type": "Hypercube"
+                "type": "#/definitions/HyperCube"
               }
             ],
             "type": "any"
@@ -592,7 +592,7 @@
                 "type": "#/definitions/Table"
               },
               {
-                "type": "Hypercube"
+                "type": "#/definitions/HyperCube"
               }
             ],
             "type": "any"
