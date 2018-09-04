@@ -13,7 +13,8 @@
     "test:unit:watch": "aw -c ./test/aw.config.js --glob 'test/unit/**/*.spec.js' -w",
     "test:integration": "aw -c ./test/aw.config.js --glob 'test/integration/**/*.spec.js' --mocha.timeout 5000 --exit",
     "lint": "eslint src test",
-    "lint:fix": "eslint src test --fix"
+    "lint:fix": "eslint src test --fix",
+    "generate:spec": "jsdoc ./src -r -p ./package.json -X | scriptappy-from-jsdoc -c spec.config.js"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "rollup-plugin-node-globals": "1.2.1",
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-uglify": "4.0.0",
+    "scriptappy-from-jsdoc": "0.6.0",
     "uglify-es": "3.3.9",
     "webpack": "4.17.1",
     "ws": "6.0.0"
