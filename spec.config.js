@@ -9,6 +9,11 @@ module.exports = {
       'x-qlik-stability': 'stable',
     },
   },
+  parse: {
+    rules: {
+      'no-default-exports-wo-name': false,
+    },
+  },
   output: {
     file: './docs/api-spec.json',
   },

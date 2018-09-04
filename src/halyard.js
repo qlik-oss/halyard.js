@@ -42,6 +42,13 @@ class Halyard {
   }
 
   /**
+   * Field matching callback to identify if a field matches another
+   * @callback fieldMatchingCallback
+   * @param {Field} field
+   * @returns {boolean}
+   */
+
+  /**
    * Get fields that matches pattern sent in as params
    * @public
    * @param {fieldMatchingCallback} matcherFn

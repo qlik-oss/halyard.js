@@ -333,7 +333,7 @@
       "params": [
         {
           "name": "app",
-          "type": "Qix.app"
+          "type": "object"
         },
         {
           "name": "halyard",
@@ -387,7 +387,7 @@
           "params": [
             {
               "name": "matcherFn",
-              "type": "fieldMatchingCallback"
+              "type": "#/definitions/fieldMatchingCallback"
             }
           ],
           "returns": {
@@ -600,6 +600,19 @@
         }
       }
     },
+    "fieldMatchingCallback": {
+      "description": "Field matching callback to identify if a field matches another",
+      "kind": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "#/definitions/Field"
+        }
+      ],
+      "returns": {
+        "type": "boolean"
+      }
+    },
     "HyperCube": {
       "kind": "class",
       "constructor": {
@@ -795,7 +808,33 @@
       }
     },
     "Field": {
-      "type": "any"
+      "kind": "object",
+      "entries": {
+        "src": {
+          "description": "Name in the data source of the field",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name after reload",
+          "type": "string"
+        },
+        "type": {
+          "description": "Date, Time, TimeStamp",
+          "type": "string"
+        },
+        "inputFormat": {
+          "description": "Input format to explain how a field should be parsed.",
+          "type": "string"
+        },
+        "displayFormat": {
+          "description": "Display format that should be used after reload.",
+          "type": "string"
+        },
+        "expr": {
+          "description": "Customize how this field should be loaded with Qlik Script.",
+          "type": "string"
+        }
+      }
     },
     "qTypes": {
       "type": "Object"
