@@ -26,7 +26,6 @@
   "main": "dist/halyard.js",
   "devDependencies": {
     "after-work.js": "4.3.2",
-    "babel-core": "6.26.3",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-istanbul": "5.0.1",
     "babel-plugin-transform-object-assign": "6.22.0",
@@ -45,7 +44,6 @@
     "jsdoc": "3.5.5",
     "rimraf": "2.6.2",
     "rollup": "0.65.0",
-    "rollup-plugin-babel": "3.0.7",
     "rollup-plugin-commonjs": "9.1.6",
     "rollup-plugin-filesize": "4.0.1",
     "rollup-plugin-license": "0.7.0",
