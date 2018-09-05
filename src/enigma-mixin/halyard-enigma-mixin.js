@@ -81,7 +81,7 @@ const halyardMixin = {
     /**
      * Use the model in halyard to set the script of an app and save it
      * @public
-     * @param {Qix.app} app
+     * @param {object} app
      * @param {Halyard} halyard
      * @param {boolean} doSaveAfterReload
      * @returns {Promise.<TResult>}

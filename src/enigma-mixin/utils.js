@@ -1,6 +1,6 @@
 /**
  * @public
- * @param {{qThousandSep: string, qDecimalSep: string qMoneyThousandSep: string, qMoneyDecimalSep: string, qMoneyFmt: string,
+ * @param {{qThousandSep: string, qDecimalSep: string, qMoneyThousandSep: string, qMoneyDecimalSep: string, qMoneyFmt: string,
  * qTimeFmt: string, qDateFmt: string, qTimestampFmt: string, qFirstWeekDay: string, qReferenceDay: string,
  * qFirstMonthOfYear: string, qCollation: string, qMonthNames: string,
  * qLongMonthNames: string, qDayNames: string, qLongDayNames: string }} localInfoData

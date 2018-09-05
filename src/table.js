@@ -36,7 +36,7 @@ class Table {
   }
 
   /**
-   * @typedef Field
+   * @typedef {object} Field
    * @public
    * @property {string} src - Name in the data source of the field
    * @property {string} name - Name after reload
@@ -45,6 +45,7 @@ class Table {
    * @property {string} displayFormat - Display format that should be used after reload.
    * @property {string} expr - Customize how this field should be loaded with Qlik Script.
    */
+
   /**
    * Get the fields from a table
    * @public

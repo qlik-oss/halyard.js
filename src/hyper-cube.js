@@ -244,7 +244,7 @@ class HyperCube {
   /**
    * Get the fields from the hypercube
    * @private
-   * @returns {{type: string, dimensionType: string, name: string, displayFormat: string, index: number }[]} - An array of dimension and measures
+   * @returns {Array<{type: string, dimensionType: string, name: string, displayFormat: string, index: number}>} - An array of dimension and measures
    */
   getFieldsFromHyperCubeLayout() {
     const that = this;

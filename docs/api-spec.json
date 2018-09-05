@@ -1,0 +1,846 @@
+{
+  "scriptappy": "1.0.0",
+  "info": {
+    "name": "halyard.js",
+    "description": "Data import library for Qlik Analytics Platform",
+    "version": "1.3.1",
+    "license": "MIT",
+    "stability": "stable",
+    "x-qlik-visibility": "public",
+    "x-qlik-stability": "stable"
+  },
+  "entries": {},
+  "definitions": {
+    "fieldMatchingCalendarCallback": {
+      "description": "A field matching callback to identify which fields that are associated with a specific calendarTemplate.",
+      "kind": "function",
+      "params": [
+        {
+          "name": "calendarTemplate",
+          "type": "string"
+        },
+        {
+          "name": "field",
+          "type": "#/definitions/Field"
+        }
+      ]
+    },
+    "getCalenderDerivedFieldDefinition": {
+      "description": "Get the derived field definition for a field that matches the pattern",
+      "kind": "function",
+      "params": [
+        {
+          "name": "fn",
+          "description": "Field matcher function",
+          "type": "#/definitions/fieldMatchingCalendarCallback"
+        }
+      ],
+      "returns": {
+        "type": "#/definitions/DerivedFieldsTemplate"
+      }
+    },
+    "connectionMatchingCallback": {
+      "description": "Connection matching callback to identify which connection to use for an implicitly declared source.",
+      "kind": "function",
+      "params": [
+        {
+          "name": "data",
+          "description": "Url, file path, csv data",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "type": "#/definitions/Connection"
+      }
+    },
+    "Connection": {
+      "description": "A base set of methods used by Connections",
+      "kind": "object",
+      "entries": {
+        "path": {
+          "description": "The Path to a resource",
+          "type": "string"
+        },
+        "connectionType": {
+          "description": "The type can be either 'folder' or 'internet'",
+          "type": "string"
+        }
+      }
+    },
+    "ConnectionBase": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "A base set of methods used by Connections",
+        "params": [
+          {
+            "name": "path",
+            "description": "The Path to a resource",
+            "type": "string"
+          },
+          {
+            "name": "connectionType",
+            "description": "The type can be either 'folder' or 'internet'",
+            "type": "string"
+          }
+        ]
+      },
+      "entries": {
+        "getFileExtension": {
+          "description": "Returns specified file extension.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getConnectionType": {
+          "description": "Get specified connection type.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getQixConnectionObject": {
+          "description": "Get the QIX representation of a connection.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "Object"
+          }
+        },
+        "getName": {
+          "description": "Get the name and if nothing is set then it will receive a unique name",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getLibStatement": {
+          "description": "Get the lib statement used in the load script to connect to a connection",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getScript": {
+          "description": "Get the load script for this connection",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FileConnection": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "File Connection representation. It will create a folder connection in QIX.",
+        "params": [
+          {
+            "name": "path",
+            "description": "Absolute file path",
+            "type": "string"
+          }
+        ]
+      },
+      "entries": {
+        "getLibStatement": {
+          "description": "Get the lib statement for the specified file path",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "InlineData": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Inline data representation. This is typically CSV formatted data.",
+        "params": [
+          {
+            "name": "data",
+            "type": "string"
+          }
+        ]
+      },
+      "entries": {
+        "getScript": {
+          "description": "Get the load script representation",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "WebFileConnection": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Web file connector structure. It will setup everything to create a QIX internet connection.",
+        "params": [
+          {
+            "name": "url",
+            "type": "string"
+          },
+          {
+            "name": "fileExtension",
+            "type": "string"
+          }
+        ]
+      },
+      "entries": {}
+    },
+    "DerivedFieldsTemplate": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Declare fields that can be derived from a template. An example can be a calendar template.",
+        "params": [
+          {
+            "name": "options",
+            "description": "Derived Field Template definition.",
+            "kind": "object",
+            "entries": {
+              "fieldMatchFunction": {
+                "description": "Matching function that will apply a field template definition.",
+                "type": "callback"
+              },
+              "name": {
+                "description": "Name of derived field.",
+                "type": "string"
+              },
+              "fieldTag": {
+                "description": "What field tag that will be used in the derived field.",
+                "type": "string"
+              },
+              "derivedFieldDefinition": {
+                "description": "What script definition should be used in the derived field.",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "entries": {
+        "getScript": {
+          "description": "Returns the script",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getDefinition": {
+          "description": "Get the script definition for a set of specific fields",
+          "kind": "function",
+          "params": [
+            {
+              "name": "fieldNames",
+              "description": "An array of strings with field names.",
+              "kind": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "returns": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "halyardMixin.extend.createSessionAppUsingHalyard": {
+      "description": "Creates a session app based on the model in the halyard instance",
+      "kind": "function",
+      "params": [
+        {
+          "name": "halyard",
+          "description": "A halyard instance",
+          "type": "#/definitions/Halyard"
+        }
+      ],
+      "returns": {
+        "type": "Promise",
+        "generics": [
+          {
+            "type": "TResult"
+          }
+        ]
+      }
+    },
+    "halyardMixin.extend.createAppUsingHalyard": {
+      "description": "Creates an app with the model in the halyard instance.",
+      "kind": "function",
+      "params": [
+        {
+          "name": "appName",
+          "type": "string"
+        },
+        {
+          "name": "halyard",
+          "type": "#/definitions/Halyard"
+        }
+      ],
+      "returns": {
+        "type": "Promise",
+        "generics": [
+          {
+            "type": "TResult"
+          }
+        ]
+      }
+    },
+    "halyardMixin.extend.reloadAppUsingHalyard": {
+      "description": "Reloads an existing app with the model in the halyard instance. Can also create an app is createIfMissing is set to true.",
+      "kind": "function",
+      "params": [
+        {
+          "name": "existingAppName",
+          "type": "string"
+        },
+        {
+          "name": "halyard",
+          "type": "#/definitions/Halyard"
+        },
+        {
+          "name": "createIfMissing",
+          "type": "boolean"
+        }
+      ],
+      "returns": {
+        "type": "Promise",
+        "generics": [
+          {
+            "type": "TResult"
+          }
+        ]
+      }
+    },
+    "halyardMixin.extend.setScriptAndReloadWithHalyard": {
+      "description": "Use the model in halyard to set the script of an app and save it",
+      "kind": "function",
+      "params": [
+        {
+          "name": "app",
+          "type": "object"
+        },
+        {
+          "name": "halyard",
+          "type": "#/definitions/Halyard"
+        },
+        {
+          "name": "doSaveAfterReload",
+          "type": "boolean"
+        }
+      ],
+      "returns": {
+        "type": "Promise",
+        "generics": [
+          {
+            "type": "TResult"
+          }
+        ]
+      }
+    },
+    "Halyard": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Representation of tables or hypercubes to load",
+        "params": []
+      },
+      "entries": {
+        "getConnections": {
+          "description": "Get connections object that are used in the model",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "kind": "array",
+            "items": {
+              "type": "#/definitions/Connection"
+            }
+          }
+        },
+        "getQixConnections": {
+          "description": "Get the QIX connections definitions that are used in the model",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "description": "{{qName: (string), qConnectionString: (string), qType: (string)}",
+            "type": "any"
+          }
+        },
+        "getFields": {
+          "description": "Get fields that matches pattern sent in as params",
+          "kind": "function",
+          "params": [
+            {
+              "name": "matcherFn",
+              "type": "#/definitions/fieldMatchingCallback"
+            }
+          ],
+          "returns": {
+            "kind": "array",
+            "items": {
+              "type": "#/definitions/Field"
+            }
+          }
+        },
+        "setDefaultSetStatements": {
+          "description": "Configure the default set statements like time, date, currency formats",
+          "kind": "function",
+          "params": [
+            {
+              "name": "defaultSetStatements",
+              "type": "#/definitions/SetStatement"
+            },
+            {
+              "name": "preservePreviouslyEnteredValues",
+              "type": "boolean"
+            }
+          ]
+        },
+        "getItemScript": {
+          "description": "Get the script for a item (table, preceeding load)",
+          "kind": "function",
+          "params": [
+            {
+              "name": "item",
+              "kind": "union",
+              "items": [
+                {
+                  "type": "#/definitions/Table"
+                },
+                {
+                  "type": "#/definitions/HyperCube"
+                }
+              ],
+              "type": "any"
+            }
+          ],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getAllScriptBlocks": {
+          "description": "Fetch all script blocks",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "kind": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "getScript": {
+          "description": "Fetches the entire script",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "addHyperCube": {
+          "description": "Add hyper cube explicit or implicitly",
+          "kind": "function",
+          "params": [
+            {
+              "name": "arg1",
+              "description": "Hypercube",
+              "type": "#/definitions/HyperCube"
+            },
+            {
+              "name": "options",
+              "description": "Hypercube options",
+              "kind": "object",
+              "entries": {
+                "name": {
+                  "description": "Name",
+                  "type": "string"
+                },
+                "section": {
+                  "description": "Section to add hypercube data to",
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "returns": {
+            "description": "Hypercube",
+            "type": "object"
+          }
+        },
+        "addTable": {
+          "description": "Support to add table explicit or implicitly",
+          "kind": "function",
+          "params": [
+            {
+              "name": "arg1",
+              "description": "Table",
+              "type": "#/definitions/Table"
+            },
+            {
+              "name": "options",
+              "kind": "object",
+              "entries": {
+                "name": {
+                  "description": "Table name",
+                  "type": "string"
+                },
+                "fields": {
+                  "description": "Array of field objects",
+                  "kind": "array",
+                  "items": {
+                    "type": "#/definitions/Field"
+                  }
+                },
+                "prefix": {
+                  "description": "Add prefix before the table",
+                  "type": "string"
+                },
+                "section": {
+                  "description": "Section to add table to",
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "returns": {
+            "description": "Table",
+            "type": "object"
+          }
+        },
+        "checkIfItemNameExists": {
+          "description": "Verify that item doesn't exist in model",
+          "kind": "function",
+          "params": [
+            {
+              "name": "newItem",
+              "description": "Table or Hypercube",
+              "kind": "union",
+              "items": [
+                {
+                  "type": "#/definitions/Table"
+                },
+                {
+                  "type": "#/definitions/HyperCube"
+                }
+              ],
+              "type": "any"
+            }
+          ]
+        },
+        "addItem": {
+          "description": "Add new item to the model",
+          "kind": "function",
+          "params": [
+            {
+              "name": "newItem",
+              "description": "Table or Hypercube",
+              "kind": "union",
+              "items": [
+                {
+                  "type": "#/definitions/Table"
+                },
+                {
+                  "type": "#/definitions/HyperCube"
+                }
+              ],
+              "type": "any"
+            }
+          ],
+          "returns": {
+            "description": "- Table or Hypercube",
+            "kind": "union",
+            "items": [
+              {
+                "type": "#/definitions/Table"
+              },
+              {
+                "type": "#/definitions/HyperCube"
+              }
+            ],
+            "type": "any"
+          }
+        },
+        "getItemThatGeneratedScriptAt": {
+          "description": "Locate which item that generated a script at the specified character position",
+          "kind": "function",
+          "params": [
+            {
+              "name": "charPosition",
+              "type": "number"
+            }
+          ],
+          "returns": {
+            "description": "- Table or Hypercube",
+            "kind": "union",
+            "items": [
+              {
+                "type": "#/definitions/Table"
+              },
+              {
+                "type": "#/definitions/HyperCube"
+              }
+            ],
+            "type": "any"
+          }
+        }
+      }
+    },
+    "fieldMatchingCallback": {
+      "description": "Field matching callback to identify if a field matches another",
+      "kind": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "#/definitions/Field"
+        }
+      ],
+      "returns": {
+        "type": "boolean"
+      }
+    },
+    "HyperCube": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Hypercube representation",
+        "params": [
+          {
+            "name": "hyperCubeLayout",
+            "description": "The QIX representation of a hypercube",
+            "type": "object"
+          },
+          {
+            "name": "options",
+            "description": "Hypercube options",
+            "type": "object"
+          },
+          {
+            "name": "name",
+            "description": "Name",
+            "type": "string"
+          },
+          {
+            "name": "section",
+            "description": "Section to add hypercube data to",
+            "type": "string"
+          }
+        ]
+      },
+      "entries": {
+        "getItems": {
+          "description": "Get tables from the hypercube",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "description": "Tables",
+            "kind": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "SetStatement": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Define set statements",
+        "params": [
+          {
+            "name": "defaultSetStatements",
+            "description": "A representation where each property name will be used as key and the property will be the value",
+            "type": "object"
+          }
+        ]
+      },
+      "entries": {
+        "getScript": {
+          "description": "Get the entire set statement as script",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getName": {
+          "description": "Always returns the name as empty",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Table": {
+      "kind": "class",
+      "constructor": {
+        "kind": "function",
+        "description": "Table definition",
+        "params": [
+          {
+            "name": "connection",
+            "type": "#/definitions/Connection"
+          },
+          {
+            "name": "options",
+            "description": "Table options",
+            "kind": "object",
+            "entries": {
+              "name": {
+                "description": "Table name",
+                "type": "string"
+              },
+              "fields": {
+                "description": "Array of field objects",
+                "kind": "array",
+                "items": {
+                  "type": "#/definitions/Field"
+                }
+              },
+              "prefix": {
+                "description": "Add prefix before the table",
+                "type": "string"
+              },
+              "section": {
+                "description": "Section to add table to",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "entries": {
+        "getFields": {
+          "description": "Get the fields from a table",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "description": "Array of fields",
+            "kind": "array",
+            "items": {
+              "type": "#/definitions/Field"
+            }
+          }
+        },
+        "getFieldList": {
+          "description": "Get the script representation of the field list. If nothing is specified than all the fields will be returned.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "isProceedingLoad": {
+          "description": "Is the table used as a proceeding load",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "boolean"
+          }
+        },
+        "getPrefix": {
+          "description": "Returns the specified prefix of the table if it exists.\nThe prefix can be for instance be a Qlik script snippet that always should be executed before the table is loaded.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getScript": {
+          "description": "Get the script representation of the table",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getName": {
+          "description": "Get the name of the table",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getSection": {
+          "description": "Get the section that the table belongs to",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "type": "string"
+          }
+        },
+        "getConnection": {
+          "description": "Returns the connection or table that the table uses.",
+          "kind": "function",
+          "params": [],
+          "returns": {
+            "description": "Connection or Table",
+            "kind": "union",
+            "items": [
+              {
+                "type": "#/definitions/Connection"
+              },
+              {
+                "type": "#/definitions/Table"
+              }
+            ],
+            "type": "any"
+          }
+        }
+      }
+    },
+    "Field": {
+      "kind": "object",
+      "entries": {
+        "src": {
+          "description": "Name in the data source of the field",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name after reload",
+          "type": "string"
+        },
+        "type": {
+          "description": "Date, Time, TimeStamp",
+          "type": "string"
+        },
+        "inputFormat": {
+          "description": "Input format to explain how a field should be parsed.",
+          "type": "string"
+        },
+        "displayFormat": {
+          "description": "Display format that should be used after reload.",
+          "type": "string"
+        },
+        "expr": {
+          "description": "Customize how this field should be loaded with Qlik Script.",
+          "type": "string"
+        }
+      }
+    },
+    "qTypes": {
+      "type": "Object"
+    },
+    "qDimensionType": {
+      "type": "Object"
+    }
+  }
+}
