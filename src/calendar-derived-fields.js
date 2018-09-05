@@ -26,7 +26,7 @@ Week(Today())-Week($1) AS [WeekRelNo];`;
  * A field matching callback to identify which fields that are associated with a specific calendarTemplate.
  * @callback fieldMatchingCalendarCallback
  * @param {string} calendarTemplate
- * @param {Field}
+ * @param {Field} field
  */
 
 /**
