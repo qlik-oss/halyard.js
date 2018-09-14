@@ -3,7 +3,7 @@
   "info": {
     "name": "halyard.js",
     "description": "Data import library for Qlik Analytics Platform",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "license": "MIT",
     "stability": "stable",
     "x-qlik-visibility": "public",
