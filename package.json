@@ -43,7 +43,7 @@
     "eslint-plugin-import": "2.14.0",
     "jsdoc": "3.5.5",
     "rimraf": "2.6.2",
-    "rollup": "0.65.2",
+    "rollup": "0.66.2",
     "rollup-plugin-commonjs": "9.1.8",
     "rollup-plugin-filesize": "4.0.1",
     "rollup-plugin-license": "0.7.0",
