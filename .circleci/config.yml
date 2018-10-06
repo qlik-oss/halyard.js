@@ -25,14 +25,16 @@ jobs:
           command: npm run lint
       - run:
           name: Unit testing
-          command: npm run test:unit
+          command: |
+            npm run test:unit
+            if [ ! -z "$COVERALLS_REPO_TOKEN" ]; then
+              echo "Uploading coverage results to coveralls.io..."
+              cat ./coverage/lcov.info | npx coveralls
+            fi
       - run:
           name: Check if API specification should be updated
           command: |
             npm run generate:spec
             git diff --exit-code --name-only docs/api-spec.json
-      - run:
-          name: Publish coverage artifacts to coverall
-          command: npm run coverage
       - store_artifacts:
           path: dist
