@@ -1,15 +1,15 @@
 {
-  "presets": [["env", { "modules": false }]],
-  "plugins": [
-    ["transform-object-assign"],
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": true
-    }]
-  ],
+  "presets": [[
+    "@babel/preset-env", {
+      "modules": false
+    }
+  ]],
   "env": {
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs", "istanbul"]
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs",
+        "istanbul"
+      ]
     }
   }
 }

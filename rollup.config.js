@@ -3,8 +3,8 @@ import resolve from 'rollup-plugin-node-resolve';
 // import nodeGlobals from 'rollup-plugin-node-globals';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
 import commonjs from 'rollup-plugin-commonjs';
+import babel from 'rollup-plugin-babel';
 import { uglify } from 'rollup-plugin-uglify';
-import { minify } from 'uglify-es';
 import filesize from 'rollup-plugin-filesize';
 import license from 'rollup-plugin-license';
 import extend from 'extend';
@@ -21,6 +21,10 @@ const createConfig = (overrides) => {
       resolve({ jsnext: true, preferBuiltins: false }),
       nodeBuiltins(),
       commonjs(),
+      babel({
+        exclude: 'node_modules/**',
+        externalHelpers: true,
+      }),
       license({
         banner: `
         ${pkg.name} v${pkg.version}
@@ -34,7 +38,7 @@ const createConfig = (overrides) => {
   extend(true, config, overrides);
   if (process.env.NODE_ENV === 'production') {
     config.output.file = config.output.file.replace('.js', '.min.js');
-    config.plugins.push(uglify({}, minify));
+    config.plugins.push(uglify());
   }
   return config;
 };
