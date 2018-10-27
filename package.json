@@ -36,7 +36,7 @@
     "cross-env": "5.2.0",
     "dev-ip": "1.0.1",
     "enigma.js": "2.3.0",
-    "eslint": "5.7.0",
+    "eslint": "5.8.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.14.0",
     "jsdoc": "3.5.5",
@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "3.4.0",
     "rollup-plugin-uglify": "6.0.0",
     "scriptappy-from-jsdoc": "0.6.0",
-    "webpack": "4.22.0",
+    "webpack": "4.23.1",
     "ws": "6.1.0"
   },
   "dependencies": {}
