@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/halyard.js
     docker:
-      - image: circleci/node:8.15.0
+      - image: circleci/node:8.15.1
     environment:
       - NPM_CONFIG_LOGLEVEL=warn
     steps:
