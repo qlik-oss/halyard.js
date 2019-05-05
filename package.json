@@ -39,7 +39,7 @@
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.17.2",
-    "jsdoc": "3.5.5",
+    "jsdoc": "3.6.0",
     "rimraf": "2.6.3",
     "rollup": "1.11.2",
     "rollup-plugin-babel": "4.3.2",
