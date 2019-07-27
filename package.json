@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.2",
     "scriptappy-from-jsdoc": "0.6.0",
-    "webpack": "4.36.1",
+    "webpack": "4.38.0",
     "ws": "7.1.1"
   },
   "dependencies": {}
