@@ -17,7 +17,7 @@ class SetStatement {
    */
   getScript() {
     return Object.keys(this.defaultSetStatements)
-      .map(key => `SET ${key}='${Array.isArray(this.defaultSetStatements[key])
+      .map((key) => `SET ${key}='${Array.isArray(this.defaultSetStatements[key])
         ? this.defaultSetStatements[key].join(';') : this.defaultSetStatements[key]}';`)
       .join('\n');
   }

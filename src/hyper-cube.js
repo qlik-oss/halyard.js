@@ -138,7 +138,7 @@ class HyperCube {
     that.fields = that.getFieldsFromHyperCubeLayout();
     that.data = that.getDataFromHyperCubeLayout();
     const inlineData = `${that.fields
-      .map(field => field.name)
+      .map((field) => field.name)
       .join(',')}\n${this.data}`;
     let hasDual = false;
     that.fields.forEach((field) => {
@@ -191,7 +191,7 @@ class HyperCube {
       return self.indexOf(value) === index;
     }
     return qMatrix
-      .map(row => HyperCubeUtils.getDualDataRow(row[field.index]))
+      .map((row) => HyperCubeUtils.getDualDataRow(row[field.index]))
       .filter(uniqueFilter);
   }
 
@@ -226,8 +226,8 @@ class HyperCube {
   getDataFromHyperCubeLayout() {
     const that = this;
     const data = that.hyperCubeLayout.qDataPages
-      .map(dataPage => dataPage.qMatrix
-        .map(row => row
+      .map((dataPage) => dataPage.qMatrix
+        .map((row) => row
           .map((cell, index) => {
             const field = that.fields[index];
             if (!field.isDual && HyperCubeUtils.isCellDual(cell, field)) {

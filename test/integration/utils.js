@@ -19,8 +19,8 @@ export function openSession(appId) {
 }
 
 export async function removeAllTestDoc() {
-  return openSession().then(qix => qix.getDocList().then(async (list) => {
-    const integrationTestDocs = list.filter(doc => doc.qDocName.match(docNamePrefix));
+  return openSession().then((qix) => qix.getDocList().then(async (list) => {
+    const integrationTestDocs = list.filter((doc) => doc.qDocName.match(docNamePrefix));
     const results = [];
     for (let i = 0; i < integrationTestDocs.length; i += 1) {
       results.push(qix.deleteApp(integrationTestDocs[i].qDocId));

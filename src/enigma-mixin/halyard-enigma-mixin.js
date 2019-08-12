@@ -38,7 +38,7 @@ const halyardMixin = {
      */
     createSessionAppUsingHalyard(halyard) {
       const that = this;
-      return that.createSessionApp().then(app => that.setScriptAndReloadWithHalyard(app, halyard, false));
+      return that.createSessionApp().then((app) => that.setScriptAndReloadWithHalyard(app, halyard, false));
     },
 
     /**
@@ -52,7 +52,7 @@ const halyardMixin = {
       const that = this;
       return that.createApp(appName).then((app) => {
         const appId = app.qAppId;
-        return that.openDoc(appId).then(result => that.setScriptAndReloadWithHalyard(result, halyard, true));
+        return that.openDoc(appId).then((result) => that.setScriptAndReloadWithHalyard(result, halyard, true));
       });
     },
 
@@ -71,11 +71,11 @@ const halyardMixin = {
           const COULD_NOT_FIND_APP = 1003;
 
           if (createIfMissing && error.code === COULD_NOT_FIND_APP) {
-            return that.createApp(existingAppName).then(app => that.openDoc(app.qAppId));
+            return that.createApp(existingAppName).then((app) => that.openDoc(app.qAppId));
           }
           return that.Promise.reject(error);
         })
-        .then(result => that.setScriptAndReloadWithHalyard(result, halyard, true));
+        .then((result) => that.setScriptAndReloadWithHalyard(result, halyard, true));
     },
 
     /**
@@ -94,7 +94,7 @@ const halyardMixin = {
         const qixConnectionObject = connection.getQixConnectionObject();
         if (qixConnectionObject) {
           const connectionPromise = app.createConnection(qixConnectionObject)
-            .then(result => result, (err) => {
+            .then((result) => result, (err) => {
               const LOCERR_CONNECTION_ALREADY_EXISTS = 2000;
 
               // Will not throw error if connection already exists.
