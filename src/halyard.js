@@ -19,7 +19,7 @@ class Halyard {
     this.defaultSetStatements = {};
     this.items = [];
     this.addItem(new SetStatement(this.defaultSetStatements));
-    this.lastItems = [getDerivedFieldDefinition(x => this.getFields(x))];
+    this.lastItems = [getDerivedFieldDefinition((x) => this.getFields(x))];
   }
 
   /**
@@ -28,7 +28,7 @@ class Halyard {
    * @returns {Connection[]}
    */
   getConnections() {
-    return this.items.filter(item => item.getConnection).map(item => item.getConnection());
+    return this.items.filter((item) => item.getConnection).map((item) => item.getConnection());
   }
 
   /**
@@ -37,8 +37,8 @@ class Halyard {
    * @returns {{qName: (string), qConnectionString: (string), qType: (string)}
    */
   getQixConnections() {
-    return this.getConnections().map(connection => connection.getQixConnectionObject())
-      .filter(connection => connection);
+    return this.getConnections().map((connection) => connection.getQixConnectionObject())
+      .filter((connection) => connection);
   }
 
   /**
@@ -110,7 +110,7 @@ class Halyard {
    * @returns {string[]}
    */
   getAllScriptBlocks() {
-    return this.items.concat(this.lastItems).filter(item => item.getScript());
+    return this.items.concat(this.lastItems).filter((item) => item.getScript());
   }
 
   /**
@@ -119,7 +119,7 @@ class Halyard {
    * @returns {string}
    */
   getScript() {
-    return this.getAllScriptBlocks().map(item => this.getItemScript(item))
+    return this.getAllScriptBlocks().map((item) => this.getItemScript(item))
       .join(SCRIPT_BLOCK_SPACING);
   }
 
@@ -182,7 +182,7 @@ class Halyard {
    */
   checkIfItemNameExists(newItem) {
     if (newItem.getName && newItem.getName()) {
-      if (this.items.filter(item => item.getName() === newItem.getName()).length > 0) {
+      if (this.items.filter((item) => item.getName() === newItem.getName()).length > 0) {
         throw new Error('Cannot add another table with the same name.');
       }
     }

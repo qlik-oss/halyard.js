@@ -40,7 +40,7 @@ function getCalenderDerivedFieldDefinition(fn) {
     name: 'autoCalendar',
     fieldTag: 'date',
     derivedFieldDefinition: derivedFieldsDefinition,
-    fieldMatchFunction: () => fn(f => f.calendarTemplate),
+    fieldMatchFunction: () => fn((f) => f.calendarTemplate),
   });
 }
 

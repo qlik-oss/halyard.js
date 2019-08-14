@@ -29,7 +29,7 @@ export function convert(data) {
 
   const headers = Object.keys(data[0]);
 
-  csv = `${csv + headers.map(header => escapeValueContainingDelimiter(header, delimiter))
+  csv = `${csv + headers.map((header) => escapeValueContainingDelimiter(header, delimiter))
     .join(delimiter)}\n`;
 
   let fields = [];
