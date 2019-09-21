@@ -33,7 +33,7 @@
     "coveralls": "3.0.6",
     "bluebird": "3.5.5",
     "browser-sync": "2.26.7",
-    "cross-env": "5.2.1",
+    "cross-env": "6.0.0",
     "dev-ip": "1.0.1",
     "enigma.js": "2.4.0",
     "eslint": "6.4.0",
