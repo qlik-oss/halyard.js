@@ -26,9 +26,9 @@
   "devDependencies": {
     "@after-work.js/aw": "6.0.8",
     "@after-work.js/transform": "6.0.8",
-    "@babel/core": "7.6.0",
+    "@babel/core": "7.6.2",
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
-    "@babel/preset-env": "7.6.0",
+    "@babel/preset-env": "7.6.2",
     "babel-plugin-istanbul": "5.2.0",
     "coveralls": "3.0.6",
     "bluebird": "3.5.5",
@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.3",
     "scriptappy-from-jsdoc": "0.6.0",
-    "webpack": "4.40.2",
+    "webpack": "4.41.0",
     "ws": "7.1.2"
   },
   "dependencies": {}
