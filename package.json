@@ -29,7 +29,7 @@
     "@babel/core": "7.7.7",
     "@babel/plugin-transform-modules-commonjs": "7.7.5",
     "@babel/preset-env": "7.7.7",
-    "babel-plugin-istanbul": "5.2.0",
+    "babel-plugin-istanbul": "6.0.0",
     "coveralls": "3.0.9",
     "bluebird": "3.7.2",
     "browser-sync": "2.26.7",
