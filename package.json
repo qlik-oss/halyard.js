@@ -24,8 +24,8 @@
   ],
   "main": "dist/halyard.js",
   "devDependencies": {
-    "@after-work.js/aw": "6.0.11",
-    "@after-work.js/transform": "6.0.11",
+    "@after-work.js/aw": "6.0.13",
+    "@after-work.js/transform": "6.0.13",
     "@babel/core": "7.8.7",
     "@babel/plugin-transform-modules-commonjs": "7.8.3",
     "@babel/preset-env": "7.8.7",
@@ -37,11 +37,11 @@
     "dev-ip": "1.0.1",
     "enigma.js": "2.6.3",
     "eslint": "6.8.0",
-    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.1",
     "jsdoc": "3.6.3",
     "rimraf": "3.0.2",
-    "rollup": "2.0.2",
+    "rollup": "2.0.6",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "6.2.1",
@@ -52,7 +52,7 @@
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
     "webpack": "4.42.0",
-    "ws": "7.2.2"
+    "ws": "7.2.3"
   },
   "dependencies": {}
 }
