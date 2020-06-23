@@ -8,7 +8,7 @@ const config = {
   url: 'ws://localhost:4848/app/engineData',
   createSocket(url) {
     return new WebSocket(url);
-  }
+  },
 };
 
 module.exports = config;
