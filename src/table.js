@@ -83,7 +83,6 @@ class Table {
           formattedInput = field.expr;
         }
 
-
         if (!(field.name || field.src)) {
           throw (new Error(`A name or src needs to specified on the field: ${JSON.stringify(field)}`));
         }

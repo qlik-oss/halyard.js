@@ -1,8 +1,8 @@
-
-const enigmaConfig = require('./enigma-config.js');
 const enigma = require('enigma.js');
+const enigmaConfig = require('./enigma-config.js');
 
 const enigmaMixin = require('../dist/halyard-enigma-mixin.js');
+
 enigmaConfig.mixins = enigmaMixin;
 
 const Halyard = require('../dist/halyard.js');
@@ -16,7 +16,7 @@ halyard.addTable(table);
 enigma.create(enigmaConfig).open().then((qix) => {
   qix.createSessionAppUsingHalyard(halyard).then((result) => {
     result.getAppLayout().then((res) => {
-      console.log("Successfull :", res);
+      console.log('Successfull :', res);
       process.exit(0);
     });
   }, (error) => {

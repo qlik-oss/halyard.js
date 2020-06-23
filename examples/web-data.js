@@ -1,9 +1,10 @@
 const path = require('path');
 
-const enigmaConfig = require('./enigma-config.js');
 const enigma = require('enigma.js');
+const enigmaConfig = require('./enigma-config.js');
 
 const enigmaMixin = require('../dist/halyard-enigma-mixin.js');
+
 enigmaConfig.mixins = enigmaMixin;
 
 const Halyard = require('../dist/halyard.js');

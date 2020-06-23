@@ -135,7 +135,6 @@ const halyardMixin = {
   },
 };
 
-
 const exposeGlobalApi = {
   types: 'Doc',
   init(args) {
