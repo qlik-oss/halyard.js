@@ -39,9 +39,9 @@
     "eslint": "7.5.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-plugin-import": "2.22.0",
-    "jsdoc": "3.6.4",
+    "jsdoc": "3.6.5",
     "rimraf": "3.0.2",
-    "rollup": "2.22.1",
+    "rollup": "2.23.0",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.0.2",
@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
-    "webpack": "4.43.0",
+    "webpack": "4.44.0",
     "ws": "7.3.1"
   },
   "dependencies": {}
