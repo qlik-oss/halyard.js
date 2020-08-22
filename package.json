@@ -26,7 +26,7 @@
   "devDependencies": {
     "@after-work.js/aw": "6.0.13",
     "@after-work.js/transform": "6.0.13",
-    "@babel/core": "7.11.1",
+    "@babel/core": "7.11.4",
     "@babel/plugin-transform-modules-commonjs": "7.10.4",
     "@babel/preset-env": "7.11.0",
     "babel-plugin-istanbul": "6.0.0",
@@ -41,7 +41,7 @@
     "eslint-plugin-import": "2.22.0",
     "jsdoc": "3.6.5",
     "rimraf": "3.0.2",
-    "rollup": "2.26.3",
+    "rollup": "2.26.4",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.0.2",
