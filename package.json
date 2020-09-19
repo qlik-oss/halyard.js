@@ -24,8 +24,8 @@
   ],
   "main": "dist/halyard.js",
   "devDependencies": {
-    "@after-work.js/aw": "6.0.13",
-    "@after-work.js/transform": "6.0.13",
+    "@after-work.js/aw": "6.0.14",
+    "@after-work.js/transform": "6.0.14",
     "@babel/core": "7.11.6",
     "@babel/plugin-transform-modules-commonjs": "7.10.4",
     "@babel/preset-env": "7.11.5",
@@ -41,7 +41,7 @@
     "eslint-plugin-import": "2.22.0",
     "jsdoc": "3.6.5",
     "rimraf": "3.0.2",
-    "rollup": "2.26.11",
+    "rollup": "2.27.1",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.0.2",
@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
-    "webpack": "4.44.1",
+    "webpack": "4.44.2",
     "ws": "7.3.1"
   },
   "dependencies": {}
