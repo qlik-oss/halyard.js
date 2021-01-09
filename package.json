@@ -41,7 +41,7 @@
     "eslint-plugin-import": "2.22.1",
     "jsdoc": "3.6.6",
     "rimraf": "3.0.2",
-    "rollup": "2.35.1",
+    "rollup": "2.36.1",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.1.0",
@@ -51,7 +51,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
-    "webpack": "5.11.1",
+    "webpack": "5.12.1",
     "ws": "7.4.2"
   },
   "dependencies": {}
