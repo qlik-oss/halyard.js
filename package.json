@@ -52,7 +52,7 @@
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
     "webpack": "5.24.3",
-    "ws": "7.4.3"
+    "ws": "7.4.4"
   },
   "dependencies": {}
 }
