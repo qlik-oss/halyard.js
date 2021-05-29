@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   engine:
-    image: qlikcore/engine:12.961.0
+    image: qlikcore/engine:12.1016.0
     command:
       -S AcceptEULA=${ACCEPT_EULA}
     ports:

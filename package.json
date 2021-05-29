@@ -28,7 +28,7 @@
     "@after-work.js/transform": "6.0.14",
     "@babel/core": "7.14.3",
     "@babel/plugin-transform-modules-commonjs": "7.14.0",
-    "@babel/preset-env": "7.14.2",
+    "@babel/preset-env": "7.14.4",
     "babel-plugin-istanbul": "6.0.0",
     "coveralls": "3.1.0",
     "bluebird": "3.7.2",
@@ -41,7 +41,7 @@
     "eslint-plugin-import": "2.23.3",
     "jsdoc": "3.6.7",
     "rimraf": "3.0.2",
-    "rollup": "2.49.0",
+    "rollup": "2.50.3",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-filesize": "9.1.1",
@@ -51,8 +51,8 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-uglify": "6.0.4",
     "scriptappy-from-jsdoc": "0.7.0",
-    "webpack": "5.37.1",
-    "ws": "7.4.5"
+    "webpack": "5.38.1",
+    "ws": "7.4.6"
   },
   "dependencies": {}
 }
