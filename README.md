@@ -1,5 +1,7 @@
 ![](halyard.png)
 
+*As of 1 July 2020, Qlik Core is no longer available to new customers. No further maintenance will be done in this repository.*
+
 [![CircleCI](https://circleci.com/gh/qlik-oss/halyard.js.svg?style=shield)](https://circleci.com/gh/qlik-oss/halyard.js)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=qlik-oss/halyard.js)](https://dependabot.com)
 [![Coverage Status](https://img.shields.io/coveralls/qlik-oss/halyard.js/master.svg)](https://coveralls.io/github/qlik-oss/halyard.js)
